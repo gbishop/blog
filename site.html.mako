@@ -4,7 +4,7 @@
 <p>This site is powered by <a href="http://blogofile.com/">Blogofile</a>.</p>
 
 <p>The design is a seriously hacked (and uglified) version of the <a
-href="">free html5 and css3 theme</a> by by <a href="http://jayj.dk"
+href="">free html5 and css3 theme</a> by <a href="http://jayj.dk"
 title="Design by Jayj.dk">Jayj.dk</a>.</p>
 
 <p>You can find the source to the entire site in my <a
