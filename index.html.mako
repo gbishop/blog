@@ -17,6 +17,6 @@ Gary Bishop, Professor of <a href="http://www.cs.unc.edu/">Computer Science</a>
 	<li>Download <a href="http://www.cs.unc.edu/~gb/research/hark-the-sound/">Hark the Sound</a>, our sound game for kids who are blind or visually impaired.</li>
 	<li>Read about our work on <a href="http://www.cs.unc.edu/~gb/research/">enabling technology</a></li>
 	<li>Look for <a href="http://www.cs.unc.edu/~gb/blog/category/ideas/">ideas for enabling technology projects</a></li>
-	<li>Check my <a href="http://www.cs.unc.edu/~gb/calendar/">calendar</a> to find an open time we could meet</li>
+	<li>Check my <a href="http://www.cs.unc.edu/~gb/calendar.html">calendar</a> to find an open time we could meet</li>
 </ul>
 
