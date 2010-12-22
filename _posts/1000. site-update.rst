@@ -1,0 +1,36 @@
+---
+categories: Programming, Random
+date: 2010/12/22 13:11:00
+permalink: /~gb/blog/2010/12/22/site-update/
+tags: ''
+title: Site Update
+---
+Mike Pirnat's post `Why I Switched to Blogofile`_ inspired me to give Blogofile_ a look. The nice documentation and especially the migration strategy from Wordpress_ inspired me to give it a try. 
+
+Now after about 3 days of reading and enjoyable hacking, I've got my site converted with a new theme and color scheme. I'm impressed at how straightforward the conversion has been. I hacked up the ``wordpress2blogofile.py`` script to modify the paths (I wanted to change my permalinks) and to insert paragraph tags into the extracted text.
+
+As suggested, I used the `Wordpress Disqus`_ plugin to move my comments to Disqus_, then added a 301 redirect in my former Wordpress folder and told Disqus to walk the comments and update their locations. It appears to have worked perfectly!
+
+I wanted to go HTML5 and CSS3 with this update so I went looking for some resources. I found Edward O'Connor's `Blog templates: a case study in using HTML5’s sectioning elements`_ and Jayj.dk's `A free HTML5 and CSS3 theme`_ very useful. I compared Jayj.dk's template to the simple blog template that comes with Blogofile and hacked away. It didn't take long at all to get something working.
+
+I also wanted to get a consistent color scheme going so I hacked up the css to use mako substitutions for the colors. Then I took `Carolina Blue`_ as defined by Wikipedia and created 16 shades by varying first the Value from 0 to 100 in steps of 10 and then the Saturation down to 0. Having replaced all the colors in the css with variable references made it easy to tweak the colors to suit. I don't claim to have a good eye for design but I like the result.
+
+You can see the code in my `github respository`_. 
+
+.. _`Why I Switched to Blogofile`: http://mike.pirnat.com/2010/12/18/why-i-switched-to-blogofile/
+
+.. _Blogofile: http://blogofile.com/
+
+.. _`Blog templates: a case study in using HTML5’s sectioning elements`: http://edward.oconnor.cx/2009/09/using-the-html5-sectioning-elements
+
+.. _`A free HTML5 and CSS3 theme`: http://jayj.dk/a-free-html5-and-css3-theme/
+
+.. _`github respository`: https://github.com/gbishop/blog
+
+.. _`Carolina Blue`: http://en.wikipedia.org/wiki/Carolina_blue
+
+.. _Wordpress: http://wordpress.org/
+
+.. _`Wordpress Disqus`: http://wordpress.org/extend/plugins/disqus-comment-system/
+
+.. _Disqus: http://disqus.com/
