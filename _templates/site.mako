@@ -6,6 +6,7 @@
 <html lang="en">
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    ${self.robots_meta()}
     <title>${bf.config.blog.name}</title>
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" 
       href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/')}" />
@@ -110,4 +111,7 @@
   % if self.attr.current_ == t:
   class="current"
   % endif
+</%def>
+<%def name="robots_meta()">
+  <meta name="robots" content="index,follow">
 </%def>

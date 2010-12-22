@@ -15,3 +15,6 @@
 % if next_link:
  <a href="${next_link}">Next Page »</a>
 % endif
+<%def name="robots_meta()">
+  <meta name="robots" content="noindex,follow">
+</%def>
