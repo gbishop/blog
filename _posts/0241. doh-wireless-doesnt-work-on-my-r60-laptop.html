@@ -1,0 +1,16 @@
+---
+categories: Ubuntu
+date: 2007/06/28 09:59:43
+permalink: /~gb/blog/2007/06/28/doh-wireless-doesnt-work-on-my-r60-laptop/
+tags: ''
+title: Doh! Wireless doesn't work on my R60 laptop
+---
+<p>Wireless actually works except for the campus network. I can connect to the network over at the Inn (by accident I assure you) but our campus network uses WEP and does not broadcast SSID. Something about that kills it. Lots of Googling hasn't produced an answer. Michael suggests trying ndiswrapper.</p>
+
+<p><del datetime="2007-10-31T14:59:31+00:00">Update: the following commands will make it work. Why? If I put them in /etc/networks/interfaces, they don't seem to work. Ack.</p>
+
+<p><code>sudo iwconfig ath0 essid OurSSID key XXXX-XXXX-XX mode Managed
+sudo iwpriv ath0 authmode 2
+</code></del>
+Update 31 October 2007: Under Gutsy, I edited /etc/network/if-pre-up.d/wireless-tools and added
+<code>/sbin/iwpriv ath0 authmode 2</code> just after the first <code>fi</code>. That seems to work.</p>

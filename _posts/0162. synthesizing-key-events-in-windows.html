@@ -1,0 +1,12 @@
+---
+categories: Programming
+date: 2007/01/28 20:18:55
+permalink: /~gb/blog/2007/01/28/synthesizing-key-events-in-windows/
+tags: ''
+title: Synthesizing key events in windows
+---
+<p>For my video switch I want to be able to synthesize key events that look like they originated from the keyboard. The function SendInput in the user32.dll looks like the right low-level goods but Pete points out that the WScript.Shell has a SendKeys method that is easier to use. The Python code looks like:</p>
+<pre>import win32com.client
+ws_shell = win32com.client.Dispatch("WScript.Shell")
+SendKeys = ws_shell.SendKeys</pre>
+<p><a href="http://www.devguru.com/Technologies/wsh/quickref/wshshell_SendKeys.html">DevGuru</a> has a table of the key encodings.</p>

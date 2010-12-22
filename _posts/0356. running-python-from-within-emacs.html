@@ -1,0 +1,34 @@
+---
+categories: Programming
+date: 2008/03/15 17:53:18
+permalink: /~gb/blog/2008/03/15/running-python-from-within-emacs/
+tags: ''
+title: Running Python from within Emacs
+---
+<p>Emacs python mode supports running scripts in an <em>inferior</em> python process that is running in an emacs buffer. I really like this idea but have never been able to reliably use it because so much of my work depends on external libraries that may not do a complete job of cleaning up their state. Attempting to reuse them in the same process is, in my experience, a recipe for confusion. Also, emacs seems to be hung waiting on the python subprocess while my GUI app is running. As a result, I always edit in emacs and then switch to a command prompt to run.</p>
+
+<p>It occurred to me that if I my program doesn't need input (almost all mine have a GUI) I can run them using the emacs compile command. The compile command in emacs is intended for running make and other command-line build tools. The command runs in a separate process and its output is directed to an emacs buffer. I tried it out and it works great!</p>
+
+<p>In my .emacs file I defined this function
+</p>
+<pre>
+(defun my-compile ()
+  "Use compile to run python programs"
+  (interactive)
+  (compile (concat "python " (buffer-name))))
+(setq compilation-scroll-output t)
+</pre>
+<p>This function invokes compile with python foo.py when I'm editing a buffer named foo.py. The setq makes the compilation buffer scroll to follow the output.</p>
+
+<p>And then in my python-mode hook function I added:
+</p>
+<pre>
+  (local-set-key "\C-c\C-c" 'my-compile)
+</pre>
+<p>This binds Ctrl-C Ctrl-C to compile instead of the usual eval-buffer which I never use anyway.</p>
+
+<p>Now I can edit and type Ctrl-C Ctrl-C to run. If my program raises an exception, I get a traceback in the emacs buffer. emacs parses the buffer looking for error messages. It notices the File lines in the trace back and sets them up so I can click on a filename to visit the file and line associated with the traceback.</p>
+
+<p>I'm loving this! No more directing my program output into a file when I'm printing tons of debug messages. No more constant Alt-Tab to switch between emacs and the command prompt.</p>
+
+<p>I'm using it on Ubuntu, but a quick test indicates this works on Windows also.</p>

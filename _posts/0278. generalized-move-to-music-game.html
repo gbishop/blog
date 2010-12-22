@@ -1,0 +1,37 @@
+---
+categories: Ideas, Enabling Technology, Blind, Motor impaired
+date: 2007/10/26 09:49:38
+permalink: /~gb/blog/2007/10/26/generalized-move-to-music-game/
+tags: ''
+title: Generalized Move to Music Game
+---
+<p>Here's an idea for a simple game to encourage movement to music. I'm drawing from our <a href="http://wwwx.cs.unc.edu/~gb/Comp080/">Comp 80 class</a> ideas for <a href="http://wwwx.cs.unc.edu/~gb/Comp080/2007/09/21/thinking-about-generalized-ddr/">Generalized DDR</a>.</p>
+
+<p>In this game the player moves to music. Their score depends on how well their movement is synchronized with the music and on how many different moves they made. A more advanced version allows them to play along with the music though various delays will have to be overcome to enable their sounds to be sync'ed with the music. The system keeps track of their score and rewards improvement. Perhaps new tunes get <em>unlocked</em> like in DDR.</p>
+
+<p><!--more--></p>
+
+<p>It should be easy for the teacher to make some movements (say reaching up) more valuable than others.</p>
+
+<p>Possible inputs include:
+<ul>
+	<li>Arthur Greenside's "camkeys" web-cam switch. It generates user-selectable key events when regions of the image change. We could easily point it at a wall and let a player sit or stand in view of the camera. The player moves to obscure or touch targets on the wall. The targets can be arranged to encourage reaching up, out to the side, or in any direction.</li>
+	<li>Intellikeys keyboard generates key events.</li>
+	<li>DDR pad generates events like a game controller. Could be used with feet or hands.</li>
+	<li>Conventional switches generate keyboard or mouse events.</li>
+	<li>Possibly something like a Guitar Hero controller.</li>
+	<li>Conventional keyboard for testing and to enable other devices that generate key events.</li>
+	<li>WiiMote! They could shake it to the music.</li>
+</ul></p>
+
+<p>With those inputs we need a simple program that <em>scores</em> keyboard or game controller (DDR pad or whatever) events by measuring how well they correspond to predefined times with a multiplier for different (and simultaneous?) events and with allowance for different events (reaching up for example) to be more valuable than others. We want it to be easy for a beginner using only a single switch to score points but challenging for more advanced players to increase their score.</p>
+
+<p>We should provide feedback for the player to encourage them and let them know how well they are doing. We could include visual feedback with (say) fireworks displayed with a projector. We could provide audio feedback with loud clapping or stomping to the beat that varies in volume depending on how well they are doing. We could have some recorded or synthesized speech prompts. </p>
+
+<p>The last piece is a tool to automatically determine the times that correspond to a given musical input. I believe we can do this with some simple signal processing. We should make it easy to create and annotate these so if we teacher wants to make a "Simon Says" sort of game with specified movements they can do that too. </p>
+
+<p><h4>Examples</h4></p>
+
+<p>I see this working at Maze Day like this: We point a web-cam at the wall with (say) 4 targets arranged so they will be occluded when the child reaches out or up with their left and right arms (think of 9, 11, 1, and 3 on the clock). We play some tune with a strong beat like "YMCA" and they get scored when they obscure the targets on the beat. Perhaps we should have them touch the targets. Likewise we could set up a DDR pad for kids to step in time to the music or sit in the center and press with their hands. We could also have an Intellikeys keyboard setup with some tactile markers for kids who can't move around much. I bet we could have several kids play simultaneously to the same tune, thus reducing the noise.</p>
+
+<p>I could even see senior citizens using such a game in an exercise class. Maybe some great visual feedback when you're doing well? </p>

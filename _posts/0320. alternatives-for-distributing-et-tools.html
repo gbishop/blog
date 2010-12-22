@@ -1,0 +1,33 @@
+---
+categories: Enabling Technology, Programming
+date: 2008/01/14 11:28:52
+permalink: /~gb/blog/2008/01/14/alternatives-for-distributing-et-tools/
+tags: ''
+title: Alternatives for distributing ET tools
+---
+<p>We want to give away software for fun and learning and we want it to run on as many machines as possible. I think these are my minimum requirements.
+<ul>
+	<li>One full-screen window, with 2D graphics and text.</li>
+	<li>Stereo sound with panning control at least.</li>
+	<li>Text to speech.</li>
+	<li>USB game controllers like DDR pads, joysticks, etc.</li>
+	<li>Access to new devices like the Wiimote</li>
+</ul></p>
+
+<p>Other features that would be great include:
+<ul>
+	<li>3D graphics</li>
+	<li>Spatial sound.</li>
+	<li>Run within the browser</li>
+	<li>Small downloads and simple install if any.</li>
+</ul></p>
+
+<p>It seems to me the possibilities are Flash, Javascript for a single browser like Firefox, Jython (Python on the Java VM), and Pygame.</p>
+
+<p>Flash has nice graphics, good sound, and small downloads. I hate the expensive IDE that is required for development. Flash has no access to game controllers and such without some downloaded extension. Perhaps if we could make custom "Projectors" (as they appear to call their stand along executables) we could embed the extensions. I don't know if that is possible. Flash has no text-to-speech though we've done a simple web service that handles it remotely. Very slow though. The security model is always (it seems) getting in the way of doing interesting things.</p>
+
+<p>Javascript in a single browser would avoid the ugliness of trying to make it work everywhere but like Flash you've got no access to special devices, and no text to speech. I guess we could build a custom version that is extended or have people download a little local service (a bit like Google Gears). We could use a simple fixed Flash movie to get access to sound. We'd have to worry about the browser supporting crappy old PCs. </p>
+
+<p>Jython on the Java VM could be cool. If we programmed for the lowest common denominator VM (1.1) we'd have a pretty good chance of working on most machines. I've never had good luck with Java sound. Last time I tried (not that long ago) the demo's on the Sun website died. That's not encouraging. We'd have no access to special devices without some sort of bridge.</p>
+
+<p>I really like Pygame. It is a nice simple game development environment. Pygame claims to run on Windows, Mac, and Linux. I can verify that it works fine on Windows and Linux. Miriam pointed me to Renpy, a visual novel system built on top of pygame. I see people over there distributing games/novels with downloads for all three platforms. We can't run in browser and we have to test everywhere. The downloads will be big. We've already figured out how to do text to speech on all 3 platforms and we can have 3D graphics using OpenGL. We could get 3D sound with FMODex. I wrote a wrapper in pyrex but keeping it sync'd with their ever changing api is a major pain. But the 2D sound in pygame is good for most of what we do because you can't really count on schools having more than stereo sound anyway. </p>

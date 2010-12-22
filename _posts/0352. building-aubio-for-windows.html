@@ -1,0 +1,22 @@
+---
+categories: Programming, Windows
+date: 2008/02/21 12:07:05
+permalink: /~gb/blog/2008/02/21/building-aubio-for-windows/
+tags: ''
+title: Building aubio for windows
+---
+<p>What I tried, so I can reconstruct it later.</p>
+
+<p>Install cygwin. Change the Devel category from Default to Install in their setup tool.</p>
+
+<p>Download <a href="http://www.mega-nerd.com/libsndfile/">libsndfile</a>, extract, configure, make make install.
+Download <a href="http://www.mega-nerd.com/SRC/">libsamplerate</a>, extract, configure, make, make install.</p>
+
+<p>Download <a href="http://aubio.org/">aubio</a> and extract it.
+cd into its folder</p>
+
+<p><code>export PKG_CONFIG_PATH=/usr/local/lib/pkgconfig
+./configure --disable-shared
+make
+make install</code>
+</p>

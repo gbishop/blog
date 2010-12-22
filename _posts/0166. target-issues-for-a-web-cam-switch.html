@@ -1,0 +1,24 @@
+---
+categories: Enabling Technology, Blind, Deaf
+date: 2007/01/31 16:11:14
+permalink: /~gb/blog/2007/01/31/target-issues-for-a-web-cam-switch/
+tags: ''
+title: Target issues for a web-cam switch
+---
+<p>I can reliably detect many simple targets and generate key events in real time using a web-cam and an ordinary piece of paper with printed targets. What are the important characteristics of the targets?</p>
+
+<p><ol>
+	<li>They must be meaningful to the user.</li>
+	<li>They must be detectable and easily distinguished from whatever will obscure them by the computer.</li>
+	<li>They must have an associated key, mouse or other event to control the computer.</li>
+</ol></p>
+
+<p><!--more--></p>
+
+<p>Many users will have useful vision so the targets can't simply be bulls eyes like I'm using now. All I need for the computer is some texture that looks different from hand, head, or whatever that will obscure it. I believe printed words in a really large font should work fine for example. Textured patches should be fine. Solid patches aren't so good. For the computer's purposes the targets don't have to be different, their physical arrangement should be sufficient to distinguish them.</p>
+
+<p>Initially identifying targets and assigning meanings to them will be a challenge. We may be able to design some sort of overlay maker similar to the <a href="http://www.intellitools.com/">Intellitools</a> system. The teacher would draw the work space, identify active areas, and assign meanings to them. This program could add texture and colors to make the task of detecting and orienting the sheet easier for the computer vision system. The teacher then prints the page on a color printer and places it in front of the camera. The software could (possibly with some assistance from the teacher) then find the sheet and identify the target areas. If done well this could work like the special Intellikeys overlays with bar codes on them. This makes using the same pattern again easier but isn't very flexible and limits you to what you can print on a single sheet.</p>
+
+<p>An alternative approach would have the teacher point the camera and then use the computer mouse to click on the web-cam image to identify each target. We could either, have them choose the meaning of each target as it is selected, or we could tell them to click on the targets in some predefined order (i.e. left-click, enter, right-click, space). This approach would be easier to program and more flexible since the targets could be anything and anywhere. For example, the teacher might point the web-cam at the student and click (in the displayed image) two spots on either side of the student's head; slight head motion could then activate either switch. A third switch could quickly be added next to the student's hand by simply clicking a point on the tray. This way requires setup each time but is very flexible.</p>
+
+<p>The approach I'm currently using to implement the target detection is incredibly stupid. As long as everything stays put it works very well. But if a target moves, even a little, the computer will likely report a selection of that target. I'm just checking to see if the target looks the same as it did initially. Of course, this can be improved somewhat if necessary. We could look in the vicinity for things that look like the target but this is computationally expensive and much more prone to locking onto the wrong things. </p>

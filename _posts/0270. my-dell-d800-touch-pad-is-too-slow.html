@@ -1,0 +1,22 @@
+---
+categories: Ubuntu
+date: 2007/10/18 20:13:19
+permalink: /~gb/blog/2007/10/18/my-dell-d800-touch-pad-is-too-slow/
+tags: ''
+title: My Dell D800 Touch Pad is Too Slow
+---
+<p>This D800 has the 1920 by 1280 screen and the touchpad defaults are way too slow. I looked for a tool to adjust it but don't see one. I edited xorg.conf to look like this:</p>
+
+<p><code>
+Section "InputDevice"
+        Identifier      "Synaptics Touchpad"
+        Driver          "synaptics"
+        Option          "SendCoreEvents"        "true"
+        Option          "Device"                "/dev/psaux"
+        Option          "Protocol"              "auto-dev"
+        Option          "HorizEdgeScroll"       "0"
+        Option          "MinSpeed"              "0.75"
+        Option          "AccelFactor"           "0.50"
+        Option          "SHMConfig"             "true"
+EndSection
+</code></p>

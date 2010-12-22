@@ -1,0 +1,126 @@
+---
+categories: Programming
+date: 2007/02/11 11:43:09
+permalink: /~gb/blog/2007/02/11/ctypes-tricks/
+tags: ''
+title: ctypes tricks
+---
+<p>A few tricks I learned using ctypes to wrap OpenCV.</p>
+
+<p><!--more--></p>
+
+<p></strong>Easy function prototypes</strong></p>
+
+<p>ctypes allows declaration of foreign function arguments and results using a very power prototype capability. Unfortunately the parameters have to be specified in two separate lists. This little helper function cleans that up into one list:
+</p>
+<pre>
+# make function prototypes a bit easier to declare
+def cfunc(name, dll, result, *args):
+    '''build and apply a ctypes prototype complete with parameter flags'''
+    atypes = []
+    aflags = []
+    for arg in args:
+        atypes.append(arg[1])
+        aflags.append((arg[2], arg[0]) + arg[3:])
+    return CFUNCTYPE(result, *atypes)((name, dll), tuple(aflags))
+
+</pre>
+<p>Arguments: name is a string specifying the function name in the dll, dll is the dll object, result is the type of the result, *args is a list of tuples with 3 or 4 elements each like (argname, argtype, in/out, default) where argname is the name of the argument, argtype is the type, in/out is 1 for input and 2 for output, and default is an optional default value.</p>
+
+<p>For example:
+</p>
+<pre>
+cvMinMaxLoc = cfunc('cvMinMaxLoc', _cxDLL, None,
+                       ('image', POINTER(IplImage), 1),
+                       ('min_val', POINTER(double), 2),
+                       ('max_val', POINTER(double), 2),
+                       ('min_loc', POINTER(CvPoint), 2),
+                       ('max_loc', POINTER(CvPoint), 2),
+                       ('mask', POINTER(IplImage), 1, None))
+</pre>
+<p>
+means locate cvMinMaxLoc in dll _cxDLL, it returns nothing. The first argument is an input image. The next 4 arguments are output, and the last argument is input with an optional value. A typical call might look like:
+</p>
+<pre>
+min_val,max_val,min_loc,max_loc = cvMinMaxLoc(img)
+</pre>
+<p><strong>Array arguments from lists</strong></p>
+
+<p>The from_param feature of ctypes is a very powerful way to insert code into the process of preparing arguments to pass to foreign functions. For example, using this class:
+</p>
+<pre>
+class ListPOINTER(object):
+    '''Just like a POINTER but accept a list of ctype as an argument'''
+    def __init__(self, etype):
+        self.etype = etype
+
+    def from_param(self, param):
+        if isinstance(param, (list,tuple)):
+            return (self.etype * len(param))(*param)
+</pre>
+<p>
+Suppose I have a foreign function foo that expects an array of ints. I could say:
+</p>
+<pre>
+ary = (c_int * 3)()
+ary[0] = 1
+ary[1] = 2
+ary[2] = 3
+foo(ary)
+</pre>
+<p>
+I can replace an argument of type POINTER(c_int) with LIstPOINTER(c_int). Now I can call foo like:
+</p>
+<pre>
+foo([1,2,3])
+</pre>
+<p><strong>Arrays of pointers to arrays from nested lists</strong></p>
+
+<p>The idea above can easily be extended to replace an int** with a nested list.</p>
+<pre>
+class ListPOINTER2(object):
+    '''Just like POINTER(POINTER(ctype)) but accept a list of lists of ctype'''
+    def __init__(self, etype):
+        self.etype = etype
+
+    def from_param(self, param):
+        if isinstance(param, (list,tuple)):
+            val = (POINTER(self.etype) * len(param))()
+            for i,v in enumerate(param):
+                if isinstance(v, (list,tuple)):
+                    val[i] = (self.etype * len(v))(*v)
+                else:
+                    raise TypeError, 'nested list or tuple required at %d' % i
+            return val
+        else:
+            raise TypeError, 'list or tuple required'
+</pre>
+<p><strong>Implicit byref arguments</strong></p>
+<pre>
+class ByRefArg(object):
+    '''Just like a POINTER but accept an argument and pass it byref'''
+    def __init__(self, atype):
+        self.atype = atype
+
+    def from_param(self, param):
+        return byref(self.atype(param))
+</pre>
+<p><strong>Structures that can print themselves and magically accept tuples as arguments</strong></p>
+<pre>
+# hack the ctypes.Structure class to include printing the fields
+class _Structure(Structure):
+    def __repr__(self):
+        '''Print the fields'''
+        res = []
+        for field in self._fields_:
+            res.append('%s=%s' % (field[0], repr(getattr(self, field[0]))))
+        return self.__class__.__name__ + '(' + ','.join(res) + ')'
+    @classmethod
+    def from_param(cls, obj):
+        '''Magically construct from a tuple'''
+        if isinstance(obj, cls):
+            return obj
+        if isinstance(obj, tuple):
+            return cls(*obj)
+        raise TypeError
+</pre>

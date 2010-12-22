@@ -1,0 +1,10 @@
+---
+categories: Ubuntu
+date: 2007/06/26 14:10:49
+permalink: /~gb/blog/2007/06/26/my-logitech-web-cam-is-faster-on-feisty-than-on-xp/
+tags: ''
+title: My Logitech web-cam is faster on Feisty than on XP!
+---
+<p>I was surprised and pleased to see that CVtypes, our python ctypes wrapper for OpenCV, actually worked with my Logitech QuickCam Pro 4000 right out of the box. Later when I started to seriously try it out I was disturbed to see I was only getting 10 frames per second. I tried setting the frame rate with the interface provided by highgui but that fails for the frame rate. Anyone know why? Then I discovered <a href="http://www.vanheusden.com/setpwc/"><code>setpwc</code></a> a command-line utility for viewing and setting parameters on cameras that use Phillips chips. It revealed my camera was <em>set</em> for 10 fps. It was easy to change the setting to 30Hz at 320x240 and now my OpenCV apps run at 30Hz. I was never able to go above 15Hz on Windows XP. This is great.</p>
+
+<p>I used the command <code>setpwc -f 30</code></p>

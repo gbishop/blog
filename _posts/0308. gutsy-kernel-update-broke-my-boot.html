@@ -1,0 +1,14 @@
+---
+categories: Ubuntu
+date: 2007/12/21 10:34:06
+permalink: /~gb/blog/2007/12/21/gutsy-kernel-update-broke-my-boot/
+tags: ''
+title: 'Gutsy kernel update broke my boot '
+---
+<p>Today Gutsy automatic update brought in a new kernel and required a reboot. The reboot failed with a scary message after the grub prompt. After a few moments of panic, I remembered the command prompt available from grub and typed
+<code>
+find /boot/grub/menu.lst
+</code></p>
+
+<p>This told me that it found them on hd1,0, hd1,1, and hd3,1. Looking at the script the update had inserted I saw that it was referencing hd0,0. Changing that to hd1,0 using the built-in editor allowed the boot to proceed. Once I had the machine up I edited /boot/grub/menu.lst to fix that error.
+</p>

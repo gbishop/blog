@@ -1,0 +1,40 @@
+---
+categories: Ubuntu
+date: 2007/06/21 10:05:43
+permalink: /~gb/blog/2007/06/21/moving-home-to-its-own-partition/
+tags: ''
+title: Moving /home to its own partition
+---
+<p>I wanted to make /home its own partition to ease backups, synchronization, and future upgrades. This is how I did it. I'm no expert so beware of taking these as instructions. I got most of this from <a href="http://ubuntu.wordpress.com/2006/01/29/move-home-to-its-own-partition/">this post</a>.</p>
+
+<p>I used Add/Remove in the Applications menu and enabled Gnome Partition Editor under System Tools. Then it appeared in my System -> Administration menu. I used it to convert an empty NTFS partition to ext3. Very easy (and very easy to shoot yourself badly so be careful). </p>
+
+<p>Then I mounted the new partition as /mnt/newhome and copied over my old home like this:</p>
+<pre>
+<code>
+cd /home
+sudo find . -depth -print0 | sudo cpio -–null -–sparse –-preserve-modification-time -pd /mnt/newhome
+</code>
+</pre>
+<p>I then compared the two directories using <code>diff -r -q /home/gb /mnt/newhome/gb</code> and found several differences. The most worrisome of these was my Windows XP disk image made with qemu. This 2G file was empty in the copy. I copied it manually with cp and then it was fine. There were several other small differences in files that appear to change all the time. It probably would have been better to do this copying as another user or from the LiveCD. </p>
+
+<p>When I was satisfied with the similarity of the folders, I continued following the directions:</p>
+<pre>
+<code>
+sudo mv /home /oldhome
+sudo mkdir /home
+sudo umount /mnt/newhome
+sudo mount /dev/sdb2 /home
+</code>
+</pre>
+<p>and I edited /etc/fstab as instructed. That turned out to be a mistake! When I rebooted things came crashing down with a scary error message telling me that sdb2 did not have the right sort of magic number to be an ext3 partition. The cold hand of fear gripped my heart. Pete had warned me that he broke his install trying to move /home to a new partition. Would I suffer the same fate and have to endure the derision of a generation of hackers who weren't born when I started using Unix?</p>
+
+<p>I used Control-D to terminate the emergency shell to see what would happen. Boot continued and I got a login prompt. But, when I attempted to login it complained that /home/gb/ didn't exist and suggested I use one of the failsafe sessions. I clicked on Options and selected the failsafe terminal session. From there I removed the empty /home directory, and mv'd /oldhome back to /home. Control-D again got me a new login prompt and I could once again login normally.</p>
+
+<p>A quick look with <code>df</code> told me the horrible truth. For some reason the devices had gotten relabeled and what was formerly sdb2 was now sda2. Ack! I figured the UUID business in /etc/fstab must have something to do with it. A bit of reading revealed that UUID exists to cure this problem so I figured I needed to find out the UUID for my new partition. Again, Google and the helpful Ubuntu community came to the rescue and I learned that vol_id would tell me the UUID for a device. I found that and edited my fstab to make the line for my new partition read like this:</p>
+<pre>
+<code>
+UUID=4f09f3c0-b924-4270-b281-1f5f1c1f4b81 /home ext3 nodev,nosuid 0 2
+</code>
+</pre>
+<p>This is the same as suggested except it has the UUID= bit instead of /dev/sdb2. I repeated the rename of /home and creation of the /home directory as a mount point and rebooted again. The tightness in my chest abated as Feisty successfully booted and gave me a login prompt. Logging in revealed everything right with the world and my /home now on a separate partition.</p>

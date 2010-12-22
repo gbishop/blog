@@ -1,0 +1,13 @@
+---
+categories: Ubuntu
+date: 2007/06/19 12:22:48
+permalink: /~gb/blog/2007/06/19/problems-with-multiple-sound-cards-in-feisty/
+tags: ''
+title: Problems with multiple sound cards in Feisty
+---
+<p>My Dell 690 at work has lots of audio devices and I couldn't figure out how to get all sound to go to the Audigy2. I found a tip about changing <code>/etc/modprobe.d/alsa-base</code> to include the line <code>#options snd_emu10k1 index=0</code> and that worked but... ALSA would get hung up occasionally when a window opened. Pete suggested that I turn off ESD and I tried that, but then the Audigy2 was not detected. I found that either enabling ESD or deleting that line above would restore its function. I deleted that line and found <a href="http://www.stchman.com/mult_sound.html">this tip</a> for how to fix it. The simple answer appears to be:</p>
+
+<p><code>
+sudo asoundconf set-default-card Audigy2
+</code>
+</p>

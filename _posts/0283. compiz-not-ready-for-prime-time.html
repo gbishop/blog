@@ -1,0 +1,14 @@
+---
+categories: Ubuntu
+date: 2007/11/04 07:16:04
+permalink: /~gb/blog/2007/11/04/compiz-not-ready-for-prime-time/
+tags: ''
+title: Compiz not ready for prime time
+---
+<p>I fooled with turning on Desktop Effects in Gutsy. They were on by default on my R60 laptop but wouldn't start on my desktop machine with an nVidia Quadro4 900 XGL driving two projectors. I found the nvidia-settings tool very helpful and realized after some web browsing that I could turn off xinerama and enable TwinView. Doing that plus adding the <code>Option "AddARGBGLXVisuals" "True"</code> to my <a href='/~gb/media/2007/11/xorg-conf.txt' title='xorg.conf'>xorg.conf</a> fixed things up. Things looked good until I logged out. Attempting to log back in resulted in a blank desktop with the apparently meaningless message <code>Gtk-WARNING **: This process is currently running setuid or setgid.</code> in my .xsession-errors file. I googled around a bit and found a suggestion to try moving aside the .gnome2 folder. I did that and things appeared to work for one or two logins. Then back to hanging. </p>
+
+<p>I also found there are weird problems with Matlab when it is running.</p>
+
+<p>My initial problems with Gutsy were also apparently related to changes they made to enable Compiz. I worry that this buggy eye-candy is going to give Ubuntu a bad name. </p>
+
+<p>My advice is turn it off.</p>

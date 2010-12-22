@@ -1,0 +1,27 @@
+---
+categories: Random
+date: 2008/07/03 16:23:04
+permalink: /~gb/blog/2008/07/03/trying-out-svn/
+tags: ''
+title: Trying out SVN
+---
+<p>I really ought to use source code control. I know it. But my laziness combined with my poor memory, makes it hard.</p>
+
+<p>I'm trying out subversion. I'll make some notes here to help me remember.</p>
+
+<p>To create a new project myproject in my repository I need to:
+</p>
+<pre>
+cd ~/Desktop
+mkdir myproject
+cd myproject
+mkdir trunk tags branches
+cp -r path_to_myproject_files/* trunk/
+clean up any junk files
+svn import ~/Desktop/myproject svn+ssh://gb@cvs.cs.unc.edu/cvs/user/gb/svn/myproject -m "initial import"
+cd place_to_work
+mv path_to_myproject_files out of the way if necessary
+svn checkout svn+ssh://gb@cvs.cs.unc.edu/cvs/user/gb/svn/myproject/trunk myproject
+</pre>
+<p>Then in that working directory the commands to know are: <code>svn add</code>, <code>svn update</code>, and <code>svn commit</code>.
+</p>

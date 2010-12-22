@@ -1,0 +1,16 @@
+---
+categories: Ubuntu, Windows
+date: 2008/02/25 15:11:39
+permalink: /~gb/blog/2008/02/25/guest-clock-running-way-too-fast-in-vmware/
+tags: ''
+title: Guest clock running way too fast in VMware
+---
+<p>I just noticed that the clock on my guest Windows XP system was running way too fast on my host Ubuntu Gutsy system. I had also noticed that double clicking seemed really difficult and there were a few anomalies with sound.</p>
+
+<p>A bit of Googling turned up <a href="http://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=1591">this tip from the VMware knowledge base</a>. So to fix things I added these lines to the bottom of /etc/vmware/config.</p>
+<pre>
+host.cpukHz = 3060000
+host.noTSC = TRUE
+ptsc.noTSC = TRUE
+</pre>
+<p>Now the clock and lots of other things are better.</p>

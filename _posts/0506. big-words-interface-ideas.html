@@ -1,0 +1,43 @@
+---
+categories: Enabling Technology, Motor impaired, Literacy
+date: 2009/07/03 08:23:12
+permalink: /~gb/blog/2009/07/03/big-words-interface-ideas/
+tags: ''
+title: Big Words Interface Ideas
+---
+<p>I'm thinking about the client-side interface to our Big Words project with the Center for Literacy and Disability Studies. Rebecca is making good progress on the server-side logic for the games, the instructive feedback machinery that is the essence of this approach. But we need a good looking user interface to keep kids coming back.</p>
+
+<p><!--more--></p>
+
+<p>I want all the games to be as accessible as we can make them. That includes at least access by using 2 switches. We'll want to allow the colors to be adjusted like Tar Heel Reader so that students who are VI have a better chance of reading it. Further, I'd like to make it accessible to students who are blind but that will be very challenging (perhaps the new WAI-ARIA stuff is applicable here).</p>
+
+<p>The page colors, logo image, and title text should be easily changeable from the administrative back end so that we can customize the look for different schools and age groups.</p>
+
+<p>I'd like to have an optional area of the screen where we can plug in a static or animated "reward zone". This area might be a rectangle across the top, bottom, or side of the page. Or it might be in the empty spaces. The point of a reward zone is to have something happen when you get the right answer. We'd have a list of plug-ins that could be selected from the administrative back end. If several are enabled then the player gets to choose or they are randomly selected. I think this could enhance the game playing experience. </p>
+
+<p>All of the animations could either be constantly active or, if that is too distracting, active only for a few seconds after a correct answer.</p>
+
+<p>Here are some things I can think of to include in the reward zone. I'm sure students could come up with better ideas.</p>
+
+<p><ul>
+	<li>A high-school football theme might include a lighted scoreboard that counts up.</li>
+	<li>A save the turtles theme might have animated turtle sprites that can't climb over a curb. You're helping them get out of the road by solving puzzles. (You can stop these animated gifs with the Escape key)<br/><img src="/~gb/media/2009/07/turtle.gif" alt="turtle" title="turtle" width="96" height="96" class="alignnone size-full wp-image-508" /></li>
+	<li>A zombie theme might have zombies wandering around the screen. One explodes each time you solve a puzzle. <br/> <img src="/~gb/media/2009/07/zombiewalking.gif" alt="zombie walking" title="zombie walking" width="46" height="44" class="alignnone size-full wp-image-512" /><img src="/~gb/media/2009/07/zombiedies.gif" alt="zombie dies" title="zombie dies" width="107" height="101" class="alignnone size-full wp-image-511" /></li>
+	<li>A flower might sprout up.</li>
+	<li>Fireworks might go off.</li>
+	<li>Maybe a trashy environment gets cleaned up.</li>
+	<li>These could optionally include sound effects.</li>
+</ul></p>
+
+<p>I think the reward zone plug-in could be responsible for the players perception of the score. Of course behind the scenes the system is tracking attempts, hints, right, wrong, time, etc. But in a football theme the score might be 6 points for correct without a hint, 3 points if only 1 hint is required, and only 1 point if more hints are required. In the zombie game the score might be displayed in little zombie silhouettes. </p>
+
+<p><h3>Implementation ideas</h3></p>
+
+<p>The database has records for students, groups of students (classes, whatever), themes (color, logo, etc.), rewards (which plugin to use), etc. After login the back-end knows what theme to use for the displays and what plug-ins are available to this student. </p>
+
+<p>On the client (in javascript) we'll handle the mouse (drag and drop, click, etc.) and keyboard (switch or full typing) input. We'll submit answers to the back-end to get feedback using Ajax. The results will come back with right/wrong and some instructive feedback. The JS in the page will display these appropriately. As a side effect of displaying the right/wrong information the main JS code announces the result using a pub-sub model. If a plug-in subscribes to this information it can trigger the reward appropriately. We could also publish a "busy" event when the mouse is moving or a key is pressed. This way the animation could stop (or start) when the user is idle. </p>
+
+<p>In the template on the server, we only have to fill in the script tag to load the plug-in js and provide a sized div to specify where it fits in the page. The plug-in js handles displaying itself and responding to events.</p>
+
+<p>It would be fun to use the new canvas tag in html5 for the animation. 
+</p>

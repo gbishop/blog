@@ -1,0 +1,10 @@
+---
+categories: Programming
+date: 2010/10/07 19:35:25
+permalink: /~gb/blog/2010/10/07/making-pythons-json-parser-handle-undefined/
+tags: python javascript json
+title: Making python's json parser handle undefined
+---
+<p>Major browsers insist on producing illegal json like <code>{ 'foo': undefined }</code> when objects contain an undefined value. It was pretty simple to monkey patch the json module to handle this case. I put the code on gist and include it here:
+<script src="http://gist.github.com/564357.js"> </script>
+</p>

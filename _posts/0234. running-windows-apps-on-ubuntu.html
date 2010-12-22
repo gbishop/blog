@@ -1,0 +1,14 @@
+---
+categories: Ubuntu
+date: 2007/06/23 13:20:38
+permalink: /~gb/blog/2007/06/23/running-windows-apps-on-ubuntu/
+tags: ''
+title: Running Windows Apps on Ubuntu
+---
+<p>I need to test our applications on several versions of Windows and the Flash development environment only runs there. My machines still dual-boot but that is a bother. So I decided to check out ways to run windows on Ubuntu. I first tried <a href="http://fabrice.bellard.free.fr/qemu/">QEMU</a> with the kernel accelerator. There are lots of fiddly command-line flags to get right but it worked pretty well. I successfully installed Windows XP though it took a long time. I discovered some tips about disabling ACPI and that sped things up quite a bit. Now full of confidence, I decided to install Flash CS3. The install took a while but it does when running native as well. Unfortunately, when I tried to run the Flash IDE, QEMU would crash hard with bus error, core dumped. I've posted a query on the <a href="http://qemu-forum.ipi.fi/viewtopic.php?t=3781">QEMU forum</a> but haven't gotten a reply yet. </p>
+
+<p>While waiting for a reply I decided to try the 30-day free evaluation offered by <a href="http://www.vmware.com/products/ws/">VMWare</a>. The download and install went easily though their installer asks an amazing number of questions (thank God the defaults were right). I created the virtual machine, installed XP-sp2, got dozens of updates from Windows Update, and installed Flash CS3 in a couple of hours. I'm happy to report that Flash CS3 works fine running on VMWare Workstation 6 on Feisty 7.04. I'm particularly impressed with the responsiveness of the interface; it appears very usable.  Sound isn't working quite right because VMWare is using OSS which is inexplicably connected to the PC speaker for me. But I can hear it well enough and I see some hints around for how to get it connected to ALSA that I'm hopeful will work.</p>
+
+<p>The VNC interface on VMWare is great! I connected to the virtual machine at work from my Road Runner connection at home and was able to run CS3 with what appeared to be tolerable responsiveness. </p>
+
+<p>I think I'll likely stay with VMWare. The academic price is only $100 which is lots more than free but affordable. VMWare is a quality product that has worked well for me in the past. This may be a case of getting what you pay for. </p>

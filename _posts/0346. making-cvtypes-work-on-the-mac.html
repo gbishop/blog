@@ -1,0 +1,27 @@
+---
+categories: Programming, Mac
+date: 2008/02/14 09:37:59
+permalink: /~gb/blog/2008/02/14/making-cvtypes-work-on-the-mac/
+tags: ''
+title: Making CVtypes work on the Mac
+---
+<p>I'm writing this down because I don't see complete working (for me at least) directions anywhere else.</p>
+
+<p><ol>
+	<li>Install xcode from the Mac OS X install CD</li>
+	<li><a href="http://www.macports.org/">MacPorts</a> (everyone calls it DarwinPorts)</li>
+	<li>Get and unpack the <a href="http://sourceforge.net/project/showfiles.php?group_id=22870&package_id=16948">opencv source tarball</a></li>
+	<li>cd opencv; mkdir build; cd build</li>
+	<li>../configure CPPFLAGS="-I/opt/local/include" LDFLAGS="-L/opt/local/lib" --without-python</li>
+	<li>make</li>
+	<li>sudo make install</li>
+</ol></p>
+
+<p>I also needed the <a href="http://webcam-osx.sourceforge.net/">macam webcam driver</a> to use my Logitech webcam. I believe the notebooks have a camera built in so you should be good to go on one of those.</p>
+
+<p>I'm getting tons of error messages like these as my app is running and I'm only getting about 5 frames per second. What's up with that?</p>
+<pre>
+2008-02-14 09:00:23.983 Python[85901:6d37] *** Break on _NSLockError() to debug.
+2008-02-14 09:00:24.179 Python[85901:880f] *** -[NSLock unlock]: lock (&lt;NSLock: 0xdf28f0&gt; '(null)') unlocked from thread which did not lock it
+</pre>
+<p>Also, I note that video doesn't start until I move the mouse. Are these macam bugs?</p>

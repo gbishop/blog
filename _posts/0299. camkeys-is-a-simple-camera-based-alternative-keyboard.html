@@ -1,0 +1,27 @@
+---
+categories: Enabling Technology, Motor impaired
+date: 2007/11/18 13:17:40
+permalink: /~gb/blog/2007/11/18/camkeys-is-a-simple-camera-based-alternative-keyboard/
+tags: ''
+title: CamKeys is a simple camera-based alternative keyboard
+---
+<p>People with severely impaired movement often use one or two switches to control their computers and/or communication devices. Even though the switch is arguably the simplest electrical component, when it becomes an <em>assistive technology</em> it is likely to cost the end user hundred's of dollars. On the other hand, a fantastically complex electronic device, the USB camera, is available at discount stores for a few dollars. <strong>CamKeys</strong> is a simple python program that makes a cheap camera emulate any number of switches. It simply generates key events when user-specified regions of the camera image change. </p>
+
+<p><!--more--></p>
+
+<p>CamKeys was developed by UNC undergraduate student Arthur Greenside using <a href="http://www.python.org/">python</a>, <a href="http://www.wxpython.org/">wxPython</a>, and <a href="/~gb/blog/2007/02/04/python-opencv-wrapper-using-ctypes/">CVtypes</a> a ctypes-based wrapper for <a href="http://sourceforge.net/projects/opencvlibrary/">OpenCV</a>. This project was supported by a grant from the Mozilla foundation. </p>
+
+<p>CamKeys is simple to use. Start it up and point the camera at a background with some visual texture. We've used tablecloths, printed images, and wood grain successfully. Just about anything other than a featureless field will work fine. Now press the left mouse button and stretch out a small rectangle in the image. When you release the mouse button, a dialog will popup asking for a key to type that box. Repeat for each different virtual button you'd like to create. Now click on some other window to give it keyboard focus. When your hand (or anything) enters one of the watch boxes you'll see the box outline change from green to blue and the key you entered will be virtually pressed. When you leave the watch box the key will be released. You can save and restore configurations using the menus. You can also enable a click sound on key activation.</p>
+
+<p>Since CamKeys generates what look like key presses it can be used with any software that responds to key events. Later, we'll add a direct path to communicate with <a href="http://www.oatsoft.org/trac/jambu">Jambu</a> enabling switch users to type on Steve Lee's alternative keyboard. For now, we're using it control Daniel Parker's <a href="http://www.cs.unc.edu/Research/assist/TarHeelTyper/">Tar Heel Typer</a> to provide an alternative pencil to kids learning to write.</p>
+
+<p>For now CamKeys is available only as <a href="http://uncassist.cvs.sourceforge.net/uncassist/camkeys/">source code</a> you can download from cvs on SourceForge. It is known to work on Windows and Ubuntu with cameras from Logitech. I expect it to work on others OS's and with other cameras. After I get past <a href="/~gb/blog/2007/10/22/maze-day-2007/">Maze Day</a> on December 6th, I'll make a proper installer.</p>
+
+<p>As of 18 November 2007, CamKeys has several known limitations:
+<ul>
+	<li>It doesn't properly handle keys that require 2 events such as pressing shift then A to get a capital A</li>
+	<li>On Windows the OpenCV camera input seems limited to about 15 frames per second. On Linux, I have to use <code>setpwc -f 30</code> to get my Logictech Pro 4000 to go at 30Hz otherwise it is limited to 10 FPS. My Logitech Pro 5000 seems to ignore our request for a small image.</li>
+	<li>Press and release are currently tied to entering and leaving the watch box. For some users it might be better to allow a single press and release when the box is entered.</li>
+        <li>We don't yet have provisions for controlling the mouse.</li>
+        <li>CamKeys is a weak name. I hate naming things.</li>
+</ul></p>

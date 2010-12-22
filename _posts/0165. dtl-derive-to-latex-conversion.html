@@ -1,0 +1,39 @@
+---
+categories: Programming
+date: 2007/01/31 14:22:04
+permalink: /~gb/blog/2007/01/31/dtl-derive-to-latex-conversion/
+tags: ''
+title: 'DtL: Derive to Latex Conversion'
+---
+<p>This page describes a little utility I wrote for my own use. If you want to use it, you can download it and its source. I don’t provide support but if you would like to report bugs you’ve found or changes you’ve made to it, I’d be happy to hear about it.</p>
+
+<p><!--more--></p>
+
+<p><a href="http://www.derive.com/">Derive</a> is a symbolic math package for the PC from Soft Warehouse (now <a href="http://education.ti.com/us/product/software/derive/features/features.html">Texas Instruments</a>). The first version I used ran on DOS and even worked on my HP100 palmtop. The current version works on Windows. It isn’t the best known symbolic math package but I really like it. I have Mathematica, Macsyma, the Matlab Symbolic Toolbox, and Maple but I still prefer to use Derive. I like the menu-driven user interface and the intuitive operation. It’s not because I used Derive first either; I actually was a heavy Macsyma user for years before I discovered Derive.</p>
+
+<p>I often like to include equations from my Derive sessions in LaTeX documents that I write. This is a pain because I have to transcribe the equation from Derive’s format to that of LaTeX. That is what inspired me to write DtL.</p>
+
+<p>DtL painlessly converts Derive equations from the clipboard or ”.mth” files into equations ready for LaTeX.</p>
+
+<p>Here is an example. I ran the Calculus demo and saved the resuls as <a href="/~gb/media/2007/01/democalculus.mth">democalculus.mth</a>. Then I ran the command:</p>
+
+<p>    DtL -fF < democalculus.mth > democalculus.tex</p>
+
+<p>I edited the TeX just enough to add the necessary LaTeX header, to make the Derive annotations (which are comments in the TeX file) into text and to join the expressions and results with an equal sign. (This could have been done automatically with awk for example) I didn’t tweak the equation text at all. Here is the <a href="/~gb/media/2007/01/democalculusRAW.tex">raw output</a> of the program and here are the <a href="/~gb/media/2007/01/democalculus.tex">results of my editing</a>. Here is a <a href="/~gb/media/2007/01/democalculus.pdf">PDF</a> I generated using pdflatex from the MikTeX package. Here is a <a href="/~gb/media/2007/01/democalculus.html">HTML file</a> I generated from the LaTeX using the awesome tool <a href="http://hutchinson.belmont.ma.us/tth/">tth</a> which uses html magic to render the equations.</p>
+
+<p>Without any options, DtL will read the DfW Expression from the clipboard and write the LaTeX equivalent to the clipboard as text. This can be pasted into your favorite editor. I use gnu emacs with the auctex package. You can get Derive to put the
+equation on the clipboard by selecting an expression and typing CTRL+C or selecting Copy Expression from the Edit menu.</p>
+
+<p>The ’-f’ option directs DtL to read from stdin. In this mode it expects the equations to be in the ASCII format Derive uses for .mth files. The ’-F’ option directs DtL to write the LaTeX to stdout. The ’-k’ option throws away the anotation comments instead of including them as TeX comments. The ’-d’ flag turns on tons of debugging prints.</p>
+
+<p>The ’-l’ and ’-r’ flags allow you to specify the text string that gets put before and after the translated expression. The defaults are \[ and \] respectively. You could change these both to $ to get inline equations.</p>
+
+<p>You can download an archive that contains the source and executable for DtL in <a href="/~gb/media/2007/01/DtL.tar.gz">tar.gz</a> or in <a href="/~gb/media/2007/01/DtL.zip">.zip</a> format.</p>
+
+<p>I built the executable using the <a href="http://www.cygwin.com/">cygwin</a> tools from cygnus. These really great FREE tools implemented a very complete Unix API on win32. This thing could probably be ported to VC++ without too much effort but I probably won’t do it.</p>
+
+<p>If you get the message ‘Syntax Error on line %d’, you’ve probably discovered a bug in DtL. I had to puzzle out the format of the clilpboard version and file versions of the equations (they are slightly different). I could have missed something. So far it works for the stuff I want to do and for the demo’s that I have tried.</p>
+
+<p>Note: the format of the ’.dmo’ files is different from both ’.mth’ files and the clipboard so it can’t properly read those. If you run the demo and then save the ’.mth’ file, it appears to work.</p>
+
+<p>This post is simply a copy of the former location of this information at http://www.cs.unc.edu/~gb/DtL.html</p>

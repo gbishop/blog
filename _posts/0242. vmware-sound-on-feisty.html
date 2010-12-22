@@ -1,0 +1,25 @@
+---
+categories: Ubuntu
+date: 2007/07/06 08:29:54
+permalink: /~gb/blog/2007/07/06/vmware-sound-on-feisty/
+tags: ''
+title: VMware sound on Feisty
+---
+<p>Lots of pages out there address problems people have getting sound to work with VMware running on Linux hosting Windows but none of those solutions did it for me. VMware Workstation 6 insists on using /dev/dsp which for some strange reason I didn't have. I noticed I had /dev/dsp1 through /dev/dsp5 but no plain /dev/dsp. A few minutes fooling with Audacity showed me where each of those played, and /dev/dsp3 seems to play through the speakers on my Audigy 2 so I knew that was the one I wanted it to use. I simply did: <code>sudo ln -s /dev/dsp3 /dev/dsp</code> and that seemed to do the trick. </p>
+
+<p>Now I bet there is other magic, probably some that I accidentally invoked, that is making this work. I'm going to attach the .asoundrc files to this post so that if I lose sound later, maybe I can reconstruct the current state.</p>
+
+<p><a href='/~gb/media/2007/07/asoundrc.txt' title='asoundrc'>asoundrc</a>
+<a href='/~gb/media/2007/07/asoundrc_asoundconf.txt' title='asoundrc.asoundconf'>asoundrc.asoundconf</a></p>
+
+<p>Update: I notice my symbolic link gets killed on reboot. Either I've got to figure out how to make it persistent, or I need to make VMware use /dev/dsp3.</p>
+
+<p>Update 2: This page on <a href="http://www.reactivated.net/writing_udev_rules.html">writing udev rules</a> taught me that I can get a symbolic link created on bootup just by adding a rule. I made a new file <code>/etc/udev/rules.d/62-gb-symlinks.rules</code> and in it I placed the single line:
+<code>KERNEL=="dsp*", DRIVERS=="EMU10K1_Audigy", SYMLINK+="dspAudigy"</code></p>
+
+<p>This rule says (I think) look for a device with a name that matches <code>/dev/dsp*</code>, and has a Audigy driver, then make a symbolic link to it named <code>/dev/dspAudigy</code>.</p>
+
+<p>Then I simply edited the .vmx file for my VMware virtual machine and changed the sound.fileName line to read
+<code>sound.fileName = "/dev/dspAudigy"</code></p>
+
+<p>Now that always points to the sound channel I want my virtual machines to use. </p>

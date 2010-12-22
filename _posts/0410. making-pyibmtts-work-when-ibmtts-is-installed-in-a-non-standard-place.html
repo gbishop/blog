@@ -1,0 +1,28 @@
+---
+categories: Programming
+date: 2008/08/14 10:46:03
+permalink: /~gb/blog/2008/08/14/making-pyibmtts-work-when-ibmtts-is-installed-in-a-non-standard-place/
+tags: ''
+title: Making pyibmtts work when ibmtts is installed in a non-standard place
+---
+<p>I needed to get pyibmtts working for the new Tar Heel Reader installation over at ibiblio.org. I couldn't install ibmtts in the usual /opt place over there because I don't have root access (and only I'm authorized to use it anyway). To make it work, I installed ibmtts in $HOME/opt and $HOME/var. And I hacked the paths in $HOME/var/IBM/ibmtts/cfg/eci.ini to point to the libraries. I modified Pete's setup.py for pyibmtts to add $HOME to the search paths and one tricky bit. To help it find the shared libraries that are part of ibmtts I set the LD_RUN_PATH environment variable to point to the ibmtts lib folder. I understand from <a href="http://www.eyrie.org/~eagle/notes/rpath.html">this page</a> that setting this environment variable at compile time causes the search path to be encoded into the shared library. </p>
+
+<p>Here is the area of setup.py that I modified:
+</p>
+<pre>
+LIBS = ['ibmeci']
+
+HOME = os.environ['HOME']
+
+os.environ['LD_RUN_PATH'] = os.path.join(HOME, 'opt/IBM/ibmtts/lib')
+
+if sys.platform.startswith('linux'):
+  INC_DIRS = [os.path.join('../'),
+              os.path.join(HOME, 'opt/IBM/ibmtts', 'inc'), 
+              os.path.join(HOME, 'opt/IBM/ibmtts-devel', 'inc')]
+  LIB_DIRS = [os.path.join('../'),
+              os.path.join(HOME, 'opt/IBM/ibmtts', 'lib'),
+              os.path.join(HOME, 'opt/IBM/ibmtts-devel', 'lib')]
+elif sys.platform == 'win32':
+</pre>
+<p>I also had to link eci.ini into the folder with my python code in order to properly find it. I bet updateECI is supposed to fix that but I couldn't figure out how to run it.</p>

@@ -1,0 +1,29 @@
+---
+categories: Ubuntu
+date: 2007/07/06 13:29:40
+permalink: /~gb/blog/2007/07/06/making-rdesktop-work-with-vmware-hosting-xp-on-feisty/
+tags: ''
+title: Making rdesktop work with VMware hosting XP on Feisty
+---
+<p>Here is what I had to do to get rdesktop to connect to XP Professional installed on VMware Workstation 6 running on Feisty.</p>
+
+<p>In the guest XP system added a password for my account and turned on Remote Desktop in the System control panel applet on the Remote tab.</p>
+
+<p>I edited <code>/etc/vmware/vmnet8/nat/nat.conf</code> and added the line</p>
+
+<p><code>3389 = 192.168.72.128:3389</code></p>
+
+<p>in the <code>[incomingtcp]</code> section.</p>
+
+<p>Then I edited <code>/etc/systl.conf</code> to change the IPv4 forwarding line:</p>
+
+<p><code># Uncomment the next line to enable packet forwarding for IPv4
+net.ipv4.conf.default.forwarding=1</code></p>
+
+<p>Then I rebooted.</p>
+
+<p>Now I started VMware and activated the guest XP system. Now the command:</p>
+
+<p><code>rdesktop localhost</code></p>
+
+<p>Works as expected.</p>

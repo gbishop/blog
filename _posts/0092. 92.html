@@ -1,0 +1,67 @@
+---
+categories: Ideas, Enabling Technology, Maps
+date: 2006/09/22 11:44:20
+permalink: /~gb/blog/2006/09/22/92/
+tags: ''
+title: More thinking about web-based maps
+---
+<p><img class="right" alt="Sitterson Level 3 floorplan" id="image93" src="http://wwwx.cs.unc.edu/%7Egb/wp/wp-content/uploads/2006/12/level3.gif" />Americo studied the floorplans for Sitterson and verified them by examination while producing a description of each <em>place</em> in the building. I built a simple prototype web server but I’m unsatisfied with its dependence on coordinates and the resulting difficulty of sorting the links in hallways into a reasonable order.</p>
+
+<p>Can I specify the links in a way that makes them relative to one another and allows correct sorting? For example in a hallway, if you’re coming out of a door and turning right, all the doors on that hall that are on the same side as the door you came out of, will be on your right. If you turn left, all the doors on the same side will be on your left.</p>
+
+<p>Could a blind person enter data specified in this way?</p>
+
+<p>How about doors that are <em>across from</em> other doors. Can we capture that information? In a hallway it makes lots of sense. But how about in a larger room? Are the walls ordered? Do we need anything more than to walk around the room?</p>
+
+<p>Looking at the floorplan above. Suppose I start at the elevator and turn right into the elevator lobby, I encounter 339, then the west hallway, the south stairwell, 340, and back the elevator. So, I explored this space. Is this sufficient? Should I have recorded the turns? See below.</p>
+
+<p>In the west hallway, I’d come to R338 and the south hall on my left, R336-L337 R335-L334 R333 L332 R(w stair lobby)-L(center hall) L331 R329-L330 L328 R327 (N hall). Because this space is narrow, I don’t have to back track to explore it but it is important that I start from the very end. So in the north hallway I’ll actually turn right to go the end and then turn around and come back, passing the west hall on the way. That way I know where it fits among the rooms.</p>
+
+<p>In the north hall: R325-L326 L(w hall) R324 L323-R319 L322 L(320 hall) R318 R317 L(315 hall) L313 R316-L312 R311 L(e hall) R310-L309</p>
+
+<p>Could record distance between doors too.</p>
+
+<p>Now suppose I come out of room 329 into the west hallway and I want to list the rooms in a natural order. Looking at the list above I find R329-L330. This means 329 was on the right, with 330 on the left across from it. So I can describe the links something like this:
+Ahead: 330
+Right: 328 on left, 327 on right, North Hall.
+Left: 331 on right, center hallway on right, w stair lobby on left, 332 on right, 333 on left, 334 on right, 335 on left, 337 on R, 336 on L, s hall on R, 338 on L, elevator lobby.</p>
+
+<p>So, it would seem that I can get the links in the right order simply by finding the place I am coming <em>from</em> in the list of places and noting its side. For a right side origination, you go right by working forward in the list, and left by working backward through the list. For a left side room, I think it would be just the opposite. Let’s try that. Suppose I’m coming out of 330 into the w hall. Looking in the list above for the w hall I find 330. I can order the links like:
+Ahead: 329
+Right: 331R (center hall)R (w stair lobby)L 332R 333L 334R 335L 337R 336L (s hall)R 338L, elevator lobby.
+Left: 328L 327R (N hall).
+Cool! This seems to work fine.</p>
+
+<p>If you’re going <em>with</em> the list, you keep the sides, if you’re going <em>against</em> the list you reverse the sides.</p>
+
+<p><strong>About Rooms</strong></p>
+
+<p>Now what to do about <em>rooms</em> with multiple doors? If you walk around the perimeter noting the side where you encounter rooms, then I could sort them using the same method as above. But surely you want to know about changes of direction. Otherwise it might seem like all the doors are in a long row instead of wrapping around an area. For example consider the section of the 2nd floor below:</p>
+
+<p><img class="right" alt="Sitterson Level 2 near 284" id="image94" src="http://wwwx.cs.unc.edu/%7Egb/wp/wp-content/uploads/2006/12/level2-284.gif" /></p>
+
+<p>If you walk around that area, say with your right hand on the wall you come to R225 R223 R221 R220, etc. Maybe it should be something like: L224 R225 R223 TurnLeft R221 R220 R219 A(North Hallway) TurnLeft R294 A218 TurnLeft TurnRight R224 A(East Hall).</p>
+
+<p>Suppose you come out of 218. Finding it in the list above I can see that going straight I’ll encounter 294 on the left. There is some ambiguity about what comes next. The next thing backward in the list is the TurnLeft but it could easily swap with the A(North Hallway). I’d like to say 294 on left, (north hall) on the left, Turn right, etc. Will this be too confusing? Maybe the links could read like this?</p>
+
+<p>Entering 284 from 218.
+Ahead: 294 left, N hall left
+Then turn right for 219 left, 220 left, 221 left
+Then turn right for 223 left, 225 left, 224 right and the east hall ahead
+Turning right: 225 A, then turning right, 224 left, east hall ahead</p>
+
+<p>It seems like I’m trying to pack too much in. But if you’re going to find 221 from 218 you’d like information about what you’d pass getting there.</p>
+
+<p>Maybe I should name the walls? Diane does that. Suppose we name them for compass directions. Suppose also we differentiate <em>hall-like</em> spaces from <em>room-like</em> spaces. In halls you can touch both walls, in rooms you can’t. So 224 isn’t included in 284 because 224 is still in the hall.</p>
+
+<p>Entering 284 from 218 on the south wall.
+On the west wall (immediately on your left): 294 and north hall.
+On the south wall (to your right): east hall.
+On the north wall (across the room): 219L 229L 221L
+On the east wall (to your right 20 feet): 223R 225R</p>
+
+<p>Maybe this is <strong>too</strong> detailed but I think it is all useful information.</p>
+
+<p><img class="right" alt="Sitterson Level 1 near 117" id="image95" src="http://wwwx.cs.unc.edu/%7Egb/wp/wp-content/uploads/2006/12/level1-117.gif" /></p>
+
+<p>What about the doors to the restrooms facing opposite directions? Should I try to capture that?</p>

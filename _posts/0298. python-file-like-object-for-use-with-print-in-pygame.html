@@ -1,0 +1,107 @@
+---
+categories: Programming
+date: 2007/11/16 22:01:42
+permalink: /~gb/blog/2007/11/16/python-file-like-object-for-use-with-print-in-pygame/
+tags: ''
+title: Python file-like object for use with print in pygame
+---
+<p>I wanted my print output to show up on <a href="http://www.pygame.org/news.html">pygame</a> display. This python code implements a simple file-like object that handles multiple lines and wrapping.</p>
+
+<p><!--more--></p>
+<pre>
+<code>
+'''Make print work on a pygame Surface'''
+
+import pygame
+
+class pygfile(object):
+    def __init__(self, font=None):
+        if font is None:
+            font = pygame.font.Font('freesansbold.ttf', 16)
+        self.font = font
+        self.buff = []
+    
+    def write(self, text):
+        self.buff.append(text)
+
+    def _splitline(self, text, maxwidth):
+        '''A helper to split lines so they will fit'''
+        w,h = self.font.size(text)
+        if w < maxwidth:
+            return [ text ]
+        n0 = 0
+        n1 = len(text)
+        while True:
+            ng = (n0 + n1) / 2
+            if ng == n0:
+                break
+            w,h = self.font.size(text[0:ng])
+            if w < maxwidth:
+                n0 = ng
+            else:
+                n1 = ng
+        return [ text[0:ng] ] + self._splitline(text[ng:], maxwidth)
+        
+
+    def display(self, surf):
+        '''Show the printed output on the given surface'''
+        # get the size of the target surface
+        w,h = surf.get_size()
+        # join all the writes together into one string
+        text = ''.join(self.buff)
+        # and split it into lines
+        lines = text.split('\n')
+        # bust up any long lines into pieces that fit
+        slines = []
+        for line in lines:
+            slines = slines + self._splitline(line, w)
+        lines = slines
+        # get the vertical space between lines
+        ls = self.font.get_linesize()
+        # compute the maximum number of lines that will fit
+        nlines = h / ls
+        # throw away lines that have scrolled off the display
+        lines = lines[-nlines:]
+        # render them to the surface
+        sy = 0
+        for line in lines:
+            ts = self.font.render(line, True, (255,255,255), (0,0,0))
+            surf.blit(ts, (0, sy))
+            sy += ls
+
+    def clear(self):
+        '''Clear the buffer (and thus the display)'''
+        self.buff = []
+
+
+if __name__ == '__main__':
+    import sys
+    pygame.init()
+    
+    sys.stdout = fp = pygfile()
+
+    screen = pygame.display.set_mode((640,480))
+    msg = '1234567890'
+    i = 0
+    while True:
+        # watch for QUIT events
+        event = pygame.event.poll()
+        if event.type == pygame.QUIT:
+            break
+        # clear the image to black
+        screen.fill((0,0,0))
+        # something simple to print that demonstrates the line breaking
+        i += 1
+        print i
+        print i * msg
+
+        # show it on the screen
+        fp.display(screen)
+
+        pygame.display.flip()
+
+        # slow things down so I can watch it scroll
+        pygame.time.wait(100)
+
+</code>
+</pre>

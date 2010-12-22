@@ -1,0 +1,8 @@
+---
+categories: Programming
+date: 2008/02/03 18:48:37
+permalink: /~gb/blog/2008/02/03/c00d11b1-error-in-windows-media-player/
+tags: ''
+title: C00D11B1 error in windows media player
+---
+<p>I downloaded a book from netlibrary.com via our campus library. When I tried to play it Windows Media Player (on VMware) would complain that it couldn't play it with the only explanation being C00D11B1 (real useful). The error apparently means something went wrong. I tried several fixes none of which helped. I finally found the suggestion to delete the content of the DRM folder (c:\Document and Settings\All Users\DRM). I had to use regedit to find it. After deleting the content of that folder, opening the book produced the login response I expected and now the file plays fine. It is incredible to me that WMP was broken in this way. I created this VM and installed Windows XP SP2 fresh on it recently. This was the very first occasion that WMP has ever been used on this machine!</p>

@@ -1,0 +1,68 @@
+---
+categories: Enabling Technology, Motor impaired
+date: 2008/01/30 09:29:44
+permalink: /~gb/blog/2008/01/30/serialkeys-for-os-x/
+tags: ''
+title: SerialKeys for OS X
+---
+<p><strong>This software is no long supported.  Anyone is free to attempt to make it work with the new versions of OS/X.</strong></p>
+
+<p>SerialKeysX is an implementation of the <a href="http://support.microsoft.com/kb/260517/EN-US/">SerialKeys</a> protocol for <a href="http://www.apple.com/macosx/">Apple's OS X operating system</a>. It allows control of the computer's keyboard and mouse over a serial connection from devices such as the <a href="http://www.eyegaze.com/">EyeGaze</a> and other <a href="http://www.abilityhub.com/aac/aac-devices.htm">augmented communication devices</a>. You may download and use the software for free.</p>
+
+<p><!--more--></p>
+
+<p>Note that SerialKeysX has been tested with OS X 10.5. We believe it should also work with OS X 10.4 (Tiger). Please let us know if it works for you with some other configuration. We also believe we can build a version that works on OS X 10.3, let us know if you need it.</p>
+
+<p>To use SerialKeysX you will need both a serial adapter and the SerialKeysX software. We have successfully used the software with the following adapters:
+<ul>
+	<li><a href="http://www.keyspan.com/products/usa19hs/">KeySpan “High Speed” USB Serial Adapter such as model USA-19HS</a>.</li>
+	<li><a href="http://www.iogear.com/main.php?loc=product&Item=GUC232A">IOGear GUC232A USB</a>.</li>
+</ul></p>
+
+<p><strong>Installation</strong></p>
+
+<p><ul>
+	<li>Install the serial adapter and driver software.</li>
+<ol>
+	<li>Make sure the serial adapter is not connected to your computer.</li>
+	<li>Follow the adapter instructions and install their driver software.</li>
+	<li>Connect the serial adapter to your computer.</li>
+</ol></p>
+
+<p>	<li>Connect your AAC device to the serial adapter.</li>
+	<li>Install and configure SerialKeysX</li>
+<ol>
+	<li>Drag the application file (SerialKeysX) from the install disk to the Applications folder.</li>
+	<li>Launch (double-click) the SerialKeysX application from the Applications folder.</li>
+	<li>Choose “Preferences…” from the SerialKeysX menu.</li>
+	<li>Select the appropriate Baud Rate and choose your serial adapter in the Serial Port pop-up. See below for an example.</li>
+	<li>Choose “Running” from the Control menu. If there were no error messages, examine the Control menu again, and “Running” should be checked.</li>
+</ol></p>
+
+<p>	<li>Test your AAC device.</li>
+</ul></p>
+
+<p><img src='/~gb/media/2008/01/preferences.jpg' alt='SerialKeysX Preferences Dialog' /></p>
+
+<p><strong>Cost/License</strong></p>
+
+<p>Free for non-commercial use. All software and resources copyright University of North Carolina at Chapel Hill, 2006-2008.</p>
+
+<p><strong>Download</strong></p>
+
+<p><strong>Updated 6 Feb 2008 to version 1.4</strong></p>
+
+<p><a href='http://www.cs.unc.edu/Research/assist/SerialKeysX/SerialKeysX-1.4.dmg.zip'>Universal Binary for OS X 10.4 or higher.</a></p>
+
+<p>If you need a version for OS X 10.3 let us know.</p>
+
+<p><strong>Recent Changes</strong></p>
+
+<p><ul>
+	<li>Dragging bug fixed</li>
+	<li>Double-click bug fixed</li>
+	<li>Delete bug fixed</li>
+	<li>Right shift is now mapped to the Apple Command key as a dirty hack way to get access to it using EyeGaze</li>
+	<li>Bad interaction with edges of the screen fixed.</li>
+</ul>
+</p>

@@ -1,0 +1,33 @@
+---
+categories: Ubuntu
+date: 2007/06/19 10:07:43
+permalink: /~gb/blog/2007/06/19/making-the-switch-to-ubuntu/
+tags: ''
+title: Making the switch to Ubuntu!
+---
+<p>I've been fooling with Ubuntu for just over a week now. I started with wubi, then did the standard install with a CD I made. At home on the old Dell D800 laptop  it was super easy. Wireless didn't work at first but a quick Google search on <code>feisty d800</code> showed I had the kind of wireless card that needs some microcode. Asking for the <code>fwcutter-???</code> module fixed things right up. A work on this old Dell 690 things were made tricky by the funny interaction between the scuzzy disks and the ide disk in the bios. Murray fixed that in just a few minutes with some grub incantations. </p>
+
+<p>I'm amazed at the stuff that just works.
+<ul>
+	<li>Plantronics headset</li>
+	<li>Logitech Pro 4000 webcam works fine with my OpenCV hacks</li>
+	<li>All my NTFS partitions are accessible</li>
+	<li>Skype works great for chatting with Kelly</li>
+	<li>Printing both here at work and at home is fine</li>
+	<li>My little tray app for reminding me of appointments, written for Windows using wxPython, works fine, even appearing in the notification area like it should. I had to put a 5 second delay in it on startup or the icon got squashed. I bet there is some event I'm not properly handling</li>
+	<li>My wallpaper generator only required changes to the few lines associated with actually setting the desktop wallpaper, otherwise it works fine</li>
+	<li>My spam filter works fine, only requiring me to rip out the windows specific code for making it a <code>service</code> and replacing it with the bits required for becoming a <code>daemon</code>.
+	<li>Pidgin is fine as a replacement for GoogleTalk.</li>
+	<li>FireFox, of course, works fine though I'm surprised to see that some sites render just a bit differently than on Windows</li>
+	<li>Unison looks like a fine replacement for my homebrew synchronization strategy</li>
+</ul></p>
+
+<p>That's not to say I haven't run into some issues. I'm going to try to post workarounds that I find so I can remember them for later.
+<ul>
+	<li>I don't like the default font I'm seeing. Captial J is not a descender! It looks too much like a lower-case j.</li>
+	<li>On the 690 here at work, I have many sound devices (Audigy2, Plantronics headset, RME Hammer Fall, built in, etc.) and apps seem to choose willy-nilly where they want to play.</li>
+	<li>I think its losing occasional mouse clicks. I haven't pinned down when. I notice it in the Synaptics package manager. The Search button will ignore my click until I move the mouse out of it, and then return to it. I see it, I think, in other places too.</li>
+	<li>Differences in the way focus and selection are handled really screws up GBmail. I think I could make it work but I'm trying to switch to Thunderbird instead. That has its own set of issues, that I'll writeup later.</li>
+</ul></p>
+
+<p>So, I think I'm going to stay. Either I'll do Windows development in a virtual machine, or perhaps on a real box, co-located here in my office.</p>

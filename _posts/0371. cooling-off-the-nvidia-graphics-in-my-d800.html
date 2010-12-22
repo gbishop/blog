@@ -1,0 +1,17 @@
+---
+categories: Ubuntu
+date: 2008/05/09 16:46:06
+permalink: /~gb/blog/2008/05/09/cooling-off-the-nvidia-graphics-in-my-d800/
+tags: ''
+title: Cooling off the nVidia graphics in my D800
+---
+<p>I recently upgraded my D800 to Ubuntu Hardy. Things seem to be working fine. Looking through the packages available I saw that I could get sensors-applet to monitor internal temperature sensors. This showed that my GPU was running near 75 degrees C.The nvidia-settings tool showed I was running at Performance Level 2 and appeared to be stuck there. I searched a bit and found other people looking for the same info and got a few hints. After some fooling around I found the following commands would cool things off. They <em>may</em> reduce performance but I don't need it.</p>
+<pre>
+nvidia-settings --assign="GPUOverclockingState=1"
+nvidia-settings --assign="GPU2DClockFreqs=100,230"
+nvidia-settings --assign="GPU2DClockFreqs=100,230"
+</pre>
+<p>Yes, I know that I'm setting the 2D Clock Freqs twice. The first time seems to move it to Performance Level 1 and the second time drops it to level 0 where I want to be. I got the numbers from the nvidia-settings on the Power Mizer tab.</p>
+
+<p>I put those commands in a script and run it using the Sessions facility I found at System->Preferences->Sessions.
+</p>

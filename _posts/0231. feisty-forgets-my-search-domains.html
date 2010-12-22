@@ -1,0 +1,12 @@
+---
+categories: Ubuntu
+date: 2007/06/19 16:02:14
+permalink: /~gb/blog/2007/06/19/feisty-forgets-my-search-domains/
+tags: ''
+title: Feisty forgets my Search Domains
+---
+<p>When I type <code>ssh gb-cs</code> I mean <code>ssh gb-cs.cs.unc.edu</code> but I couldn't get that to work consistently at home. I'd add it to the Search Domains section of the DNS tab in the Network Settings dialog but next time I hibernated or rebooted, it would be gone. <a href="http://ubuntuforums.org/showthread.php?t=324051">This tip</a> suggested adding a package and then making a simple change:</p>
+
+<p>Using Synaptics Package Manager I got <code>resolvconf</code>. Then, <code>sudo vi /etc/network/interfaces</code> and I added <code>dns-search cs.unc.edu</code> after the <code>iface</code> line for the wireless interface.</p>
+
+<p>This did not work for me. So I investigated the first proposed solution at the above page, but the file <code>head</code> he refers to has a comment in it that says <em>don't edit this file by hand</em> so I decided that was a bad idea. The file tail in that same folder was empty and didn't say that, so I edited it and added <code>search cs.unc.edu</code>. That seems to survive a reboot. </p>

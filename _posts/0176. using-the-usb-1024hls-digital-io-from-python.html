@@ -1,0 +1,35 @@
+---
+categories: Programming
+date: 2007/02/16 07:13:13
+permalink: /~gb/blog/2007/02/16/using-the-usb-1024hls-digital-io-from-python/
+tags: ''
+title: Using the USB-1024HLS Digital I/O from Python
+---
+<p>ctypes makes it really easy to control the USB-1024HLS Digital I/O box from python. </p>
+
+<p>This gets the 2 functions I need and tests to see if the device is there</p>
+<pre>
+import ctypes
+UL = ctypes.windll.cbw32
+cbDConfigPort = UL.cbDConfigPort
+cbDOut = UL.cbDOut
+
+FIRSTPORTA = 10
+FIRSTPORTB = 11
+FIRSTPORTCL = 12
+FIRSTPORTCH = 13
+DIGITALOUT = 1
+DIGITALIN  =  2
+
+port = FIRSTPORTA
+
+try:
+    assert cbDConfigPort(0, port, DIGITALOUT) == 0
+except AssertionError:
+    print 'Configuration of the USB-1024HLS failed'
+
+</pre>
+<p>Then to send data, I simply </p>
+<pre>
+cbDOut(0, port, bits)
+</pre>

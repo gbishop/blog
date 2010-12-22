@@ -1,0 +1,23 @@
+---
+categories: Programming, Ubuntu
+date: 2008/05/29 10:49:30
+permalink: /~gb/blog/2008/05/29/creating-powerpoint-slide-shows-from-wordpress-posts/
+tags: ''
+title: Creating PowerPoint Slide Shows from Wordpress Posts
+---
+<p>For the Tar Heel Reader project I needed to convert very simple multi-page WordPress posts into PowerPoint slide shows. I chose the circuitous route of making an OpenOffice Impress show by bashing XML and then converting it to PowerPoint. I manually created a prototype slide show with a title page and a single book page in Impress and saved it in their native <code>.odp</code> format. These files are simply zip archives containing <a href="http://books.evc-cit.info/odbook/ch02.html">several XML documents</a> and the images. Why they didn't include the sounds, I don't understand. The important file is <code>content.xml</code>. Examining it in Firefox revealed the bits I'd have to change on the title page and for each page of the book. I found several useful hints in a <a href="http://www.linuxjournal.com/article/9319">Linux Journal article by Collin Park</a>. I used the <a href="http://us3.php.net/manual/en/book.dom.php">PHP DOM module</a> to read in the prototype, update it for the current book (retrieved with the WordPress <code>get_post</code> function), and write it out along with the images. Zipping this result up produces a new Impress presentation for the book. </p>
+
+<p>Then I needed to convert the Impress format to PowerPoint. Thankfully, I found <a href="http://www.artofsolving.com/opensource/PyODConverter">PyODConverter</a> to automate that part of the job. It worked fine when I ran it from the command prompt but I could not get it to find the server when I ran it from PHP. Again the web came to my rescue with a <a href="http://forums.knowledgetree.com/viewtopic.php?p=12596">post</a> by Piero. I'll reproduce the code here so I don't forget it.
+</p>
+<pre>
+cd /var/www                                      #www-data user home
+sudo mkdir .openoffice.org2                      #create the openoffice working dir
+sudo chown -R www-data:www-data .openoffice.org2 #set the owner
+sudo chmod 700 .openoffice.org2                  #change permissions
+sudo -s                                          #you need to be root
+su - www-data                                    #if you want to be www-data
+
+#start openoffice headless
+xvfb-run -a soffice -accept="socket,host=localhost,port=8100;urp;StarOffice.ServiceManager" -nologo -headless -invisible
+</pre>
+<p>Now I need to figure out how to get this into /etc/init.d so that it will automatically start on reboot.</p>

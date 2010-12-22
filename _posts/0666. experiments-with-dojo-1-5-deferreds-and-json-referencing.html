@@ -1,0 +1,17 @@
+---
+categories: Programming, Dojo
+date: 2010/08/13 10:13:34
+permalink: /~gb/blog/2010/08/13/experiments-with-dojo-1-5-deferreds-and-json-referencing/
+tags: ''
+title: Experiments with Dojo 1.5 Deferreds and Json Referencing
+---
+<p>Our BigWords project needs Sets which are lists of Games and SetOrders which sequence the Sets. <a href="http://www.sitepen.com/blog/2008/06/13/restful-json-dojo-data/">Json References</a> seem perfect for this but the examples I could find online did not conform to my experience with the way it actually works.</p>
+
+<p>At the same time I decided to experiment with the new implementation of Deferreds in Dojo 1.5 with the .then method. I may be abusing or misusing them below; please tell me how to do better if you see any abuse.</p>
+
+<p>I put the code in in a Gist at: <a href="http://gist.github.com/522994">http://gist.github.com/522994</a></p>
+
+<p>The bottom line is Json Refs work great with JsonRestStore but not quite like the examples I see online. The code below demonstrates constructing a store full of refs, then accessing it, and getting the refs lazily loaded both manually and by a grid.</p>
+
+<p>Second bottom line is the new Deferreds implementation in Dojo 1.5 rocks. I think chains of asynchronous calls are much more readable and maintainable this way.
+</p>

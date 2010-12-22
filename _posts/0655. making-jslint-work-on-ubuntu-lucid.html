@@ -1,0 +1,18 @@
+---
+categories: Programming, Ubuntu
+date: 2010/06/06 18:17:06
+permalink: /~gb/blog/2010/06/06/making-jslint-work-on-ubuntu-lucid/
+tags: ''
+title: Making jslint work on Ubuntu Lucid
+---
+<p>They dropped spidermonkey from Ubuntu with the Lucid release. This broke my jslint script. </p>
+
+<p>Tons of searching revealed that some of the Launchpad folks had done the necessary incantations to make it work.  I did:</p>
+
+<p><code>
+sudo add-apt-repository ppa:launchpad/ppa
+sudo apt-get update
+sudo apt-get install spidermonkey-bin
+</code></p>
+
+<p>On the way I found this nice python wrapper for jslint to replace the perl one I had found. Check out <a href="http://github.com/FND/jslint-cli">jslint-cli</a>.</p>

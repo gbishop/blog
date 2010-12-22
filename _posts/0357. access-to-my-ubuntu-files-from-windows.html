@@ -1,0 +1,23 @@
+---
+categories: Ubuntu, Windows
+date: 2008/03/17 13:39:18
+permalink: /~gb/blog/2008/03/17/access-to-my-ubuntu-files-from-windows/
+tags: ''
+title: Access to my Ubuntu files from Windows
+---
+<p>For some if my Windows testing VMware, sadly, won't do the job. For example, I can't get my USB webcam's to work on an XP guest running on VMware on my Ubuntu machine. For testing these things I have to use my laptop. Unfortunately that requires copying files over. So I wanted to share my Ubuntu files with my laptop. </p>
+
+<p>It took a while and I tried many things but I think this is the combination that did the trick.</p>
+
+<p>In Synaptic, install samba.</p>
+
+<p>At the command prompt, run
+</p>
+<pre>
+ sudo smbpasswd -a <em>yourid</em>
+</pre>
+<p>
+give it your password and the password you want to use from the windows machine.</p>
+
+<p>Now on the windows machine you should be able to connect. You may need to use the numeric IP address of the host.
+</p>

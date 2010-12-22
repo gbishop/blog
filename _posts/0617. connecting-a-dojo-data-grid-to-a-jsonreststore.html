@@ -1,0 +1,14 @@
+---
+categories: Programming
+date: 2010/01/31 15:53:35
+permalink: /~gb/blog/2010/01/31/connecting-a-dojo-data-grid-to-a-jsonreststore/
+tags: Dojo, tornado, python, javascript
+title: Connecting a Dojo Data Grid to a JsonRestStore
+---
+<p>I looked high and low and couldn't find a working example of connecting a <a href="http://docs.dojocampus.org/dojox/grid/DataGrid">dojox.grid.DataGrid</a> to a <a href="http://docs.dojocampus.org/dojox/data/JsonRestStore">dojox.data.JsonRestStore</a> so I puzzled out parts of it myself. This code probably has errors and omissions but it seems to work for me with dojo 1.4.1. </p>
+
+<p>I would appreciate any corrections or pointers to other examples from those of you who know better. I haven't included any error checking and the references to items by key break down after deletions because of the simple minded implementation of the "database".
+<!--more-->
+I wrote the little server using <a href="http://www.tornadoweb.org/">tornado</a> but I'm not using any special features of that package. </p>
+
+<p><script src="http://gist.github.com/302912.js"></script></p>

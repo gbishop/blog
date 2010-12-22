@@ -1,0 +1,30 @@
+---
+categories: Ideas, Enabling Technology, Programming, Ubuntu
+date: 2008/01/14 10:44:18
+permalink: /~gb/blog/2008/01/14/livecds-for-delivery-of-et-applications/
+tags: ''
+title: LiveCDs for delivery of ET applications?
+---
+<p>Our games and tools for kids with disabilities should run on whatever computer they have at the school (typically an old PC running some version of Windows or a Mac). One alternative to cross-platform testing might be a LiveCD that boots some OS (say Linux) and runs our software. Then our development environment is fixed and we're relying on the OS to cover over hardware differences. Pete and I spent a bit of time this last weekend trying our various LiveCDs to see how little memory they could be made to use.</p>
+
+<p>We used VMware as the test platform and tried Ubuntu, Xubuntu, Fedora 8, Puppy Linux, and Damn Small Linux. Something Ubuntu-based would suit me best because it is the environment I know. The results of our casual testing appear to be that 128 megabytes of memory is about the minimum for  for the Ubuntu or Fedora livecds to boot properly. That isn't to say we couldn't make our own that would require less. Pete found <a href="http://reconstructor.aperantis.com/">Reconstructor</a> which claims to make LiveCDs configured however you like. I'm guessing we could strip things down to the point that there isn't even a window manager. If I could get a single OpenGL rendering context that filled the screen I'd be pretty happy for most of our stuff. </p>
+
+<p>I also tried Puppy Linux and DSL. I couldn't get Puppy to boot live in less than 64 megabytes. DSL would boot live in 32 megabytes but I couldn't do much else. I've ready that PyGame can be made to work under Puppy. I'm hesitant to go in that direction just because I'd be giving up the very supportive Ubuntu community and repositories. </p>
+
+<p>None of these is as promising as I had hoped. I think I'll take a LiveCD with me when I visit Andrew's Elementary later this week and see if I can get one to boot on the PC's there. </p>
+
+<p>Pros of LiveCDs:
+<ul>
+	<li>We're in charge of the environment our software runs in.</li>
+	<li>We'd never have to test on Vista</li>
+	<li>No worries about the IT department being unwilling to install the software (lots of teachers complain about this).</li>
+	<li>Simple for teacher's to use with no complicated installation instructions</li>
+</ul></p>
+
+<p>Cons of LiveCDs:
+<ul>
+	<li>Apparently requires a pretty beefy machine with 64 to 128 megabytes of memory and CD drive.</li>
+	<li>Unclear how many different hardware configurations are really supported in a strict plug-and-play way (no way I'm going to get teachers to type options for the boot command).</li>
+	<li>They would be impossible for most users to download because they are so big.</li>
+	<li>Intel only (but that hardly matters anymore)</li>
+</ul></p>

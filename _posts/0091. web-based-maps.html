@@ -1,0 +1,33 @@
+---
+categories: Ideas, Enabling Technology, Maps
+date: 2006/08/21 12:18:28
+permalink: /~gb/blog/2006/08/21/web-based-maps/
+tags: ''
+title: Web-based maps
+---
+<p>I got an email and phone call from Rachel Magario, a blind geography graduate student at the University of Kansas. She is interested in maps for people who are blind and is specifically interested in making an accessible map of her campus. She wants something like <span class="caps">BATS</span> embedded in the browser. I explained to her how hard that would be with the poor support for sound and non-existent support for tactile feedback in browsers.</p>
+
+<p>I encouraged her to think about what you <strong>can</strong> do with web pages in browsers rather than trying to reproduce our <span class="caps">BATS</span> system. This got me to thinking about maps, spatial relationships, web links, etc. This page is an attempt to summarize that thinking.</p>
+
+<p>When we think about presenting maps to people who are blind, we immediately think about ways to modify the traditional visual representation to make it accessible. In <span class="caps">BATS</span> we used a cursor to represent the user’s position on a 2D map. We played spatial sound for objects near the user’s location and allowed them to make queries about their current location and to hear the names of objects that are nearby in any direction. It was simply a transformation of the visual map into a virtual sound world that allows local queries. The experience for the user must be something like it would be for a sighted person who was only allowed to see a tiny part of the map at any one time.</p>
+
+<p>Web browsers are good at presenting text, images, and simple sounds connected to other pages by links. This reminds me of the old <em>text adventure</em> games. The game consists of a number of locations that are described using text. You interact with the game and move from one location to another by entering text commands like “North”, “East”, or “Enter Jail”. Each new location has a description. You explore this world, collecting treasure and solving puzzles. They were lots of fun and I see there are audio enabled versions so blind people can play the games.</p>
+
+<p>If we focus on the relationships that are embodied in the map rather than trying to present everything spatially perhaps we could make useful maps that can be embedded in conventional web pages. It seems to me this could apply to a building (a school), a campus, or parts of a city. I don’t see how to apply it to an entire state, but perhaps if the links were roads something interesting could be done.</p>
+
+<p>I may try to put together a few pages to experiment with how it might work.</p>
+
+<p>The map is a collection of <em>nodes</em> that describe spaces and <em>pathways</em> that connect <em>nodes</em> together. The <em>nodes</em> could simply be web pages. Node pages might include:
+<ul>
+	<li>An overview and introduction to the space.</li>
+	<li>A sample sound, perhaps by user preference this could play automatically or not.</li>
+	<li>A list of <em>pathways</em> (web links), with some possibly distinguished as <em>exits</em> (to Phillips or to Columbia) and others linking to other internal spaces (either 1st floor door).</li>
+	<li>An <em>up</em> link that goes to a summary node that describes the space more generally (for Sitterson this could be a description of the building and the computer science department, perhaps with links to the department web page)</li>
+	<li>A list of <em>features</em> of the space (the front desk might be a feature of the Sitterson lobby)</li>
+	<li>A list of <em>hazards</em> of the space to be avoided (the columns or the stairs down to the lower lobby).</li>
+</ul>
+Activating a <em>pathway</em> link might, by user preference, activate a transition page that actually describes that route or it might simply go to the next space. So with transitions <em>on</em> after clicking on the <em>pathway</em> link for the western door to the 1st floor you might hear “You walk about 10 paces south to the door. There is a card reader here for after hours entry. You open the door and enter the 1st floor west hallway”. With transitions <em>off</em> clicking on the link simply starts with the page for the 1st floor west hallway.</p>
+
+<p>We could have multiple nodes describing a large space like the lobby or a single large page divided into sections with internal anchors. Is the front desk a <em>node</em>? Or simply a <em>feature</em>. Perhaps the various displays are internal <em>nodes</em> so that they can be described later. Perhaps anything can become a <em>node</em>. Or perhaps it would be better to distinguish spaces from their content. In this model only spaces would be <em>nodes</em> that can be navigated to. Others are simply attached descriptions of features. Since users of screen readers can easily stop reading a paragraph and skip to the next, the descriptive text might simply be embedded in the page.</p>
+
+<p>Perhaps we can devise a consistent set of <em>access keys</em> on the web pages to allow users to easily skip to the part of the page that interests them most.</p>

@@ -1,0 +1,128 @@
+---
+categories: Programming
+date: 2007/11/16 19:54:17
+permalink: /~gb/blog/2007/11/16/sending-key-events-to-pygame-programs/
+tags: ''
+title: Sending Key Events to pygame programs
+---
+<p>I needed to send key events from one python program to another. Using SendKeys on Windows worked fine in my tests but when I tried to send key events to a <a href="http://www.pygame.org/news.html">pygame</a> program it completely ignored them. Some searching revealed that DirectInput ignores events generated with SendKeys. I learned that I needed to use SendInput. I found lots of partial examples but nothing that quite did the job. Here is some code (scraped together from multiple web pages) that works for me:</p>
+
+<p><!--more--></p>
+<pre>
+<code>
+from ctypes import *
+import time
+import os
+
+if os.name == 'nt':
+    PUL = POINTER(c_ulong)
+    class KeyBdInput(Structure):
+        _fields_ = [("wVk", c_ushort),
+                    ("wScan", c_ushort),
+                    ("dwFlags", c_ulong),
+                    ("time", c_ulong),
+                    ("dwExtraInfo", PUL)]
+
+    class HardwareInput(Structure):
+        _fields_ = [("uMsg", c_ulong),
+                    ("wParamL", c_short),
+                    ("wParamH", c_ushort)]
+
+    class MouseInput(Structure):
+        _fields_ = [("dx", c_long),
+                    ("dy", c_long),
+                    ("mouseData", c_ulong),
+                    ("dwFlags", c_ulong),
+                    ("time",c_ulong),
+                    ("dwExtraInfo", PUL)]
+
+    class Input_I(Union):
+        _fields_ = [("ki", KeyBdInput),
+                    ("mi", MouseInput),
+                    ("hi", HardwareInput)]
+
+    class Input(Structure):
+        _fields_ = [("type", c_ulong),
+                    ("ii", Input_I)]
+
+    KEYEVENTF_KEYUP = 0x2
+    KEYEVENTF_UNICODE = 0x4
+    KEYEVENTF_SCANCODE = 0x8
+    MAPVK_VK_TO_VSC = 0
+
+    def SendInput(txt):
+        i = Input()
+        i.type = 1
+        extra = c_ulong(0)
+        pextra = pointer(extra)
+        for c in txt:
+            vk = windll.user32.VkKeyScanW(ord(c))
+            sc = windll.user32.MapVirtualKeyW(vk&0xff, MAPVK_VK_TO_VSC)
+            i.ii.ki.wVk = 0
+            i.ii.ki.wScan = sc
+            i.ii.ki.dwFlags = KEYEVENTF_SCANCODE
+            i.ii.ki.time = 0
+            i.ii.ki.dwExtraInfo = pextra
+            windll.user32.SendInput(1, byref(i), sizeof(i))
+            i.ii.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP
+            windll.user32.SendInput(1, byref(i), sizeof(i))
+
+    def SendKeyPress(key):
+        i = Input()
+        i.type = 1
+        extra = c_ulong(0)
+        pextra = pointer(extra)
+        vk = windll.user32.VkKeyScanW(ord(key))
+        sc = windll.user32.MapVirtualKeyW(vk&0xff, MAPVK_VK_TO_VSC)
+        i.ii.ki.wVk = 0
+        i.ii.ki.wScan = sc
+        i.ii.ki.dwFlags = KEYEVENTF_SCANCODE
+        i.ii.ki.time = 0
+        i.ii.ki.dwExtraInfo = pextra
+        windll.user32.SendInput(1, byref(i), sizeof(i))
+
+    def SendKeyRelease(key):
+        i = Input()
+        i.type = 1
+        extra = c_ulong(0)
+        pextra = pointer(extra)
+        vk = windll.user32.VkKeyScanW(ord(key))
+        sc = windll.user32.MapVirtualKeyW(vk&0xff, MAPVK_VK_TO_VSC)
+        i.ii.ki.wVk = 0
+        i.ii.ki.wScan = sc
+        i.ii.ki.time = 0
+        i.ii.ki.dwExtraInfo = pextra
+        i.ii.ki.dwFlags = KEYEVENTF_SCANCODE | KEYEVENTF_KEYUP
+        windll.user32.SendInput(1, byref(i), sizeof(i))
+</code>
+</pre>
+<p>This code does not handle pressing shift and control to create capital letters or control keys but that info is apparently encoded into the upper byte of <code>vk</code>. </p>
+
+<p>Accomplishing the same result on Linux is easy. Here is the rest of the code</p>
+<pre>
+<code>
+elif os.name == 'posix':
+    Xtst = CDLL("libXtst.so.6")
+    Xlib = CDLL("libX11.so.6")
+    dpy = Xtst.XOpenDisplay(None)
+    def SendInput( txt ):
+        for c in txt:
+            sym = Xlib.XStringToKeysym(c)
+            code = Xlib.XKeysymToKeycode(dpy, sym)
+            Xtst.XTestFakeKeyEvent(dpy, code, True, 0)
+            Xtst.XTestFakeKeyEvent(dpy, code, False, 0)
+        Xlib.XFlush(dpy)
+
+    def SendKeyPress(key):
+        sym = Xlib.XStringToKeysym(str(key))
+        code = Xlib.XKeysymToKeycode(dpy, sym)
+        Xtst.XTestFakeKeyEvent(dpy, code, True, 0)
+        Xlib.XFlush(dpy)
+
+    def SendKeyRelease(key):
+        sym = Xlib.XStringToKeysym(str(key))
+        code = Xlib.XKeysymToKeycode(dpy, sym)
+        Xtst.XTestFakeKeyEvent(dpy, code, False, 0)
+        Xlib.XFlush(dpy)
+</code>
+</pre>

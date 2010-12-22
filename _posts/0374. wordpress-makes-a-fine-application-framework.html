@@ -1,0 +1,10 @@
+---
+categories: Enabling Technology, Programming
+date: 2008/05/21 08:27:42
+permalink: /~gb/blog/2008/05/21/wordpress-makes-a-fine-application-framework/
+tags: ''
+title: Wordpress makes a fine application framework
+---
+<p>I really like using <a href="http://wordpress.org/">Wordpress</a> for my website and blog but I hadn't thought until recently about using it as an application framework. <a href="/~gb/blog/2008/05/14/karen_notes/">Karen and I talked</a> about a site to enable teachers to quickly build topical beginning readers for people with varied interests and abilities. I began thinking about the features such a site would have and found lots of overlap with what Wordpress already provides. A <a href="http://www.nixonmcinnes.co.uk/2008/04/25/building-micro-web-applications-using-wordpress-pages/">blog post</a> by <a href="http://www.nixonmcinnes.co.uk/people/steve/">Steve Winton</a> over at <a href="http://www.nixonmcinnes.co.uk/">NixonMcInnes</a> encouraged me to examine the possibilities further. </p>
+
+<p>I'm pleased to report that it is really easy to integrate a PHP web-app into Wordpress. I use ordinary blog posts as the books with the &lt;!--nextpage--> tag for pagination and a bit of Javascript for switch accessibility and text to speech. The book creator wizard is simply a set of pages with custom templates. You select some images, provide some captions and a title, and it creates the blog post that is your book. Wordpress provides logins, all the database manipulation, comments, tags, categories, etc. Redirects work fine because Wordpress is silent until you invoke get_header. Query parameters work fine; Wordpress seems to ignore them. Session variables work fine too. So far Wordpress hasn't gotten in my way once and has helped a ton. </p>

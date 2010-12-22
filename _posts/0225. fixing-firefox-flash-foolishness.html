@@ -1,0 +1,116 @@
+---
+categories: Enabling Technology, Blind, Programming, Motor impaired
+date: 2007/06/08 10:44:18
+permalink: /~gb/blog/2007/06/08/fixing-firefox-flash-foolishness/
+tags: ''
+title: Fixing Firefox Flash Foolishness
+---
+<p>Firefox is the only browser I use, so when things don't work, I get worried. We're looking at Flash as a delivery vehicle for some of our applications for people with disabilities and ran into two potential show stoppers:
+<ol>
+	<li>Flash doesn't get focus unless you click on it with the mouse; many of our potential users don't use mice!</li>
+	<li>Flash doesn't allow access to right click; many switch interfaces generate left and right click events to signal the user pressing the mover or chooser switch.</li>
+</ol></p>
+
+<p>I surfed around a bit expecting to find some quick solution and only found despair. It seems that lots of people have encountered these problems in various forms and haven't found a solution.</p>
+
+<p>I've found a very simple approach that works just fine for what we need; perhaps it will help someone else. The high bit is I'm using the Flash ExternalInterface object to allow JavaScript to catch keyboard and mouse events and then tell Flash about them. Flash never gets the focus and doesn't need it.</p>
+
+<p><!--more--></p>
+
+<p>I have <a href="/~gb/media/2007/06/flashfirefoxevents.zip">attached an archive with the various pieces</a>. If you download this and activate the HTML your browser may pop up a Flash security dialog; if so, you'll have to allow Flash to access the folder containing the code, or put it all on a web server someplace to get around the security model.</p>
+
+<p>The Flash movie is just a trivial demo. I created a Dynamic Text control on the stage and gave it the id MyText. On Frame 1 I inserted the following ActionScript code:</p>
+<pre>
+<code>
+import flash.external.*;
+
+function showMsg(txt) {
+	MyText.text = txt;
+}
+var connection = ExternalInterface.addCallback("callMe", this, showMsg);
+if(connection) {
+  showMsg('ExternalInterface ok');
+} else {
+  /* this apparently happens when the security model is violated */
+  showMsg('ExternalInterface failed');
+}
+</code>
+</pre>
+<p>You can export as many different functions as you like with <code>ExternalInterface.addCallback</code>. Of course, you'd likely want different functions for keyboard and mouse events in a real application.</p>
+
+<p>In the HTML I have some JavaScript that:
+<ol>
+	<li>catches keydown and keyup events,</li>
+	<li>catches mousedown and mouseup events,</li>
+	<li>informs the Flash movie about them using the function exported above, and</li>
+	<li>disables the right-click context menu.</li>
+<ol>
+<style type="text/css">
+.ei { color:red; font-style:normal;}
+.km{ color:blue; font-style:normal;}
+</style>
+Here is the HTML with the JavaScript embedded.
+</p>
+<pre>
+<code allow="em">
+&lt;html&gt;
+&lt;head&gt;
+&lt;script type="text/javascript"&gt;
+<em class="ei">var myMovie;</em>
+function killEvent(eventObject) {
+    if (eventObject && eventObject.stopPropagation) eventObject.stopPropagation();
+    if (window.event && window.event.cancelBubble ) window.event.cancelBubble = true;
+    if (eventObject && eventObject.preventDefault) eventObject.preventDefault();
+    if (window.event) window.event.returnValue = false;
+    if(eventObject.preventCapture) eventObject.preventCapture();
+    if(eventObject.preventBubble) eventObject.preventBubble();
+}
+function keyCallback(msgtxt) {
+  return function(ev) {
+    var kcode = ev.which;
+    var kchar = String.fromCharCode(kcode);
+    var txt = msgtxt + ' ' + kcode + ' ' + kchar;
+    <em class="ei">myMovie.callMe(txt);</em>
+  }
+}
+function mouseCallback(msgtxt) {
+  return function(ev) {
+    var txt = msgtxt + ' ' + ev.button;
+    <em class="km">if (ev.button != 0) killEvent(ev);</em>
+    <em class="ei">myMovie.callMe(txt);</em>
+  }
+}
+function setup() {
+  window.addEventListener("mousedown", mouseCallback('mouse down'), true);
+  window.addEventListener("mouseup", mouseCallback('mouse up'), true);
+  window.addEventListener("keydown", keyCallback('key down'), true);
+  window.addEventListener("keyup", keyCallback('key up'), true);
+  <em class="km">window.addEventListener("contextmenu",killEvent, true);</em>
+  <em class="ei">myMovie = document.fev1;</em>
+}
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body onload="setup()"&gt;
+&lt;embed src="fev1.swf"
+	quality="high"
+	bgcolor="#ffffff"
+	width="550"
+	height="400"
+	name="fev1"
+	align="middle"
+        <em class="km">wmode="transparent"</em>
+	<em class="ei">allowScriptAccess="always"</em>
+	swLiveConnect="true"
+	type="application/x-shockwave-flash"
+	pluginspage="http://www.macromedia.com/go/getflashplayer" /&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code>
+</pre>
+<p>I emphasized what I think are the critical bits for the ExternalInterface in red and for killing the right-click context menu in blue. The rest is pretty straightforward JavaScript code. I won't be surprised if someone who knows Flash and JavaScript can do this much better.</p>
+
+<p>When you run this, you should see "External Interface OK" in the Flash movie; if you don't then you've got to figure out your security settings to allow the ExternalInterface object to properly initialize. Assuming you got past that, typing should show you the key code and letter on both key down and key up. Likewise, clicking with the mouse should show which button you're pressing and should allow you to click anywhere in the window without popping up either the Firefox or Flash context menus. </p>
+
+<p>I think this approach could be made to work in IE. Besides the usual differences in accessing the DOM, turning off the right-click context menu is likely the only part that will be different. I've seen suggestions of using a transparent shield layer over the Flash movie to catch those events. </p>
+
+<p>That's really all there is to it. I'd be very pleased to hear about improvements to this method. I suspect that a Flash programmer truly skilled in the arts could synthesize Key and Mouse events so that normal listeners would be invoked. If you do that, I'd love to learn how!</p>

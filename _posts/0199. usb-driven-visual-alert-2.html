@@ -1,0 +1,14 @@
+---
+categories: Ideas, Enabling Technology, Deaf
+date: 2007/04/07 18:48:13
+permalink: /~gb/blog/2007/04/07/usb-driven-visual-alert-2/
+tags: ''
+title: USB-driven visual alert
+---
+<p>In reference to my earlier <a href="/~gb/blog/2007/02/12/usb-driven-visual-alert/">post</a> about the USB-driven visual alert for people who are hearing impaired. </p>
+
+<p>Using the INSTEON api we can control any appliance plugged in to their receiver. I believe the receiver can be plugged in to any outlet  in the house. On the computer, we'll just need to look for incoming email or IMs. While we <em>could</em> implement something that actually checks for mail (requiring their password) and interfaces somehow to whatever IM client they use, I'd rather try to do something independent of all that. </p>
+
+<p>I suggest we try allowing the user to draw one or more small <em>watch boxes</em> anywhere on the desktop. If the pixels in the box change, we activate the signal. This would allow us to monitor whatever visual indication the applications already provide. For example, on GoogleTalk I have a small "balloon" icon down in the system tray; it blinks when a new IM comes in. Likewise my email client changes its taskbar button when new mail arrives. I'm suggesting we could simply watch for changes on the display to drive the signal.</p>
+
+<p>If it turns out that doesn't work, we should try using our <a href="http://www.cs.unc.edu/~parente/tech/tr09.shtml">pyAA</a> interface to watch for events on the accessibility interface. </p>

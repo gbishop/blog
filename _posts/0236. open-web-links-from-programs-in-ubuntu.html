@@ -1,0 +1,8 @@
+---
+categories: Programming, Ubuntu
+date: 2007/06/26 08:54:09
+permalink: /~gb/blog/2007/06/26/open-web-links-from-programs-in-ubuntu/
+tags: ''
+title: Open web links from programs in Ubuntu
+---
+<p>In both Python and VMware I've noticed that attempts to open a link in the browser failed with a very strange <code>file:// link</code> containing double quote characters. A bit of searching revealed this is a problem with the calling syntax from Firefox in System -> Preferences -> Preferred Applications. Changing from "Custom" to "Firefox" so the Command is <code>firefox %s</code> fixes things nicely.</p>

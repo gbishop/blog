@@ -1,0 +1,27 @@
+---
+categories: Programming, Ubuntu
+date: 2007/07/18 20:33:03
+permalink: /~gb/blog/2007/07/18/editing-remote-files-with-emacs-and-tramp/
+tags: ''
+title: Editing remote files with emacs and tramp
+---
+<p>Our web pages are in AFS space, which would be great but AFS is a pain. The security policy requires me to login with a password in order to get a token in order to access an ACL protected directory. I decided to see if I could get the emacs package <code>tramp</code> to help me with this. Tramp will use scp to retrieve  remote files and to write them on save. How can I get it work with AFS?</p>
+
+<p>Here is one approach. I created a file <code>~/.ssh/config</code> with these lines:</p>
+<pre>
+<code>
+Host swan
+ControlPath /tmp/ssh_swan_gb
+</code>
+</pre>
+<p>I already have an alias that forces ssh to use a password to login instead of my usual keys.</p>
+
+<p><code>
+alias sshl='/usr/bin/ssh -o PreferredAuthentications=password'
+</code></p>
+
+<p>So I login with <code>sshl swan -M</code>.</p>
+
+<p>Now a later <code>scp</code> will inherit my AFS tokens. So with emacs I can type </p>
+<pre><code>^X^F//swan:public_html/foo/foo.cgi</code></pre>
+<p> to edit a file on the remote host.</p>
