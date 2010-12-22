@@ -354,25 +354,13 @@ aside h3 {
 */
 
 /* Footer */
-#footer { 
-	margin: 20px 0 30px 20px;
-	text-shadow: 1px 0 1px #fff;
-	background: ${shades[14]};
+
+footer a {
+	color: black;
+	text-decoration: underline;
 }
 
-#footer a {
-	color: ${colors.a};
-	font-size: 16px;
-	padding: 2px 3px;
-	text-shadow: 1px 0 1px #fff;
-}
-
-#footer a:hover {
-	color: ${colors.aHover};
-	text-shadow: none;
-}
-
-#footer p { margin: 0; }
+footer p { margin: 0; }
 
 /* Form */
 
