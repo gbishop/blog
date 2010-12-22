@@ -44,16 +44,27 @@
           <br class="clear" />
         </nav>
         <div id="main" class="grid_8 alpha">
+<div id="cse" style="width:100%;"></div>
           ${next.body()}
         </div> <!-- end main -->
         <div id="sidebar" class="grid_4 omega">
           <aside class="widget">
-            <!-- Non working search -->
+            <!-- Non working search 
             <form action="http://www.google.com/search">
                 <input type="search" results="10" placeholder="Search..." name="q" />
                 <input type="submit" value="Search..." />
                 <input type="hidden"  name="sitesearch" value="wwwx.cs.unc.edu/~gb/"
-            </form>
+            </form> -->
+<form action="http://www.cs.unc.edu/~gb/search.html" id="cse-search-box">
+  <div>
+    <input type="hidden" name="cx" value="008529881150567908200:zbvge3bsuqi" />
+    <input type="hidden" name="cof" value="FORID:11" />
+    <input type="hidden" name="ie" value="UTF-8" />
+    <input type="search" name="q" size="31" />
+    <input type="submit" name="sa" value="Search" />
+  </div>
+</form>
+<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
           </aside> <!-- end widget -->
           <aside class="widget">
             <h3>Contact</h3>
