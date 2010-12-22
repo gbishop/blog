@@ -61,7 +61,7 @@
             <br/>
             Mail: <a href="mailto:gb@cs.unc.edu">gb@cs.unc.edu</a><br/>
             Phone: 919-962-1886<br/>
-            Feeds: <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed')}">Posts</a>
+            Feeds: <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed/')}">Posts</a>
 % if bf.config.blog.disqus.enabled:
               and <a class="feed" href="http://${bf.config.blog.disqus.name}.disqus.com/latest.rss">Comments</a>
 % endif
