@@ -44,8 +44,9 @@ blog.timezone = "US/Eastern"
 
 blog.disqus.name = 'garybishop'
 blog.disqus.enabled = True
-blog.post_excerpts.enabled = False
+blog.post_excerpts.enabled = True
 blog.post_excerpts.word_length = 25
+blog.posts_per_page = 10
 
 ### colors
 class Bag(object):
