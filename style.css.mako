@@ -498,6 +498,18 @@ img.alignright { margin-left: 15px; }
   -webkit-coulmn-gap:22px;
 }
 
+.tilt {
+	-webkit-transform: rotate(5deg); 
+	-moz-transform: rotate(5deg); 
+	transform: rotate(5deg); 
+}
+
+.shadow {
+	-webkit-box-shadow: rgba(0, 0, 0, 0.496094) 3px 3px 6px;
+	-moz-box-shadow: rgba(0, 0, 0, 0.496094) 3px 3px 6px;
+	box-shadow: rgba(0, 0, 0, 0.496094) 3px 3px 6px;
+}
+
 /* Thumbnail rotation - Uncomment to use */
 
 /*
