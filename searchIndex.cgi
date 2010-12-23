@@ -6,6 +6,7 @@ cgitb.enable()
 import whoosh.index as index
 from whoosh.qparser import QueryParser
 import sys
+import json
 
 print "Content-Type: text/plain"
 print
@@ -26,5 +27,5 @@ searcher = ix.searcher()
 query = QueryParser("content").parse(q)
 results = searcher.search(query)
 s = ''.join('''<p><a href="%s">%s</a></p>''' % (result['path'], result['title']) for result in results)
-val = '%s("%s")' % (callback, s)
+val = '%s(%s)' % (callback, json.dumps(s))
 print val
