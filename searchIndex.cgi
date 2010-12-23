@@ -27,6 +27,6 @@ searcher = ix.searcher()
 query = QueryParser("content").parse(q)
 results = [ { 'path': result['path'], 'title': result['title']}
             for result in searcher.search(query) ]
-d = { 'results': results }
+d = { 'results': results, 'query': q }
 val = '%s(%s)' % (callback, json.dumps(d))
 print val
