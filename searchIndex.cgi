@@ -7,17 +7,20 @@ import whoosh.index as index
 from whoosh.qparser import QueryParser
 import sys
 import json
+import re
 
 print "Content-Type: text/javascript"
 print
 
 form = cgi.FieldStorage()
 if 'q' not in form:
-    q = 'sourdough'
+    q = 'sourdough+walnut'
     callback = 'foo'
 else:
     q = form['q'].value
     callback = form['callback'].value
+
+q = re.sub(r'\W+', ' ', q)
 
 indexDir = '/home/gb/Web/gb/indexdir'
 
