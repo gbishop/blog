@@ -27,5 +27,6 @@ searcher = ix.searcher()
 query = QueryParser("content").parse(q)
 results = searcher.search(query)
 s = ''.join('''<p><a href="%s">%s</a></p>''' % (result['path'], result['title']) for result in results)
-val = '%s(%s)' % (callback, json.dumps(s))
+d = { 'data': s }
+val = '%s(%s)' % (callback, json.dumps(d))
 print val
