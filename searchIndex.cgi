@@ -15,6 +15,7 @@ if "q" not in form:
     print "<H1>Error</H1>"
     print "Please fill in the q field."
     sys.exit(0)
+q = form['q'].value
 
 indexDir = '/home/gb/Web/gb/indexdir'
 
