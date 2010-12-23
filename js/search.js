@@ -8,7 +8,7 @@ var jsonpArgs = {
   content: parms,
   load: function(data) {
       //Set the data from the search into the viewbox in nicely formatted JSON
-      dojo.byId('query').innerHTML = query;
+      dojo.byId('query').innerHTML = 'with ' + data.query;
       if (data.results.length == 0) {
         results.innerHTML = 'None found.';
       } else {
