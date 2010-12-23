@@ -45,8 +45,7 @@
         </nav>
         <div id="main" class="grid_8 alpha">
            ${next.body()}
-<div id="cse" style="width:100%;"></div>
-         </div> <!-- end main -->
+        </div> <!-- end main -->
         <div id="sidebar" class="grid_4 omega">
           <aside class="widget">
             <form action="/~gb/cgi-bin/searchIndex.cgi">
