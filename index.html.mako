@@ -9,7 +9,7 @@ Gary Bishop, Professor of <a href="http://www.cs.unc.edu/">Computer Science</a>
 255 Sitterson Hall, <a href="http://www.unc.edu/">University of North Carolina</a> at Chapel Hill, NC 27599-3175
 </p>
 
-<h4>Quick Links</h4>
+<h3>Quick Links</h3>
 <ul>
 	<li><a href="http://sites.google.com/site/uncopenweb/">UNC Open Web Project</a></li>
 	<li><a href="http://www.cs.unc.edu/~gb/AccessibleYouTube/">Accessible YouTube</a> choose and play YouTube videos using only 2 keys.</li>
@@ -18,5 +18,12 @@ Gary Bishop, Professor of <a href="http://www.cs.unc.edu/">Computer Science</a>
 	<li>Read about our work on <a href="http://www.cs.unc.edu/~gb/research/">enabling technology</a></li>
 	<li>Look for <a href="http://www.cs.unc.edu/~gb/blog/category/ideas/">ideas for enabling technology projects</a></li>
 	<li>Check my <a href="http://www.cs.unc.edu/~gb/calendar.html">calendar</a> to find an open time we could meet</li>
+</ul>
+
+<h3>Latest blog posts</h3>
+<ul>
+% for post in bf.config.blog.posts[:5]:
+    <li><a href="${post.path}">${post.title}</a></li>
+% endfor
 </ul>
 

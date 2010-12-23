@@ -44,28 +44,16 @@
           <br class="clear" />
         </nav>
         <div id="main" class="grid_8 alpha">
+           ${next.body()}
 <div id="cse" style="width:100%;"></div>
-          ${next.body()}
-        </div> <!-- end main -->
+         </div> <!-- end main -->
         <div id="sidebar" class="grid_4 omega">
           <aside class="widget">
-            <!-- Non working search 
-            <form action="http://www.google.com/search">
-                <input type="search" results="10" placeholder="Search..." name="q" />
-                <input type="submit" value="Search..." />
-                <input type="hidden"  name="sitesearch" value="wwwx.cs.unc.edu/~gb/"
-            </form> -->
-<form action="http://www.cs.unc.edu/~gb/search.html" id="cse-search-box">
-  <div>
-    <input type="hidden" name="cx" value="008529881150567908200:zbvge3bsuqi" />
-    <input type="hidden" name="cof" value="FORID:11" />
-    <input type="hidden" name="ie" value="UTF-8" />
-    <input type="search" name="q" size="31" />
-    <input type="submit" name="sa" value="Search" />
-  </div>
-</form>
-<script type="text/javascript" src="http://www.google.com/cse/brand?form=cse-search-box&lang=en"></script>
-          </aside> <!-- end widget -->
+            <form action="/~gb/cgi-bin/searchIndex.cgi">
+              <input type="search" results="10" placeholder="Search..." name="q" />
+              <input type="submit" value="Search..." />
+            </form>
+          </aside>
           <aside class="widget">
             <h3>Contact</h3>
             <p>255 Sitterson Hall CB 3175<br/>
@@ -78,18 +66,6 @@
               and <a class="feed" href="http://${bf.config.blog.disqus.name}.disqus.com/latest.rss">Comments</a>
 % endif
             </p>
-          </aside>
-          <aside class="widget">
-            <h3>Latest blog posts</h3>
-            <ul>
-          % for post in bf.config.blog.posts[:5]:
-                <li><a href="${post.path}">${post.title}</a></li>
-          % endfor
-            </ul>
-          </aside>
-          <aside class="widget">
-<script type="text/javascript" src="https://www.google.com/reader/ui/publisher-en.js"></script>
-<script type="text/javascript" src="https://www.google.com/reader/public/javascript/user/05640245229867820301/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A%22-%22%2Ct%3A%22My%20shared%20items%22%2Cs%3A%22false%22%2Cn%3A%22false%22%2Cb%3A%22false%22%7D)%3Bnew%20GRC"></script>        
           </aside>
           <aside class="widget">
             <h3>Categories</h3>
@@ -110,6 +86,10 @@
                 <option value="${bf.util.site_path_helper(bf.config.blog.path,link)}/1">${name}&nbsp;(${num_posts})</option>
               % endfor
               </select>
+          </aside>
+          <aside class="widget">
+<script type="text/javascript" src="https://www.google.com/reader/ui/publisher-en.js"></script>
+<script type="text/javascript" src="https://www.google.com/reader/public/javascript/user/05640245229867820301/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A%22-%22%2Ct%3A%22My%20shared%20items%22%2Cs%3A%22false%22%2Cn%3A%22false%22%2Cb%3A%22false%22%7D)%3Bnew%20GRC"></script>        
           </aside>
         </div> <!-- end sidebar -->
       </div> <!-- end content -->
