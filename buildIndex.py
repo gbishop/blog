@@ -1,6 +1,7 @@
 #!/home/gb/bin/python2.6
 
 ignoreDirs = [ 'css', 'fonts', 'indexdir', 'archive', 'category', 'feed', 'page' ]
+ignorePaths = [ '_site/blog/index.html' ]
 
 import os, os.path
 from whoosh import index
@@ -28,6 +29,8 @@ for root, dirs, files in os.walk('_site'):
             continue
         count += 1
         fpath = os.path.join(root, f)
+        if fpath in ignorePaths:
+            continue
         parts = fpath.split('/')
         parts[0] = '/~gb'
         if parts[-1] == 'index.html':
