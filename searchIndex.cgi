@@ -8,7 +8,7 @@ from whoosh.qparser import QueryParser
 import sys
 import json
 
-print "Content-Type: text/plain"
+print "Content-Type: text/javascript"
 print
 
 form = cgi.FieldStorage()
