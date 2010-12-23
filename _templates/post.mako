@@ -24,5 +24,7 @@ ${", ".join(category_links)}
 </article>
 
 <%def name="post_prose(post)">
-  ${post.content}
+  <div class="textToIndex">
+    ${post.content}
+  </div>
 </%def>
