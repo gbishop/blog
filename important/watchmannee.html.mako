@@ -2,7 +2,7 @@
 <<%!
  current_ = '' 
 %>
-h1>Two Principles of Conduct</h1>
+<h1>Two Principles of Conduct</h1>
 <p>God created man, and He Who created man made provision for the sustenance of the man He had created. Man derived his existence from God, and it was God’s intention that man should be dependent on Him for his life throughout its entire course. The life He had given was to be nourished by means of suitable food which He Himself supplied.</p>
 <blockquote>And the Lord God planted a garden eastward in Eden; and there HE put the man whom HE had formed. And out of the ground made the <span class="caps">LORD</span> God to grow every tree that is pleasant to the sight, and good for food; the tree of life also in the midst of the garden, and the tree of knowledge of good and evil (Genesis 2:8–9).</blockquote>
 <p>Through these two trees God has shown us in figure two different ways in which people may spend their days on earth; the principle that governs the conduct of some is the knowledge of good and evil, while others are governed by the principle of life.</p>
