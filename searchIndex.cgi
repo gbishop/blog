@@ -27,4 +27,4 @@ query = QueryParser("content").parse(q)
 results = searcher.search(query)
 s = ''.join('''<p><a href="%s">%s</a></p>''' % (result['path'], result['title']) for result in results)
 val = '%s("%s")' % (callback, s)
-print s
+print val
