@@ -29,7 +29,7 @@ for root, dirs, files in os.walk('_site'):
         count += 1
         fpath = os.path.join(root, f)
         parts = fpath.split('/')
-        parts[0] = '~gb'
+        parts[0] = '/~gb'
         if parts[-1] == 'index.html':
             del parts[-1]
         upath = '/'.join(parts)
