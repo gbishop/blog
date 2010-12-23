@@ -21,5 +21,5 @@ searcher = ix.searcher()
 query = QueryParser("content").parse(q)
 results = searcher.search(query)
 for result in results:
-    print '''<a href="%s">%s</a>''' % (result['path'], result['title'])
+    print '''<p><a href="%s">%s</a></p>''' % (result['path'], result['title'])
 
