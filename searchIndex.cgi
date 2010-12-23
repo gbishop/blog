@@ -25,7 +25,8 @@ ix = index.open_dir(indexDir)
 
 searcher = ix.searcher()
 query = QueryParser("content").parse(q)
-results = list(searcher.search(query))
+results = [ { 'path': result['path'], 'title': result['title']}
+            for result in searcher.search(query) ]
 d = { 'results': results }
 val = '%s(%s)' % (callback, json.dumps(d))
 print val
