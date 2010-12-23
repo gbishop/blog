@@ -39,8 +39,11 @@ for root, dirs, files in os.walk('_site'):
         soup = BeautifulSoup(file(fpath, 'r'))
         content = soup.find('div', id="main")
         title = content.find('h1').find(text=True)
+        header = content.find('header')
+        if header:
+            header.extract()
         permalink = upath.decode('utf-8')
-        text = ' '.join(content.findAll(text=True))
+        text = ''.join(content.findAll(text=True))
         writer.add_document(title=title, path=permalink, content=text)
         
 writer.commit()
