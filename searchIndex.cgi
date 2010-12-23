@@ -14,7 +14,7 @@ print
 
 form = cgi.FieldStorage()
 if 'q' not in form:
-    q = 'sourdough+walnut'
+    q = 'categories'
     callback = 'foo'
 else:
     q = form['q'].value
@@ -29,7 +29,7 @@ ix = index.open_dir(indexDir)
 searcher = ix.searcher()
 query = QueryParser("content").parse(q)
 results = [ { 'path': result['path'], 'title': result['title']}
-            for result in searcher.search(query) ]
+            for result in searcher.search(query, limit=100) ]
 d = { 'results': results, 'query': q }
 val = '%s(%s)' % (callback, json.dumps(d))
 print val
