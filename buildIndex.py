@@ -35,7 +35,7 @@ for root, dirs, files in os.walk('_site'):
         upath = '/'.join(parts)
         soup = BeautifulSoup(file(fpath, 'r'))
         content = soup.find('div', id="main")
-        title = content.find('h1').string
+        title = content.find('h1').find(text=True)
         permalink = upath.decode('utf-8')
         text = ' '.join(content.findAll(text=True))
         writer.add_document(title=title, path=permalink, content=text)
