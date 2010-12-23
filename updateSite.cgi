@@ -7,6 +7,6 @@ cd /home/gb/Web/gb
 /home/gb/bin/git pull origin master
 /home/gb/bin/blogofile build
 cp -r _site/* /home/gb/public_html/
-./buildIndex.py
+/home/gb/bin/python2.6 buildIndex.py
 
 echo 'ok'
