@@ -21,6 +21,8 @@
     <!--[if lte IE 7]>
     	<link href="css/ie.css" rel="stylesheet" type="text/css" />
     <![endif]-->
+    
+    ${self.header_extra()}
 
   </head>
   <body>
@@ -104,4 +106,6 @@
 </%def>
 <%def name="robots_meta()">
   <meta name="robots" content="index,follow">
+</%def>
+<%def name="header_extra()">
 </%def>
