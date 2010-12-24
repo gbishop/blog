@@ -17,7 +17,7 @@ if 'q' not in form:
     q = u'hark the sound'
     callback = 'foo'
 else:
-    q = form['q'].value
+    q = form['q'].value.decode('utf-8')
     callback = form['callback'].value
 
 q = re.sub(r'\W+', ' ', q)
