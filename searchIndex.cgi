@@ -14,7 +14,7 @@ print
 
 form = cgi.FieldStorage()
 if 'q' not in form:
-    q = 'categories'
+    q = u'hark the sound'
     callback = 'foo'
 else:
     q = form['q'].value
