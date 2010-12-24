@@ -1,5 +1,6 @@
 #!/home/gb/bin/python2.6
 
+# ignore the directories so we don't index archives and such
 ignoreDirs = [ 'css', 'fonts', 'indexdir', 'archive', 'category', 'feed', 'page' ]
 ignorePaths = [ '_site/blog/index.html' ]
 
