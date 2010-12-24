@@ -88,7 +88,7 @@
               % endfor
               </select>
           </aside>
-          <aside class="widget">
+          <aside class="widget" style="height: 300px">
 <script type="text/javascript" src="https://www.google.com/reader/ui/publisher-en.js"></script>
 <script type="text/javascript" src="https://www.google.com/reader/public/javascript/user/05640245229867820301/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A%22-%22%2Ct%3A%22My%20shared%20items%22%2Cs%3A%22false%22%2Cn%3A%22false%22%2Cb%3A%22false%22%7D)%3Bnew%20GRC"></script>        
           </aside>
