@@ -1,0 +1,30 @@
+---
+categories: Programming, Random
+date: 2010/12/23 22:38:00
+permalink: /~gb/blog/2010/12/23/site-search-using-whoosh/
+tags: ''
+title: Site Search Using Whoosh
+---
+I tried Google custom search for my updated site but I was unhappy with the control I had over what got indexed, so I decided to implement my own. 
+
+A quick search revealed the awesome Whoosh_ search library. It is very well documented and super easy to use. 
+
+I wrote a 50-line python script (`buildIndex.py`_) to walk the _site directory and index the generated html files. It would be cool to integrate this into the Blogofile_ build process as a filter but I knew I could get a separate indexer going quicker.
+
+I've got a 40-line python cgi script (`searchIndex.cgi`_)to implement a jsonp_ service to search the index. This is called by 26 lines of javascript (`search.js`_) on the search page to display the results. 
+
+I'm very satisfied with the result and the ease of getting it going. I simply added the buildIndex script to my `Post-Receive Service Hook`_ for automatically updating the site when I push to github. It takes about 15 seconds to index my 350 pages. Searches take milliseconds. 
+
+.. _Blogofile: http://blogofile.com/
+
+.. _`buildIndex.py`: https://github.com/gbishop/blog/blob/master/buildIndex.py
+
+.. _`searchIndex.cgi`: https://github.com/gbishop/blog/blob/master/searchIndex.cgi
+
+.. _`search.js`: https://github.com/gbishop/blog/blob/master/js/search.js
+
+.. _`Post-Receive Service Hook`: https://github.com/gbishop/blog/blob/master/updateSite.cgi
+
+.. _Whoosh: https://bitbucket.org/mchaput/whoosh/wiki/Home
+
+.. _jsonp: http://en.wikipedia.org/wiki/JSON
