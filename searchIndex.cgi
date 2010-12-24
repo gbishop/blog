@@ -27,7 +27,7 @@ indexDir = '/home/gb/Web/gb/indexdir'
 ix = index.open_dir(indexDir)
 
 searcher = ix.searcher()
-query = QueryParser("content").parse(q)
+query = QueryParser("content", schema=ix.schema).parse(q)
 results = [ { 'path': result['path'], 'title': result['title']}
             for result in searcher.search(query, limit=100) ]
 d = { 'results': results, 'query': q }
