@@ -273,8 +273,6 @@ blockquote p { margin: 0; }
 	
 /* Post */
 .post { 
-	/* min-height: 300px; */
-	margin-bottom: 30px;
 	position: relative;
 }
 
