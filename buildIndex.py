@@ -43,7 +43,7 @@ for root, dirs, files in os.walk('_site'):
         permalink = upath.decode('utf-8')
         toIndex = content.find('div', 'textToIndex')
         if toIndex:
-            text = ''.join(toIndex.findAll(text=True))
+            text = title + ' ' + ''.join(toIndex.findAll(text=True))
         else:
             text = ''.join(content.findAll(text=True))
         writer.add_document(title=title, path=permalink, content=text)
