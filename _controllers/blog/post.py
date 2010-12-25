@@ -145,7 +145,15 @@ class Post(object):
         #defining post_excerpt(content,num_words)
         if len(self.excerpt) == 0:
              """Retrieve excerpt from article"""
+             # first look for the wordpress more tag which is in many of my posts
+             brk = self.content.find('<!--more-->')
+             if brk > 0:
+                return self.content[:brk]
+                
              s = BeautifulSoup.BeautifulSoup(self.content)
+             
+             return s.find('p').prettify().decode('utf-8')
+             
              # get rid of javascript, noscript and css
              [[tree.extract() for tree in s(elem)] for elem in (
                      'script', 'noscript', 'style')]
