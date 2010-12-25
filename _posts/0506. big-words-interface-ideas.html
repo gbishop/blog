@@ -7,7 +7,7 @@ title: Big Words Interface Ideas
 ---
 <p>I'm thinking about the client-side interface to our Big Words project with the Center for Literacy and Disability Studies. Rebecca is making good progress on the server-side logic for the games, the instructive feedback machinery that is the essence of this approach. But we need a good looking user interface to keep kids coming back.</p>
 
-<p><!--more--></p>
+<!--more-->
 
 <p>I want all the games to be as accessible as we can make them. That includes at least access by using 2 switches. We'll want to allow the colors to be adjusted like Tar Heel Reader so that students who are VI have a better chance of reading it. Further, I'd like to make it accessible to students who are blind but that will be very challenging (perhaps the new WAI-ARIA stuff is applicable here).</p>
 
@@ -31,7 +31,7 @@ title: Big Words Interface Ideas
 
 <p>I think the reward zone plug-in could be responsible for the players perception of the score. Of course behind the scenes the system is tracking attempts, hints, right, wrong, time, etc. But in a football theme the score might be 6 points for correct without a hint, 3 points if only 1 hint is required, and only 1 point if more hints are required. In the zombie game the score might be displayed in little zombie silhouettes. </p>
 
-<p><h3>Implementation ideas</h3></p>
+<h3>Implementation ideas</h3>
 
 <p>The database has records for students, groups of students (classes, whatever), themes (color, logo, etc.), rewards (which plugin to use), etc. After login the back-end knows what theme to use for the displays and what plug-ins are available to this student. </p>
 

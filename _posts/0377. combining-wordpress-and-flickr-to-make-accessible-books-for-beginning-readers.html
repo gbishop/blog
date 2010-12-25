@@ -5,13 +5,15 @@ permalink: /~gb/blog/2008/06/03/combining-wordpress-and-flickr-to-make-accessibl
 tags: ''
 title: Combining WordPress and Flickr to make accessible books for beginning readers
 ---
-<p><a href="http://tarheelreader.org/">Tar Heel Reader</a> is a web site designed to help teachers make easy-to-read books for children with disabilities. It has a growing selection of books to read and a simple process for creating new books using pictures found on <a href="http://www.flickr.com/">Flickr</a>. 
+<p><a href="http://tarheelreader.org/">Tar Heel Reader</a> is a web site designed to help teachers make easy-to-read books for children with disabilities. It has a growing selection of books to read and a simple process for creating new books using pictures found on <a href="http://www.flickr.com/">Flickr</a>. </p>
 <!--more-->
 <style type="text/css">
 img.alignleft { margin: 0pt; padding: 0pt; }
 </style>
-These pages are from a typical <a href="http://tarheelreader.org/2008/05/21/my-birthday/">book</a> at the site.
-<a href='/~gb/media/2008/06/05-page1fit.jpg'><img src="/~gb/media/2008/06/05-page1fit-150x150.jpg" alt="At my birthday, I want balloons." title="At my birthday, I want balloons." width="150" height="150" class="alignleft size-thumbnail wp-image-379" /></a><a href='/~gb/media/2008/06/06-page2.jpg'><img src="/~gb/media/2008/06/06-page2-150x150.jpg" alt="At my birthday, I want a cake." title="At my birthday, I want a cake." width="150" height="150" class="alignleft size-thumbnail wp-image-380" /></a><a href='/~gb/media/2008/06/07-page3.jpg'><img src="/~gb/media/2008/06/07-page3-150x150.jpg" alt="At my birthday, I want some friends." title="At my birthday, I want some friends." width="150" height="150" class="alignleft size-thumbnail wp-image-381" /></a><a href='/~gb/media/2008/06/08-page4.jpg'><img src="/~gb/media/2008/06/08-page4-150x150.jpg" alt="At my birthday, I want candy." title="At my birthday, I want candy." width="150" height="150" class="alignleft size-thumbnail wp-image-382" /></a></p>
+<p>These pages are from a typical <a href="http://tarheelreader.org/2008/05/21/my-birthday/">book</a> at the site.</p>
+
+<figure>
+<a href='/~gb/media/2008/06/05-page1fit.jpg'><img src="/~gb/media/2008/06/05-page1fit-150x150.jpg" alt="At my birthday, I want balloons." title="At my birthday, I want balloons." width="150" height="150" class="alignleft size-thumbnail wp-image-379" /></a><a href='/~gb/media/2008/06/06-page2.jpg'><img src="/~gb/media/2008/06/06-page2-150x150.jpg" alt="At my birthday, I want a cake." title="At my birthday, I want a cake." width="150" height="150" class="alignleft size-thumbnail wp-image-380" /></a><a href='/~gb/media/2008/06/07-page3.jpg'><img src="/~gb/media/2008/06/07-page3-150x150.jpg" alt="At my birthday, I want some friends." title="At my birthday, I want some friends." width="150" height="150" class="alignleft size-thumbnail wp-image-381" /></a><a href='/~gb/media/2008/06/08-page4.jpg'><img src="/~gb/media/2008/06/08-page4-150x150.jpg" alt="At my birthday, I want candy." title="At my birthday, I want candy." width="150" height="150" class="alignleft size-thumbnail wp-image-382" /></a></figure>
 
 <p>My friends Karen Erickson and Gretchen Hanser of the <a href="http://www.med.unc.edu/ahs/clds/">Center for Literacy and Disability Studies</a> tell me that children with limited ability to speak or handle traditional books have few opportunities to learn to read and write. While typically developing children have access to dozens or even hundreds of books, severely disabled kids often have access to very few. Imagine being fifteen years old, unable to speak or to reliably use your hands to manipulate a book and getting your first opportunity to read. Books about baby farm animals aren't going to cut it. You might be interested NASCAR, fashion, or spacecraft but beginner books on those subjects are rare and even more rarely accessible. Could we do something to make creating accessible books easier?</p>
 
@@ -19,7 +21,7 @@ These pages are from a typical <a href="http://tarheelreader.org/2008/05/21/my-b
 
 <p>If you don't find a book to suit your reader's interest, making a new book is very easy. The book creator wizard guides you through the process of finding pictures on Flickr, and providing a simple sentence to go with each. Then, with the click of a button, you can create a new book that will immediately be available for reading or download.</p>
 
-<p><h3>How it works</h3></p>
+<h3>How it works</h3>
 
 <p>I started hacking <a href="http://www.php.net/">PHP</a> using the <a href="http://www.flickr.com/services/api/">Flickr API</a> and quickly had a primitive book creator wizard working. When I started thinking about all the supporting infrastructure I would need to provide logins, searches, and multiple authors, it hit me that <a href="http://wordpress.org/">WordPress</a> already had everything I'd need. A <a href="http://www.nixonmcinnes.co.uk/2008/04/25/building-micro-web-applications-using-wordpress-pages/">blog post by Steve Winton</a>  encouraged me to examine the possibilities further. I'm very impressed with the ease of integrating the wizard and switch-accessible reading into WordPress by only hacking on the <a href="http://codex.wordpress.org/Using_Themes">theme</a>.</p>
 
@@ -31,8 +33,8 @@ These pages are from a typical <a href="http://tarheelreader.org/2008/05/21/my-b
 
 <p>Teachers sometimes use slide show tools such as PowerPoint to make accessible books for their disabled students. To support this and to allow reading books offline each book may be downloaded in Microsoft PowerPoint, OpenOffice Impress, and Adobe Flash format. I generate the Impress format XML using the PHP DOM functions and then convert to PowerPoint and/or Flash using soffice running as a server with the PyODConverter as described in <a href="/~gb/blog/2008/05/29/creating-powerpoint-slide-shows-from-wordpress-posts/">another post</a>.</p>
 
-<p><h3>Future directions</h3>
-The <a href="http://tarheelreader.org/2008/05/19/jeff-gordon/">book on Jeff Gordon</a> illustrates a possible future direction for these books. I used the built-in WordPress editor to modify the last page to include a <a href="http://www.youtube.com/">YouTube</a> video instead of a static picture. I think we could extend the wizard to include YouTube searches if there is enough interest.</p>
+<h3>Future directions</h3>
+<p>The <a href="http://tarheelreader.org/2008/05/19/jeff-gordon/">book on Jeff Gordon</a> illustrates a possible future direction for these books. I used the built-in WordPress editor to modify the last page to include a <a href="http://www.youtube.com/">YouTube</a> video instead of a static picture. I think we could extend the wizard to include YouTube searches if there is enough interest.</p>
 
 <p>Karen suggested including <em>sentence frames</em> to encourage authors to create easy to read texts.  I didn't understand her well enough to try to implement something. Hey, I'm just a computer guy!</p>
 

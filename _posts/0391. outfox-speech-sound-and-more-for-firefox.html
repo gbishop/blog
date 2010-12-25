@@ -5,11 +5,11 @@ permalink: /~gb/blog/2008/07/27/outfox-speech-sound-and-more-for-firefox/
 tags: ''
 title: 'Outfox: speech, sound, and more for Firefox'
 ---
-<p><h3>Quick net</h3></p>
+<h3>Quick net</h3>
 
 <p><a href="https://addons.mozilla.org/en-US/firefox/addon/8283">Outfox</a> is a <a href="http://www.mozilla.com/en-US/firefox/">Firefox</a> extension that allows in-page JavaScript to access local platform services and devices such as text-to-speech synthesis, sound playback and game controllers. You can read all about it at its <a href="http://code.google.com/p/outfox/">Google Code page</a> and discuss it in its <a href="http://groups.google.com/group/outfox-discuss/topics">Google Group</a>.</p>
 
-<p><h3>Motivation</h3></p>
+<h3>Motivation</h3>
 
 <p>In our continuing pursuit of the best platform for delivering accessible games and tools to people with disabilities we are now focusing on Firefox to see what we can accomplish from inside the browser. Up until recently, we've used Python. Its a great language and we've delivered thousands of copies of our apps to people all over the world but I kept thinking we could do better. For example, the ability to author games in <a href="/~gb/research/hark-the-sound/">Hark the Sound</a> has enabled teachers to do things we never imagined but sharing games is so complicated that is almost never happens. In contrast, the exciting response we've seen to <a href="http://gb-cs.cs.unc.edu/TarHeelReader">Tar Heel Reader</a> with 419 books in 3 languages after just 10 weeks online has convinced me that browser-based apps can have a big place in our work.</p>
 
@@ -17,7 +17,7 @@ title: 'Outfox: speech, sound, and more for Firefox'
 
 <p>We used <a href="http://www.schillmania.com/projects/soundmanager2/">SoundManager2</a> with a web-based text-to-speech server in Tar Heel Reader. It works well enough but the delays associated with fetching speech as mp3s over the web and the requirement to be online to get speech look bad in comparison locally hosted program.</p>
 
-<p><h3>Outfox</h3></p>
+<h3>Outfox</h3>
 
 <p>Outfox provides a simple programming interface to JavaScript running in the browser so it can access services on the computer that aren't normally available. In this first release, we enable access to speech and multi-channel sound with callbacks into JavaScript at the beginning and ends of words and sounds. Soon we expect to extend it to include joysticks, DDR pads, and such. With access to these capabilities I believe we can implement browser-based versions of our most popular games such as <a href="/~gb/research/hark-the-sound/">Hark the Sound</a>, Sonic Zoom, and Descent into Madness. If things work as I hope, teachers will have access to hundreds of curriculum-related games and a simple way to write and share their own. I hope we'll get cross-over between the amazing community behind Tar Heel Reader and the community of teachers of the visually impaired and orientation and mobility teachers who use our games for blind children. When we start seeing books about games and games about books, we'll know that synergy is taking hold.</p>
 
