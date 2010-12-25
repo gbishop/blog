@@ -41,7 +41,11 @@
             <li ${iscurrent('publications')}><a href="/~gb/publications.html">Publications</a></li>
             <li ${iscurrent('research')}><a href="/~gb/research/">Research</a></li>
             <li ${iscurrent('students')}><a href="/~gb/students.html">Students</a></li>
-            <li ${iscurrent('teaching')}><a href="/~gb/teaching.html">Teaching</a></li>
+            <li ${iscurrent('teaching')}><a href="/~gb/teaching.html">Teaching</a>
+              <ul>
+                <li><a href="/~gb/Comp411Spring2011/">Comp 411 S11</a></li>
+              </ul>
+            </li>
           </ul>
           <br class="clear" />
         </nav>
