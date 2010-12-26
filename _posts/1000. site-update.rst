@@ -9,6 +9,8 @@ Mike Pirnat's post `Why I Switched to Blogofile`_ inspired me to give Blogofile_
 
 Now after about 3 days of reading and enjoyable hacking, I've got my site converted with a new theme and color scheme. I'm impressed at how straightforward the conversion has been. I hacked up the ``wordpress2blogofile.py`` script to modify the paths (I wanted to change my permalinks) and to insert paragraph tags into the extracted text.
 
+<!--more-->
+
 As suggested, I used the `Wordpress Disqus`_ plugin to move my comments to Disqus_, then added a 301 redirect in my former Wordpress folder and told Disqus to walk the comments and update their locations. It appears to have worked perfectly!
 
 I wanted to go HTML5 and CSS3 with this update so I went looking for some resources. I found Edward O'Connor's `Blog templates: a case study in using HTML5’s sectioning elements`_ and Jayj.dk's `A free HTML5 and CSS3 theme`_ very useful. I compared Jayj.dk's template to the simple blog template that comes with Blogofile and hacked away. It didn't take long at all to get something working.
