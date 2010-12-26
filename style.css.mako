@@ -326,7 +326,7 @@ blockquote p { margin: 0; }
 
 .widget {
 	overflow: hidden;
-	padding-top: 5px;
+	margin-bottom: 0;
 }
 
 .widget li { /* line-height: 30px; */ }
