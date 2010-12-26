@@ -11,5 +11,4 @@ morePattern = re.compile(r'^<!--more-->\s*$', re.M)
 
 def run(content):
     content = morePattern.sub('.. raw:: html\n\n  <!--more-->\n', content)
-    print content
     return docutils.core.publish_parts(content, writer_name='html')['html_body']
