@@ -1,7 +1,7 @@
         <div id="sidebar" class="grid_4 omega">
           <aside class="widget">
             <form action="/~gb/search.html">
-              <input type="search" results="10" placeholder="Search..." name="q" />
+              <input type="search" placeholder="Search..." name="q" />
               <input type="submit" value="Search..." />
             </form>
           </aside>

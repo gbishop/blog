@@ -4,7 +4,7 @@
 <%inherit file="_templates/site.mako" />
 <h1>About</h1>
 <p>
-<img alt="Gary Bishop." class="alignright tilt shadow" width="30%" src="http://www.cs.unc.edu/~gb/media/gb.png" />
+<img alt="Gary Bishop." class="alignright tilt shadow" width="180" src="http://www.cs.unc.edu/~gb/media/gb.png" />
 Gary Bishop, Professor of <a href="http://www.cs.unc.edu/">Computer Science</a>
 255 Sitterson Hall, <a href="http://www.unc.edu/">University of North Carolina</a> at Chapel Hill, NC 27599-3175
 </p>
