@@ -7,17 +7,8 @@ title: Visually Comparing Python Objects
 ---
 <p>I had two Python objects consisting of nested dictionaries, lists, strings, and numbers. These were the original and an automatically edited version of a JSON data structure we are using in a game. I wanted to make sure the automatic editing did what I really wanted before I wrote it to the live database. </p>
 
-<p>This Python code did the trick.
-<!--more-->
-</p>
-<pre>
-from difflib import Differ
-from pprint import pformat
+<p>This Python code did the trick.</p>
 
-def diff(o1, o2):
-    po1 = pformat(o1).splitlines()
-    po2 = pformat(o2).splitlines()
-    d = Differ()
-    r = [ line for line in d.compare(po1, po2) if line[0] in '+-' ]
-    return '\n'.join(r)
-</pre>
+<!--more-->
+
+<script src="https://gist.github.com/755418.js"> </script>
