@@ -145,28 +145,21 @@ class Post(object):
         #defining post_excerpt(content,num_words)
         if len(self.excerpt) == 0:
              """Retrieve excerpt from article"""
-             # first look for the wordpress more tag which is in many of my posts
-             brk = self.content.find('<!--more-->')
-             if brk > 0:
-                return self.content[:brk]
-                
              s = BeautifulSoup.BeautifulSoup(self.content)
              
-             return s.find('p').prettify().decode('utf-8')
+             # look for a <!--more--> tag
+             brk = s.find(text=lambda t: isinstance(t, BeautifulSoup.Comment) and t.string == u'more')
+             if brk:
+                # toss everything after the brk
+                for sib in brk.findNextSiblings(True):
+                    sib.extract()
+                brk.extract()
+             else:
+                # otherwise return the first paragraph
+                s = s.find('p')
+                
+             return s.prettify().decode('utf-8')
              
-             # get rid of javascript, noscript and css
-             [[tree.extract() for tree in s(elem)] for elem in (
-                     'script', 'noscript', 'style')]
-             # get rid of doctype
-             subtree = s.findAll(text=re.compile("DOCTYPE|xml"))
-             [tree.extract() for tree in subtree]
-             # remove headers
-             [[tree.extract() for tree in s(elem)] for elem in (
-                     'h1', 'h2', 'h3', 'h4', 'h5', 'h6')]
-             text = ''.join(s.findAll(text=True))\
-                                 .replace("\n", "").split(" ")
-             return " ".join(text[:num_words]) + '...'
-        
     def __post_process(self):
         # fill in empty default value
         if not self.title:
