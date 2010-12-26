@@ -2,8 +2,10 @@
 <article class="post">
   <header>
     <h1><a href="${post.permapath()}" rel="bookmark" title="Permanent Link to ${post.title}">${post.title}</a></h1>
-    <p>
-      <time datetime="${post.date.strftime("%Y-%m-%dT%H:%M:%S-%Z")}" pubdate>${post.date.strftime("%B %d, %Y at %I:%M %p")}
+    <p><% 
+          t = post.date.strftime("%Y-%m-%dT%H:%M:%S%z")
+          t = t[:-2] + ':' + t[-2:] %>
+      <time datetime="${t}" pubdate>${post.date.strftime("%B %d, %Y at %I:%M %p")}
       </time> | categories: 
 <% 
    category_links = []
