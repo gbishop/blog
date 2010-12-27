@@ -13,14 +13,6 @@
 	<li>Romans 10:13 Everyone who calls on the name of the Lord will be saved.</li>
 	<li>Romans 8:1 Therefore, there is now no condemnation for those who are in Christ Jesus.</li>
 </ol>
-<h2>Verse of the day</h2>
-<script type="text/javascript" language="JavaScript" src="http://www.biblegateway.com/usage/votd/votd2html.php?version=31&amp;jscript=1">
-</script>
-<!-- alternative for no javascript -->
-<noscript>
-<a href="http://www.biblegateway.com/usage/votd/votd2html.php?version=31&amp;jscript=0">View Verse of the Day</a>
-</noscript> 
-
 <h2>Accomodation</h2>
 
 <p>Whenever and wherever the doctrines of free grace and justification by faith have prevailed in the Christian Church, and according to the degree of clearness with which they have been enforced, the practical duties of Christianity have flourished in the same proportion. Wherever they have declined, or been tempered with the reasonings and expedients of men, either from a well-meant, though mistaken fear, lest they should be abused, or from a desire to accommodate the gospel and render it more palatable to the depraved taste of the world, the consequence has always been an equal declension in practice. So long as the gospel of Christ is maintained without adulteration, it is found sufficient for every valuable purpose; but when the wisdom of man is permitted to add to the perfect work of God, a wide door is opened for innumerable mischiefs.<br/><em>— John Newton, in A REVIEW OF ECCLESIASTICAL HISTORY, 1769, as quoted in Jonathan Aitken's JOHN NEWTON: FROM DISGRACE TO AMAZING GRACE. Wheaton: Crossway, 2007, pp. 202-03. ISBN 978-1-58134-848-4. Thanks to Chip Stam.</em></p>
