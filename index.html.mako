@@ -20,10 +20,3 @@ Gary Bishop, Professor of <a href="http://www.cs.unc.edu/">Computer Science</a>
 	<li>Check my <a href="http://www.cs.unc.edu/~gb/calendar.html">calendar</a> to find an open time we could meet</li>
 </ul>
 
-<h3>Latest blog posts</h3>
-<ul>
-% for post in bf.config.blog.posts[:5]:
-    <li><a href="${post.path}">${post.title}</a></li>
-% endfor
-</ul>
-

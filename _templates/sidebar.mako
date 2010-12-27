@@ -12,9 +12,15 @@
             <br/>
             Mail: <a href="mailto:gb@cs.unc.edu">gb@cs.unc.edu</a><br/>
             Phone: 919-962-1886<br/>
-            Feeds: <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed/')}">Posts</a>
+            </p>
+          </aside>
+          <aside class="widget">
+            <h3>Recent posts</h3>
+            <script src="/~gb/recent.js"></script>
+            <p>
+            <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed/')}">Subscribe to posts</a>
 % if bf.config.blog.disqus.enabled:
-              and <a class="feed" href="http://${bf.config.blog.disqus.name}.disqus.com/latest.rss">Comments</a>
+            <br/><a class="feed" href="http://${bf.config.blog.disqus.name}.disqus.com/latest.rss">Subscribe to comments</a>
 % endif
             </p>
           </aside>
@@ -42,7 +48,7 @@
           </aside>
           <aside class="widget" style="height: 300px">
 <script type="text/javascript" src="https://www.google.com/reader/ui/publisher-en.js"></script>
-<script type="text/javascript" src="https://www.google.com/reader/public/javascript/user/05640245229867820301/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A%22-%22%2Ct%3A%22My%20shared%20items%22%2Cs%3A%22false%22%2Cn%3A%22false%22%2Cb%3A%22false%22%7D)%3Bnew%20GRC"></script>        
+<script type="text/javascript" src="https://www.google.com/reader/public/javascript/user/05640245229867820301/state/com.google/broadcast?n=5&callback=GRC_p(%7Bc%3A%22-%22%2Ct%3A%22Google%20reader%22%2Cs%3A%22false%22%2Cn%3A%22false%22%2Cb%3A%22false%22%7D)%3Bnew%20GRC"></script>        
           </aside>
         </div> <!-- end sidebar -->
 

@@ -329,7 +329,11 @@ blockquote p { margin: 0; }
 	margin-bottom: 0;
 }
 
-.widget li { /* line-height: 30px; */ }
+.widget ul {
+	list-style: none;
+}
+
+.widget li { margin-left: 0; }
 
 .widget li a { 
 /*	padding: 4px 5px; */
