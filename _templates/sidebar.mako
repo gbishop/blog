@@ -1,6 +1,6 @@
         <div id="sidebar" class="grid_4 omega">
           <aside class="widget">
-            <form action="/~gb/search.html">
+            <form action="${bf.config.site.root}search.html">
               <input type="search" placeholder="Search..." name="q" />
               <input type="submit" value="Search..." />
             </form>
@@ -16,9 +16,9 @@
           </aside>
           <aside class="widget">
             <h3>Recent posts</h3>
-            <script src="/~gb/recent.js"></script>
+            <script src="${bf.config.site.root}recent.js"></script>
             <p>
-            <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed/')}">Subscribe to posts</a>
+            <a class="feed" href="${bf.util.site_path_helper(bf.config.blog.path,'feed/index.xml')}">Subscribe to posts</a>
 % if bf.config.blog.disqus.enabled:
             <br/><a class="feed" href="http://${bf.config.blog.disqus.name}.disqus.com/latest.rss">Subscribe to comments</a>
 % endif
