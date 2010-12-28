@@ -7,11 +7,10 @@
           </aside>
           <aside class="widget">
             <h3>Contact</h3>
-            <p>255 Sitterson Hall CB 3175<br/>
+            <p><a href="mailto:gb@cs.unc.edu">gb@cs.unc.edu</a><br/>
+            919-962-1886<br/>
+            255 Sitterson Hall<br/>
             Chapel Hill, NC 27599-3175<br/>
-            <br/>
-            Mail: <a href="mailto:gb@cs.unc.edu">gb@cs.unc.edu</a><br/>
-            Phone: 919-962-1886<br/>
             </p>
           </aside>
           <aside class="widget">
