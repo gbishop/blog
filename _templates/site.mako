@@ -9,11 +9,11 @@
     ${self.robots_meta()}
     <title>${bf.config.blog.name}</title>
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" 
-      href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/')}" />
+      href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/index.xml')}" />
     <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
-      href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/atom/')}" />
-    <link href="/~gb/css/960.css" rel="stylesheet" type="text/css" />
-    <link href="/~gb/style.css" rel="stylesheet" type="text/css" />
+      href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/atom/index.xml')}" />
+    <link href="${bf.config.site.root}css/960.css" rel="stylesheet" type="text/css" />
+    <link href="${bf.config.site.root}style.css" rel="stylesheet" type="text/css" />
     <!--[if lt IE 9]>
     	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
     <![endif]-->
@@ -28,7 +28,7 @@
   <body>
     <div id="wrapper" class="container_12">
       <header id="header" class="grid_12">
-        <h1><a href="#">${bf.config.blog.name}</a></h1>
+        <h1><a href="${bf.config.site.root}">${bf.config.blog.name}</a></h1>
         <h2>${bf.config.blog.description}</h2>
       </header>
       <div id="content">
