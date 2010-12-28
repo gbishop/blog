@@ -33,7 +33,7 @@
       </header>
       <div id="content">
         <%include file="nav.mako" args="current=self.attr.current_" />
-        <div id="main" class="grid_8 alpha">
+        <div id="main" class="grid_9 alpha">
            ${next.body()}
         </div> <!-- end main -->
         <%include file="sidebar.mako" />

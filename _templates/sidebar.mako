@@ -1,4 +1,4 @@
-        <div id="sidebar" class="grid_4 omega">
+        <div id="sidebar" class="grid_3 omega">
           <aside class="widget">
             <form action="${bf.config.site.root}search.html">
               <input type="search" placeholder="Search..." name="q" />
