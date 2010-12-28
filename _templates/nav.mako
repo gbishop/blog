@@ -1,14 +1,14 @@
 <%page args="current"/>
         <nav>
           <ul id="menu" class="clearfix">
-            ${item("/~gb/", "About")}
-            ${item("/~gb/blog/", "Blog")}
-            ${item("/~gb/calendar.html", "Calendar")}
-            ${item("/~gb/important/", "Important")}
-            ${item("/~gb/publications.html", "Publications")}
-            ${item("/~gb/research/", "Research")}
-            ${item("/~gb/students.html", "Students")}
-            ${item("/~gb/teaching.html", "Teaching")}
+            ${item("", "About")}
+            ${item("blog/", "Blog")}
+            ${item("calendar.html", "Calendar")}
+            ${item("important/", "Important")}
+            ${item("publications.html", "Publications")}
+            ${item("research/", "Research")}
+            ${item("students.html", "Students")}
+            ${item("teaching.html", "Teaching")}
           </ul>
           <br class="clear" />
         </nav>
@@ -17,5 +17,5 @@
     cl = ' class="current"'
   else:
     cl = ''
-  %><li${cl}><a href="${link}">${text}</a></li>
+  %><li${cl}><a href="${bf.config.site.root}${link}">${text}</a></li>
 </%def>

@@ -450,7 +450,7 @@ input:invalid {
 /* Misc */
 
 a.feed {
-	background: url(/~gb/images/feed-icon.png) no-repeat 0% 50%;
+	background: url(images/feed-icon.png) no-repeat 0% 50%;
 	padding-left: 16px;
 }
 

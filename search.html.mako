@@ -6,6 +6,6 @@
 <div id="results"></div>
 <%def name="header_extra()">
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/dojo/1.5/dojo/dojo.xd.js"></script>
-<script type="text/javascript" src="/~gb/js/search.js"></script>
+<script type="text/javascript" src="${bf.config.site.root}js/search.js"></script>
 </%def>
 
