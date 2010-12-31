@@ -327,6 +327,7 @@ blockquote p { margin: 0; }
 .widget {
 	overflow: hidden;
 	margin-bottom: 0;
+	border-bottom: 1px solid ${colors.menuBorderBottom};
 }
 
 .widget ul {
@@ -387,7 +388,7 @@ textarea {
 
 input[type=search] {
 	padding: 6px 5px;
-	width: 170px;
+	width: 200px;
 }
 
 textarea { overflow: auto; }
@@ -404,7 +405,6 @@ textarea:hover, textarea:focus {
 form input[type=submit] {
 	border: none;
 	cursor: pointer;
-	padding: 12px 6px;
 }
 
 /* When a form input is invalid - Used on the email type field */
