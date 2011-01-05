@@ -7,7 +7,7 @@ title: Wiimote Latency
 ---
 <p>I'm just beginning to play with the Wiimote as an input device for accessible games so I tried shaking it in time with some music using a little program I already had in place. The accelerometer data seemed very delayed so I decided to check out its latency. My initial experiments described below indicate that it is very low.</p>
 
-<p><!--more--></p>
+<!--more-->
 
 <p>I'm running Ubuntu Gutsy Gibbon and using a IOdata Bluetooth adapter along with the cwiid driver and python wrapper. I wrote a little script (<a href='/~gb/media/2008/01/latency.py' title='latency.py'>latency.py</a>) to experiment with it. The script uses pygame to capture and record the times of keyboard events, mouse motion events, mouse button events, and wiimote button and accelerometer events. I write simple records to a text file indicating the time, type of event, and any event data.</p>
 

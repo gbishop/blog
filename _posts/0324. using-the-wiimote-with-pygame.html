@@ -10,7 +10,7 @@ title: Using the Wiimote with PyGame
 
 <p>Several of my <a href="http://www.cs.unc.edu/Courses/comp523-s08/">project teams</a> this semester will (I hope) use <a href="http://www.pygame.org/news.html">PyGame</a> and the <a href="http://en.wikipedia.org/wiki/Wii_Remote">Wiimote</a> in their projects. I had it working fine on Ubuntu but struggled to find an interface that works with Python on Windows XP. Luke pointed me to <a href="http://www.wiiuse.net/">wiiuse</a> so I wrote a very simple wrapper with <a href="http://docs.python.org/lib/module-ctypes.html">ctypes</a> and then wrapped that in a module for PyGame. You can find the code in <a href="http://sourceforge.net/projects/uncpythontools">CVS at SourceForge</a> in pywiiuse. I also uploaded a <a href="http://downloads.sourceforge.net/uncpythontools/PyWiiUse-1.0.tar.gz?use_mirror=osdn">source release</a>. You'll need wiiuse.dll on Windows or wiiuse.so on Ubuntu.</p>
 
-<p><!--more--></p>
+<!--more-->
 
 <p>Here's a simple example using it in PyGame.</p>
 <pre>

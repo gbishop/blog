@@ -7,7 +7,7 @@ title: Sending Key Events to pygame programs
 ---
 <p>I needed to send key events from one python program to another. Using SendKeys on Windows worked fine in my tests but when I tried to send key events to a <a href="http://www.pygame.org/news.html">pygame</a> program it completely ignored them. Some searching revealed that DirectInput ignores events generated with SendKeys. I learned that I needed to use SendInput. I found lots of partial examples but nothing that quite did the job. Here is some code (scraped together from multiple web pages) that works for me:</p>
 
-<p><!--more--></p>
+<!--more-->
 <pre>
 <code>
 from ctypes import *
