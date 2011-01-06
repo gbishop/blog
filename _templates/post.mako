@@ -6,17 +6,17 @@
           t = post.date.strftime("%Y-%m-%dT%H:%M:%S%z")
           t = t[:-2] + ':' + t[-2:] %>
       <time datetime="${t}" pubdate>${post.date.strftime("%B %d, %Y at %I:%M %p")}
-      </time> | categories: 
+      </time> | tags: 
 <% 
-   category_links = []
-   for category in post.categories:
+   tag_links = []
+   for tag in post.tags:
        if post.draft:
-           #For drafts, we don't write to the category dirs, so just write the categories as text
-           category_links.append(category.name)
+           #For drafts, we don't write to the tag dirs, so just write the categories as text
+           tag_links.append(tag.name)
        else:
-           category_links.append("<a href='%s'>%s</a>" % (category.path, category.name))
+           tag_links.append("<a href='%s'>%s</a>" % (tag.path, tag.name))
 %>
-${", ".join(category_links)}
+${", ".join(tag_links)}
 % if bf.config.blog.disqus.enabled:
  | <a href="${post.permalink}#disqus_thread">View Comments</a>
 % endif

@@ -50,6 +50,9 @@ blog.post_excerpts.enabled = True
 blog.post_excerpts.word_length = 25
 blog.posts_per_page = 10
 blog.auto_permalink.path = site.root + blog.path + "/:year/:month/:day/:title"
+blog.tag_bins = 5
+blog.top_tags_count = 50
+blog.tag_dir = 'tag'
 
 ### colors
 class Bag(object):

@@ -239,9 +239,10 @@ class Post(object):
         except:
             pass
         try:
-            self.tags = set([x.strip() for x in y['tags'].split(",")])
+            self.tags = (set([Tag(x.strip()) for x in y['tags'].split(",") if x.strip()]) |
+                         set([Tag(x.strip().lower()) for x in y['categories'].split(",")]))
         except:
-            pass
+            raise
         try:
             self.filters = y['filter'] #filter is a synonym for filters
         except KeyError:
@@ -306,9 +307,20 @@ class Category(object):
     def __cmp__(self, other):
         return cmp(self.name, other.name)
 
-    def __cmp__(self, other):
-        return self is other
+    #def __cmp__(self, other):
+    #    return self is other
 
+
+class Tag(Category):
+    def __init__(self, name):
+        super(Tag, self).__init__(name)
+        self.score = 0
+        self.count = 0
+        self.slug = self.name.replace(' ', '-').lower()
+        self.path = bf.util.site_path_helper(
+                bf.config.controllers.blog.path,
+                bf.config.controllers.blog.tag_dir,
+                self.url_name)
 
 def parse_posts(directory):
     """Retrieve all the posts from the directory specified.

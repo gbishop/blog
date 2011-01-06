@@ -24,17 +24,14 @@
             </p>
           </aside>
           <aside class="widget">
-            <h3>Categories</h3>
-            <ul>
-<%
-  all_categories = bf.config.blog.all_categories
-  all_categories.sort(key=lambda i: i[0].name)
-%>
-          % for category, num_posts in sorted(all_categories):
-               <li><a href="${category.path}">${category}</a> (${num_posts})</li>
-          % endfor
-            </ul>
+            <h3>Top Tags</h3>
+              <div id="tags">
+              % for tag, count in bf.config.blog.top_tags:
+              <a href="${bf.util.site_path_helper(bf.config.blog.path,bf.config.blog.tag_dir,tag.slug)}" class="tag${tag.score}" title="${tag.count} posts">${tag.name}</a>
+              % endfor
+              </div>
           </aside>
+          <aside class="widget">
           <aside class="widget">
             <h3>Archives</h3>
               <p>

@@ -356,6 +356,30 @@ aside h3 {
 }
 */
 
+#sidebar #tags .tag0 {
+    font-size: 0.8em;
+}
+
+#sidebar #tags .tag1 {
+    font-size: 0.9em;
+}
+
+#sidebar #tags .tag2 {
+    font-size: 1.0em;
+}
+
+#sidebar #tags .tag3 {
+    font-size: 1.1em;
+}
+
+#sidebar #tags .tag4 {
+    font-size: 1.2em;
+}
+
+#sidebar #tags .tag5 {
+    font-size: 1.3em;
+}
+
 /* Footer */
 
 footer a {
