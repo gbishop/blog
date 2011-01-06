@@ -239,10 +239,11 @@ class Post(object):
         except:
             pass
         try:
-            self.tags = (set([Tag(x.strip()) for x in y['tags'].split(",") if x.strip()]) |
-                         set([Tag(x.strip().lower()) for x in y['categories'].split(",")]))
+            self.tags = set([Tag(x.strip()) for x in y['tags'].split(",") if x.strip()])
+            if 'categories' in y:
+                self.tags = self.tags | set([Tag(x.strip().lower()) for x in y['categories'].split(",")])
         except:
-            raise
+            pass
         try:
             self.filters = y['filter'] #filter is a synonym for filters
         except KeyError:
