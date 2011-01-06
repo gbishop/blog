@@ -5,6 +5,7 @@
 <h1>Publications</h1>
 <h2>Papers</h2>
 <ul class="bib">
+	<li>Jinghe Zhang, Greg Welch, and Gary Bishop (2011). Reduced Measurement-Space Dynamic State Estimation (REMEDYSE) for Power Systems. To appear in PowerTech, 2011 IEEE Trondheim (Trondheim, Norway), 19–23 June 2011.</li>
 	<li>Jinghe Zhang, Greg Welch, Gary Bishop, and Zhenyu Huang (2010). <a href="http://www.cs.unc.edu/~welch/media/pdf/Zhang2010ab.pdf">Optimal PMU Placement Evaluation for Power System Dynamic State Estimation</a>. In Proceedings of IEEE PES Conference on Innovative Smart Grid Technologies Europe (ISGT 2010), Chalmers Lindholmen, Göteborg, Sweden, October 10–13, 2010.</li>
 	<li>Jinghe Zhang, Greg Welch, and Gary Bishop (2010). <a href="http://www.cs.unc.edu/~welch/media/pdf/Zhang2010aa.pdf">Observability and Estimation Uncertainty Analysis for PMU Placement Alternatives</a>. In Proceedings of the 2010 North American Power Symposium (NAPS 2010), Arlington, TX, U.S.A., September 26–28, 2010.</li>
 	<li>Peter Parente, Gary Bishop (2009), <a href="http://http://portal.acm.org/citation.cfm?doid=1520340.1520363">Out from behind the curtain: learning from a human auditory display</a>. CHI Extended Abstracts 2009: 2575-2584</li>
