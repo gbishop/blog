@@ -79,7 +79,8 @@ def write_tags():
             env = {
                 "posts": page_posts,
                 "prev_link": prev_link,
-                "next_link": next_link
+                "next_link": next_link,
+                "page_heading": "Posts with tag: " + tag.name
             }
             bf.writer.materialize_template("chronological.mako", path, env)
             

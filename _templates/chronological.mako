@@ -1,4 +1,7 @@
 <%inherit file="site.mako" />
+% if page_heading != UNDEFINED:
+<h1>${page_heading}</h1>
+% endif
 % for post in posts:
   <%include file="post_excerpt.mako" args="post=post" />
   <hr class="interblog" />

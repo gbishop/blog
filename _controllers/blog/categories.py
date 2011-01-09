@@ -64,7 +64,8 @@ def write_categories():
             env = {
                 "posts": page_posts,
                 "prev_link": prev_link,
-                "next_link": next_link
+                "next_link": next_link,
+                "page_heading": "Posts in category " + category.name
             }
             bf.writer.materialize_template("chronological.mako", path, env)
             

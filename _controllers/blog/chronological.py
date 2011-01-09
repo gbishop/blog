@@ -10,7 +10,7 @@ def run():
     write_blog_first_page()
 
 
-def write_blog_chron(posts, root):
+def write_blog_chron(posts, root, heading=None):
     page_num = 1
     post_num = 0
     html = []
@@ -31,7 +31,8 @@ def write_blog_chron(posts, root):
         env = {
             "posts": page_posts,
             "next_link": next_link,
-            "prev_link": prev_link
+            "prev_link": prev_link,
+            "page_heading": heading
         }
         bf.writer.materialize_template("chronological.mako", fn, env)
         page_num += 1

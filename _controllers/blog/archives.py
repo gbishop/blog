@@ -35,4 +35,4 @@ def sort_into_archives():
 def write_monthly_archives():
     for link, posts in blog.archived_posts.items():
         name = posts[0].date.strftime("%B %Y")
-        chronological.write_blog_chron(posts, root=link)
+        chronological.write_blog_chron(posts, root=link, heading="Archives for " + name)
