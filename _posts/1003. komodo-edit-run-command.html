@@ -1,0 +1,21 @@
+---
+title: Komodo Edit Run Command
+slug: komodo-edit-run-command
+date: 2011/01/08 20:57:00
+tags: programming, python
+---
+<p>A sudden change in my teaching assignment to teaching Comp116 Introduction to Scientific Programming in 2 days resulted in a frantic search for Python programming tools that work the same across Windows, OS&nbsp;X, and Linux. The <a href="http://www.enthought.com/products/epd.php">Enthought Python Distribution</a> looks like a really good turn-key solution to having Python + Numpy + Matplotlib easily working on all three but we also need an editor.</p>
+
+<!--more-->
+
+<p>When I taught this class last I let them choose whatever editor they wanted. That was a mistake. It is much easier (for me and them) if everyone is using the same editor. So we need an easy to install and use editor that works the same for everyone.</p>
+
+<p>I'm really impressed with <a href="http://wingware.com/downloads/wingide-101/3.2.12-1/binaries">Wing101</a>; it has just the features I want but in needs X11 on OS&nbsp;X and that requires finding your install DVD. I bet half the Mac users won't be able find it. If there are no Macs in the class, I'll probably use it.</p>
+
+<p><a href="http://www.activestate.com/komodo-edit">Komodo Edit</a> is a bit too complicated, but after turning off some optional panels it has what I want except for an easy to use Run button.</p>
+
+<p>I found a post explaining <a href="http://selinap.com/2008/07/komodo-edit-save-and-run-python-macro/">how to add a Save and Run macro</a>
+ to Komodo-Edit. It works fine but I wanted it to kill the child python instance on restart rather than popping up an error dialog. A bit more searching turned up the secret to <a href="http://community.activestate.com/forum-topic/bind-a-key-to-terminate-p#comments">killing the process</a>. Here is some Komodo Edit macro code that kills the running command before starting a new one.</p>
+
+<script src="https://gist.github.com/771352.js?file=Run.js"></script>
+
