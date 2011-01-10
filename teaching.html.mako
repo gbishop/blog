@@ -5,7 +5,7 @@
 <% current = 'teaching' %>
 <h1>Teaching</h1>
 <ul>
-	<li>S11: <a href="http://wwwx.cs.unc.edu/~gb/Comp411Spring2011/">Comp 411 Computer Organization</a></li>
+	<li>S11: <a href="http://wwwx.cs.unc.edu/~gb/Comp116Spring2011/">Comp 116 Introduction to Scientific Programming</a></li>
 	<li>S11: Comp 915: Technical Communications in Computer Science</li>
 	<li>F10: <a href="http://www.cs.unc.edu/~gb/Comp080Fall2010/">Comp 080 Enabling Technology FYS</a></li>
 	<li>F10: <a href="https://sites.google.com/site/590f2010/">Comp 590-039 Web Game Programming</a></li>
