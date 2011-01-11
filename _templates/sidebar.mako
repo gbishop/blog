@@ -36,6 +36,7 @@
             <h3>Archives</h3>
               <p>
               <select onchange="location=this.options[this.selectedIndex].value;">
+                <option disabled="disabled">Choose a month</option>
               % for link, name, num_posts in bf.config.blog.archive_links:
                 <option value="${bf.util.site_path_helper(bf.config.blog.path,link)}/1">${name}&nbsp;(${num_posts})</option>
               % endfor
