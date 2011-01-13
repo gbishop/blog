@@ -1,0 +1,5 @@
+DirectoryIndex index.php index.xml index.html
+redirect 301 /~gb/comments/feed/ http://garybishop.disqus.com/latest.rss
+RedirectMatch 301 ^/~gb/blog/category/.*/feed/$ http://www.cs.unc.edu/~gb/blog/feed/
+redirect 301 /~gb/about/calendar/ http://www.cs.unc.edu/~gb/calendar.html
+redirect 301 /~gb/about/ http://www.cs.unc.edu/~gb/
