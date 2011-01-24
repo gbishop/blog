@@ -1,0 +1,24 @@
+---
+title: Spatial sounds for javascript 
+slug: spatial-sounds-for-javascript
+categories: 
+tags: python,javascript,sound,blind
+date: 2011/01/23 18:00:13
+---
+<p>Statial ("3D") sound greatly enhances games for children who are visually impaired but the audio node in HTML5 doesn't even support panning left and right much less the time delay and filtering of true spatial audio. This post describes a python script I hacked to transform sound files so that they appear to originate from points surrounding the listener.</p>
+
+<p>I used the <a href="http://sound.media.mit.edu/resources/KEMAR.html"><abbr title="Head Related Transfer Function">HRTF</abbr> Measurements of a KEMAR Dummy-Head Microphone</a> made at MIT in 1994 and freely available on the web. The <code>compact</code> folder in my git repo is the result of unpacking <a href="http://sound.media.mit.edu/resources/KEMAR/compact.tar.Z">compact.tar.Z</a>. The files contain the impulse response for the left and right ear for a source positioned 1.4 meters away from an anatomically correct head at many different azimuth and elevation angles.</p>
+
+<p>The script uses <a href="http://sox.sourceforge.net/">sox</a> to convert whatever sound format you give it to a single channel sampled at 22050Hz. Then it steps in 5 degree increments from 0 degrees (directly in front) to 180 degrees (directly behind) around the right side. It filters the sound with the left and right ear impulse responses and encodes it into mp3 and ogg format. It then swaps the left and right channels to produce the corresponding file for the left side (negative azimuth angles). I only generate versions in the horizontal plane but other elevations from -40 to 90 degrees.</p>
+
+<p>The github repository is here: <a href="https://github.com/uncopenweb/3DSound">https://github.com/uncopenweb/3DSound</a>. You'll need python, numpy, and scipy as well as sox to run the script.</p>
+
+<p>Running the script like this:
+<pre>
+python hrtf.py laser.mp3 laser
+</pre>
+would read a sound file named laser.mp3 and produce 142 files in a folder named laser.</p>
+
+<p>Given the sound files, we should be able to simulate the sound of an enemy spaceship flyby starting with laser/a-90.ogg and advancing to laser/a90.ogg in whatever steps seem appropriate. I may write a little wrapper script for jsonic to automatically choose the sound file and volume based on angle and distance. Of course, not every game will need all the files; simply choose the ones you need. For example, I doubt we need 5 degree steps, 10 or even 15 degree steps should sound fine.</p>
+
+<p>I'm hopeful we can have some new spatial sound games ready for Maze Day 2011.</p>
