@@ -9,6 +9,7 @@
 
 <h2>Quick Links</h2>
 <ul>
+        <li><a href="http://www.cs.unc.edu/~gb/blog/2011/01/24/maze-day-2011/">Maze Day!</a></li>
 	<li><a href="http://www.cs.unc.edu/~gb/Comp116Spring2011/index.html">Comp 116</a></li>
 	<li><a href="http://www.cs.unc.edu/~gb/Comp915Spring2011/index.html">Comp 915</a></li>
 	<li><a href="http://sites.google.com/site/uncopenweb/">UNC Open Web Project</a></li>
