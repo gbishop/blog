@@ -1,0 +1,31 @@
+---
+title: Spatial sound game ideas 
+slug: spatial-sound-game-ideas
+categories: enabling technology, blind, ideas
+tags: 
+date: 2011/02/03 13:10:38
+---
+<h3>Motivation</h3>
+
+<p>I've been talking with Diane and Anish about ideas for simple sound games that will help children who are blind learn to navigate. I'm writing these notes to help us get on the same page in our understanding about what would be helpful and what might be possible. Of course, much more could be done with the amazing technology Anish has in hand but I'm thinking very simply here to hopefully enable implementation in the web browser so anyone can play online.</p>
+
+<p>Diane says she wants a game where children navigate in a realistic sounding environment and learn things like staying to the right side of the hallway, avoiding obstacles, and remembering paths. This is our initial thinking after a short meeting this morning.</p>
+
+<p>For the proof-of-concept implementation we are just thinking of simulating hallways with openings. If we can do that effectively, we could expand to rooms but for now just think of a long hall with doors on either side.</p>
+
+<h3>Basic Idea</h3>
+
+<p>We could construct hallways from little blocks similar to these. <img src="https://docs.google.com/drawings/pub?id=1aNamj6RP0-9luE8xvolsWUdSc7HNAsr7P3Ji8qipLcw&amp;w=237&amp;h=477" class="alignright"> A length of hallway with no doors would use the block labeled <em>hallway</em>. A door would use the <em>open left</em> or <em>open right</em> block. A dead-end might use the <em>end cap</em>. We could put these together in any order to create a long hall.</p>
+
+<p>As a further restriction, imagine that the player is restricted to 3 positions in the block: left side, center, or right side. Further imagine we restrict the player's orientation to (say) multiples of 15 degrees (90 degrees might be sufficient).</p>
+
+<p>The sound of the players cane would originate from the floor in front of the player and travel to their ears by direct and single-bounce paths. For example in the <em>end cap</em> block a player on the left side would hear first the direct sound from the cane, then the bounce off the left wall, then the bounce off the end wall, and finally the bounce off the right wall. While in the left opening block, the player would only hear the direct and right wall sounds. To be clear, I'm thinking of only simulating bounces off walls in the block. Other bounces would be lost. Of course, this will reduce the realism of the simulation but it would allow a small collection of sounds to handle large and varied environments.</p>
+
+<p>With 4 block types, 3 player positions, and 24 player orientations we'd need 288 small sound files to simulate a complicated hallway of any length. Utilizing some symmetry might pare this down further since facing one direction in a <em>left opening</em> block is the same as facing the opposite direction in a <em>right opening</em> block. I guess the sound files will be about 0.5 second long and require about 4kbytes each.</p>
+
+<h3>Extensions</h3>
+<p>We could place other spatial sounds in the environment without any bounces. For example, the player might hear the sound of the lunchroom when they pass an opening on the left. Sounds could also be placed in the hallway as obstacles to be avoided. I'm thinking these are simply spatialized as I described in an <a href="http://www.cs.unc.edu/~gb/blog/2011/01/23/spatial-sounds-for-javascript/">earlier post</a>.</p>
+
+<p>A game will need some storyline of course, but I assume if we can make an effective sound simulation work we can come up with a motivating story. Perhaps a pet mouse has escaped from its cage and must be recaptured.</p>
+
+<p>As always, I would greatly appreciate feedback, suggestions, and corrections.</p>
