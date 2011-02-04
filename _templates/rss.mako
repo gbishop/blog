@@ -28,7 +28,7 @@
       <guid isPermaLink="true">${post.permalink}</guid>
 % endif
       <description>${post.title}</description>
-      <content:encoded><![CDATA[${post.content}]]></content:encoded>
+      <content:encoded><![CDATA[${post.excerpt}]]></content:encoded>
     </item>
 % endfor
   </channel>
