@@ -334,7 +334,7 @@ blockquote p { margin: 0; }
 	list-style: none;
 }
 
-.widget li { margin-left: 0; }
+.widget li { margin-left: 2em; text-indent: -2em; }
 
 .widget li a { 
 /*	padding: 4px 5px; */
