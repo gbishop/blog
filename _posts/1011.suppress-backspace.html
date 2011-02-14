@@ -1,0 +1,20 @@
+---
+title: Suppress Backspace 
+slug: suppress-backspace
+categories: 
+tags: javascript,dojo
+date: 2011/02/14 15:57:24
+---
+<p>Code to prevent browsers from going back a page on backspace.</p>
+<pre>
+    suppressBackspace: function() {
+        dojo.connect(dojo.doc, 'onkeypress', function(event) {
+            if(event.target.size === undefined &amp;&amp;
+               event.target.rows === undefined &amp;&amp;
+               event.keyCode == dojo.keys.BACKSPACE) {
+                // prevent backspace page nav
+                event.preventDefault();
+            }
+        } );
+    },
+</pre>
