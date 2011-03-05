@@ -33,7 +33,7 @@
       </header>
       <div id="content">
         <%include file="nav.mako" args="current=self.attr.current_" />
-        <!--[if lt IE 7]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://www.mozilla.com/en-US/firefox/"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" height="42" width="820" alt="" /></a></div> <![endif]-->
+        <!--[if lt IE 9]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://www.mozilla.com/en-US/firefox/"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" height="42" width="820" alt="" /></a></div> <![endif]-->
         <div id="main" class="grid_9 alpha">
            ${next.body()}
         </div> <!-- end main -->
