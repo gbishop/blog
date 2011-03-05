@@ -30,10 +30,10 @@
       <header id="header" class="grid_12">
         <h1><a href="${bf.config.site.root}">${bf.config.blog.name}</a></h1>
         <h2>${bf.config.blog.description}</h2>
-        <!--[if lt IE 7]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://www.microsoft.com/windows/internet-explorer/default.aspx?ocid=ie6_countdown_bannercode"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" height="42" width="820" alt="" /></a></div> <![endif]-->
       </header>
       <div id="content">
         <%include file="nav.mako" args="current=self.attr.current_" />
+        <!--[if lt IE 7]> <div style=' clear: both; height: 59px; padding:0 0 0 15px; position: relative;'> <a href="http://www.mozilla.com/en-US/firefox/"><img src="http://www.theie6countdown.com/images/upgrade.jpg" border="0" height="42" width="820" alt="" /></a></div> <![endif]-->
         <div id="main" class="grid_9 alpha">
            ${next.body()}
         </div> <!-- end main -->
