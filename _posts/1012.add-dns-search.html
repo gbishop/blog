@@ -1,0 +1,10 @@
+---
+title: Add DNS Search to Natty
+tags: ubuntu
+date: 2011/05/19 20:12:00
+---
+<p>I don't want to have to type gb.cs.unc.edu when I'm at home. gb
+should be sufficient. Adding search domains is harder than it should
+be. I finally got it to work by
+editing <code>/etc/dhcp/dhclient.conf</code> and adding the
+line: <code>prepend domain-search "cs.unc.edu";</code></p>
