@@ -7,7 +7,11 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     ${self.robots_meta()}
+%if post and post.title:
+    <title>${post.title}</title>
+%else:
     <title>${bf.config.blog.name}</title>
+%endif
     <link rel="alternate" type="application/rss+xml" title="RSS 2.0" 
       href="${bf.util.site_path_helper(bf.config.blog.path,'/feed/index.xml')}" />
     <link rel="alternate" type="application/atom+xml" title="Atom 1.0"
