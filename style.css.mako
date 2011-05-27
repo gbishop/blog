@@ -176,6 +176,38 @@ blockquote {
 
 blockquote p { margin: 0; }
 
+.reader-clip {
+    position:relative;
+    padding:15px;
+    color:#333;
+    background:#eee;
+    /* css3 */
+    -webkit-border-radius:10px;
+    -moz-border-radius:10px;
+    border-radius:10px;
+    border: 0px solid #333;
+    font-style: normal;
+    text-indent: 0px;
+}
+
+.reader-clip:after {
+    content:"";
+    position:absolute;
+    top:-30px;
+    left:50px;
+    border:15px solid transparent;
+    border-bottom-color:#eee;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+p.reader-source {
+    text-indent: 20px;
+    font-size: 1.7em;
+}
+
+
 /* Header */
 
 #header {
