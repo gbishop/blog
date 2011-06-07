@@ -1,0 +1,256 @@
+---
+title: "The 11 JavaScript Mistakes you’re Making"
+slug: the-11-javascript-mistakes-youre-making
+tags: javascript, links
+date: 2011/06/06 18:45:00
+---
+<p class="reader-comment">Several good tips. </p>
+<p class="reader-source"><a href="http://feedproxy.google.com/~r/nettuts/~3/FLbwQsC3hxA/">Nettuts+</a></p>
+<blockquote class="reader-clip"><a href="http://rss.buysellads.com/click.php?z=1260013&k=d754f1e9ba63a736ba8ff5ece958f7dd&a=20413&c=1667919229"></a><p><a href="http://buysellads.com/buy/sitedetails/pubkey/d754f1e9ba63a736ba8ff5ece958f7dd/zone/1260013">Advertise here</a></p><p>JavaScript is relatively easy to learn. However, gotchas abound in this tricky language. Are you sure that you’re not following any bad practices? Today, I’ll point out ten big mistakes you could be making. </p>
+<p><span></span></p>
+<hr />
+<h2><span>Mistake 1 -</span> You’re Using Global Variables</h2>
+<p>If you’re just getting started with JavaScript, you probably think it’s a great thing that all variables are global. Actually, if you’re just getting started, you might not know what that means. Global variables are variables that are accessible from anywhere in your JavaScript, even in different files loaded on the same page. Sounds great, doesn’t it? Any variable you might every want to change is always accessible.</p>
+<p>Actually, no.</p>
+<p>The reason this is a bad idea is because it’s easy to overwrite values unintentionally. Say you’ve got a web store, and you’re using JavaScript to display the price of all the items in the shopping cart (of course, you’ll recalculate this on the server side; this just enhances the user experience). Here’s some code you might have:</p>
+<pre name="code">var total = 0,    // total price
+    tax   = 0.05; // 5%</pre>
+<p>Now, let’s say that you’re also using some code you found online to display some tweets on the page … or to make a sharp little gallery for your products. They might have some code like this:</p>
+<pre name="code">var total = 15; // number of tweets pulled from twitter</pre>
+<p>Or,</p>
+<pre name="code">var tax = function () { /* ... */ }; // Trigger Animation eXperience function</pre>
+<p>Now, you’re in trouble: two important variables have been overwritten, and you might not even realize it; your code will be producing errors, and you’ll pay dearly in time and hair to get things working again.</p>
+<p>So what’s the solution? In a word, <strong>encapsulation</strong>; but there are many ways to do this. Firstly, you could just write all your code within a self-invoking, anonymous function:</p>
+<pre name="code">(function () {
+    var total = 0, tax = 0.05;
+
+    // other code
+}());</pre>
+<p>This way, absolutely no code outside the function can get to the values you have inside the function. This works for “personal” code, but it’s not so great for functionality that you want to distribute. For example, if we wanted to create a shopping cart totaller that others could use, using the <a href="http://www.yuiblog.com/blog/2007/06/12/module-pattern/">module pattern</a> would be great:</p>
+<pre name="code">var cartTotaler = (function () {
+    var total = 0; tax = 0.05;
+
+    // other code
+
+    return {
+      addItem : function (item) { },
+      removeItem : function (item) { },
+      calculateTitle : function () { }
+    };
+}());</pre>
+<p>One more thing about global variable: note that if you don’t use the <code>var</code> keyword when creating a variable, the JavaScript engine will create a global variable by default. So:</p>
+<pre name="code">(function () {
+  tax = 0.05;
+}());
+
+var totalPrice = 100 + (100 * tax); // 105</pre>
+<p>The variable <code>tax</code> is available outside the function because it’s not declared with the <code>var</code> keyword. Watch out for this.</p>
+<hr />
+<h2><span>Mistake 2 -</span> You’re Not Using Semicolons</h2>
+<p>Every statement in JavaScript must end with a semicolon. It’s that simple. The issue here is that is you don’t put it in, the compiler will: this is called <em>semicolon insertion</em>. So the question is, if the compiler will insert them for you, why waste your time?</p>
+<p>Well, in some places, it’s absolutely necessary; for example, you must put semicolons between the statements in a for-loop’s condition, or you’ll get a syntax error. But what about at the end of lines?</p>
+<p>The JavaScript community is really divided on this. I’ve read very well-respected professionals on both sides of the debate. Here’s my argument: whenever you’re relying on the JavaScript compiler to change your code (even in what seems like a small way), you’re in dangerous waters.</p>
+<p>For example, look at this simple function:</p>
+<pre name="code">function returnPerson (name) {
+    return
+    {
+        name : name
+    };
+}</pre>
+<p>This looks like it should return a cute little object … but in reality, the JavaScript compiler assumes you meant to put a semicolon after <code>return</code>, and will therefore return nothing; that object will get ignored. Your solution would be to do this:</p>
+<pre name="code">return {
+    name : name
+};</pre>
+<p>I’m going to go with “diligently insert semicolons”; honestly, it becomes habit pretty quickly. Also, as a web developer, you’ll probably use other languages (like PHP) where semicolons are required. Why switch back and forth when you don’t have to?</p>
+<blockquote>
+<p><strong>Editor’s Note- </strong>Another way to look at it: unless you’re aware of every single situation where they can successfully be omitted, don’t risk it.</p>
+</blockquote>
+<hr />
+<h2><span>Mistake 3 -</span> You’re Using ==</h2>
+<p>If you left your computer right now and walked until you met any random JavaScript developer (that might take a while), and asked him/her to give you one common JavaScript mistake, this is probably what he/she would say: “using double-equals instead of triple-equals.” What’s this mean?</p>
+<p>Try this:</p>
+<pre name="code">if (1 == 1) {
+    console.log("it's true!");
+}</pre>
+<p>You’d expect that to work, right? Well, now try this:</p>
+<pre name="code">if (1 == '1') {
+    console.log("it's true!");
+}</pre>
+<p>Yes, you got “it’s true!” output to the console … and yes, that’s a bad thing. What’s going on here is that the <code>==</code> equality operator is coercing the values: this means it’s actually changing them to try to make the two values more similar. In this case, it’s converting the string “1” to the number 1 … so that our if-statement condition passes.</p>
+<p>The solution here is to use <code>===</code>; this doesn’t perform any type coercion, so the values are what you expect them to be. Of course, this all goes for the <code>!=</code> and <code>!==</code> operators as well.</p>
+<p>Now, for your amusement, here’s a few of the incredible inconsistencies that you’ll get if you use double-equals:</p>
+<pre name="code">''         == '0' // false
+'0'        == ''  // true
+false      == '0' // true
+' \t\r\n ' == 0   // true </pre>
+<hr />
+<h2><span>Mistake 4 -</span> You’re using Type Wrapper Objects</h2>
+<p>JavaScript kindly (um?) gives us some type wrappers for easy (um?) creation of primitive types:</p>
+<pre name="code">new Number(10);
+new String("hello");
+new Boolean(true);
+new Object();
+new Array("one", "two", "three");</pre>
+<p>First off, this is just super inconvenient. All these things can be done with many fewer keystrokes:</p>
+<pre name="code">10;
+"hello";
+true;
+{};
+["one", "two", "three"];</pre>
+<p>But, wait, there’s more: these two things aren’t exactly equal. Here’s Douglas Crockford on the topic:</p>
+<blockquote>
+<p>For example, <code>new boolean(false)</code> produces an object that has a <code>valueOf</code> method that returns the wrapped value.</p>
+<p>- <em>JavaScript: The Good Parts</em>, page 114</p>
+</blockquote>
+<p>This means that if you run <code>typeof new Number(10)</code> or <code>typeof new String("hello")</code>, you’ll get ‘object’—not what you want. Plus, using wrapper objects can cause behaviour that you’re not expecting if you’re used to primitive values.</p>
+<p>So why does JavaScript provide these objects? It’s because they’re used internally. Primitive values don’t actually have methods (because they aren’t object); so, when you call a method on a primitive object (such as <code>"hello".replace("ello", "i")</code>), JavaScript creates a wrapper object for that string, does what you want, and then discards the object.</p>
+<p>Leave the typed wrappers up to JavaScript and use the primitive values.</p>
+<p>Note: this should go without saying, but I want to make this clear for the newbies: I’m not saying you shouldn’t use constructor functions and <code>new</code> (although some do recommend that). This advice specifically applies to primitive value types—numbers, strings, and booleans—arrays, and blank objects.</p>
+<hr />
+<h2><span>Mistake 5 -</span> You’re not Property-Checking when Using For-In</h2>
+<p>We’re all familiar with iterating over arrays; however, you’ll probably find yourself wanting to iterate over the properties of an object. (Digression: the items in an array are actually just numbered properties in an object.) If you’ve done this before, you’ve used a for-in loop:</p>
+<pre name="code">var prop, obj = { name: "Joe", job: "Coder", age: 25 };
+
+for (var prop in obj) {
+  console.log(prop + ": " + obj[prop]);
+}</pre>
+<p>If you run the above code, you should see this output:</p>
+<pre name="code">name: Joe
+job: Coder
+age: 25</pre>
+<p>However, browsers will include properties and methods from further up the prototype chain. Most of the time you won’t want to see these when enumerating properties. You should be using the <code>hasOwnProperties</code> to filter out properties that aren’t actually on the object:</p>
+<pre name="code">Function Dog (name) {
+    this.name = name;
+}
+Dog.prototype.legs = 4;
+Dog.prototype.speak = function () {
+    return "woof!";
+};
+
+var d = new Dog("Bowser");
+
+for (var prop in d) {
+    console.log( prop + ": " + d[prop] );
+}
+
+console.log("=====");
+
+for (var prop in d) {
+  if (d.hasOwnProperty(prop)) {
+    console.log( prop + ": " + d[prop] );
+  }
+}
+
+// Output
+
+// name: Bowser
+// legs: 4
+// speak: function () {
+        return "woof!";
+// }
+// =====
+// name: Bowser</pre>
+<p>Sometimes, you’ll want to let the properties through, but filter out any methods. You can do that by using <code>typeof</code>:</p>
+<pre name="code">for (var prop in d) {
+  if (typeof d[prop] !== 'function') {
+    console.log( prop + ": " + d[prop] );
+  }
+}</pre>
+<p>Either way, always be sure to clarify your for-in statements to avoid unwanted results.</p>
+<hr />
+<h2><span>Mistake 6 -</span> You’re Using <code>with</code> or <code>eval</code></h2>
+<p>Thankfully, most sources for learning JavaScript today don’t teach you about <code>with</code> or <code>eval</code>. But if you’re using some older material—or using a less-than-reputable source (because sometimes good material is hard to find on the web)—you might have found <code>with</code> and <code>eval</code> and given them a try. Terrible move, web developer.</p>
+<p>Let’s start with <code>with</code>. Two main reasons not to use it:</p>
+<ol>
+<li>It really slows down the execution of your JavaScript.</li>
+<li>It’s not always clear what you’re doing.</li>
+</ol>
+<p>Point one stands on its own, so let’s look at the second. Quickly, here’s how with works: You pass an object to a with statement; then, inside the with statement block, you can access properties of the object as variables:</p>
+<pre name="code">var person = { name: "Joe", age : 10 };
+
+with (person) {
+  console.log(name); // Joe
+  console.log(age);  // 10
+}</pre>
+<p>But, what if we have a variable with the same name as a property of the object we’re <code>with</code>-ing? Basically, if both a variable and a property with the same name exist, the variable will be used. The other gotcha is that you can’t add a property to the object inside a with statement: if no property or variable exists, it will be made a variable of the scope outside the with statement:</p>
+<pre name="code">var person = { name: "Joe", age : 10 },
+    name = "Billy";
+
+with (person) {
+  console.log(name); // Billy
+  job = "Designer";
+} 
+
+console.log(person.job); // undefined;
+console.log(job); // Designer</pre>
+<p>So, how about <code>eval</code>? In a nutshell, you can pass a string of code to the function and it will execute the code.</p>
+<pre name="code">eval( "Console.log('hello!');" );</pre>
+<p>Sounds harmless, even powerful, right? Actually, that’s the main problem: it’s too powerful. There’s obviously no reason to just hand it a hard string that you write directly into your code, because 1) why not just write the code? And 2) <code>eval</code> is slower, just like <code>with</code>. Therefore, the primary use of <code>eval</code> is to execute code that you don’t have at runtime. You could be getting this from the server, or taking code directly from the user. Do you really want to give your website users complete control of your code? I hope not. Also, it opens your site up to unnumbered hackers: using <code>eval</code> is basically a sign that says ”I’m away, and the key is under the mat.” If you love yourself or your users: don’t use it.</p>
+<hr />
+<h2><span>Mistake 7 -</span> You’re Not Using a Radix When Using <code>parseInt</code></h2>
+<p>JavaScript has a great little helper function called <code>parseInt</code> that allows you to convert a string that contains a number to a number:</p>
+<pre name="code">parseInt("200"); // 200
+parseInt("043"); // 35</pre>
+<p>Um, what happened there? Shouldn’t that second example be 43? Actually, <code>parseInt</code> will work with more than just decimal values: so, when <code>parseInt</code> sees a string that starts with a 0, it assumes that it’s an octal number (base 8). That’s why it’s a mistake not to pass a radix; this tells <code>parseInt</code> what base the number is in (it always outputs a decimal number).</p>
+<pre name="code">parseInt("020", 10); // 20
+parseInt("100", 2);  // 4</pre>
+<hr />
+<h2><span>Mistake 8 -</span> You’re Not Using Braces on <code>if</code> and <code>while</code> statements</h2>
+<p>One of the most obvious beauties of JavaScript is its flexibility. But sometimes, that can come back to fight you. That’s certainly the case with braces on if- and while-statement blocks. These braces are optional if you only have one line of code in the block:</p>
+<pre name="code">if (true)
+  console.log("inside the if statement");</pre>
+<p>This is great, because you can even put them on the same line:</p>
+<pre name="code">var arr = ["one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"],
+    i   = arr.length - i;
+
+while (i) console.log( arr[i--] );</pre>
+<p>But this isn’t smart for a couple of reasons: firstly, it can become unclear:</p>
+<pre name="code">if (true)
+  console.log("inside the if-statement.");
+  console.log("outside the if-statement.");</pre>
+<p>See what I mean? That second line isn’t in the if-statement, but it sure looks like it. Braces would make that clear. Also, if you ever want to add a line to the block, you have to remember to add the braces as well. Just adding them in the first place is so much easier. Do it.</p>
+<hr />
+<h2><span>Mistake 9 -</span> You’re Adding Elements to the DOM Individually</h2>
+<p>All right, all right: this isn’t really JavaScript itself. But, in 99 of 100 cases, JavaScript means using the DOM. While there’s a lot of mistakes you can make when working with the DOM, this is a big one.</p>
+<p>I fondly remember the day when I inserted my first DOM element via JavaScript. It’s fun to do, and oh-so-useful, but it unfortunately is a strain on the page: inserting a DOM element forces the browser to completely repaint the page, so if you have a whole bunch of elements to add, adding them one by one is a bad idea:</p>
+<pre name="code">var list = document.getElementById("list"),
+    items = ["one", "two", "three", "four"],
+    el;
+
+for (var i = 0; items[i]; i++) {
+  el = document.createElement("li");
+  el.appendChild( document.createTextNode(items[i]) );
+  list.appendChild(el); // slow, bad idea
+}</pre>
+<p>Here’s what you should do instead: use document fragments. Document fragments are a container to hold DOM elements; then instead of inserting each element individually, you can insert them all at once. The document fragment isn’t a node in itself and there will be nothing to show for it in the DOM: it’s just an invisible net for holding DOM elements before you put them into the DOM. So, here’s how you do it:</p>
+<pre name="code">var list = document.getElementById("list"),
+    frag = document.createDocumentFragment(),
+    items = ["one", "two", "three", "four"],
+    el;
+
+for (var i = 0; items[i]; i++) {
+  el = document.createElement("li");
+  el.appendChild( document.createTextNode(items[i]) );
+  frag.appendChild(el); // better!
+}
+
+list.appendChild(frag);</pre>
+<p>Faster, quicker, cleaner—what’s not to love?</p>
+<hr />
+<h2><span>Mistake 10 -</span> You’re Not Learning JavaScript</h2>
+<blockquote>
+<p>Many people don’t take the time to learn JavaScript right.</p>
+</blockquote>
+<p>JavaScript does not equal jQuery. Did I just shock your sock off? If you found yourself guilty of committing several of the mistakes listed above, you probably need to do some serious JavaScript studying. JavaScript is a language that you can use almost without learning it, which means that so many people don’t take the time to learn it right. Don’t be one of those people: there are <a href="http://net.tutsplus.com/category/tutorials/javascript-ajax/">so many awesome</a> <a href="http://marketplace.tutsplus.com/category/web-development/javascript-ajax">JavaScript tutorials</a> out there that you have no excuse for not learning the language. If all you know is jQuery (or Mootools, or whatever), you’re really putting yourself in a bad spot.</p>
+<hr />
+<h2><span>Mistake 11 -</span> You’re Following all the Rules</h2>
+<blockquote>
+<p>Rules are made to be broken.</p>
+</blockquote>
+<p>The last and final mistake you’re making is that you’re following all the rules. Yes, even some of the rules I’ve listed here. As with anything, rules are made to be broken. If you’re relatively new to JavaScript, you should probably avoid with fervour all the mistakes I’ve outlined for you today. But the truth is that if you understand why it’s recommended not to do something, that thing becomes a tool that you might use in just the right circumstance. For example, <code>eval</code> is preached against loudly, but it’s the only tool you can use to parse JSON from a server. Of course, there are many security checks in place when you do it (you should probably use <a href="https://github.com/douglascrockford/JSON-js">a library</a>). But the point is that you shouldn’t be afraid to knowledgeably use the “bad practices” I’ve listed above if the need arises. It’s the same close-mindedness that causes you to make these mistakes in the first place is the same close-mindedness that keeps you from using them when they are the right tool.</p>
+<p>Of course, never make mistake 10 -</p>
+<hr />
+<h2>Conclusion</h2>
+<p>If you’re new to JavaScript, hopefully you’re a better JavaScript developer now. If you consider yourself a JavaScript pro (then how are you even still reading this?), what have I missed? Let us all know in the comments!</p><div>
+<a href="http://feeds.feedburner.com/~ff/nettuts?a=FLbwQsC3hxA:JH80VESN4GU:yIl2AUoC8zA"><img src="http://feeds.feedburner.com/~ff/nettuts?d=yIl2AUoC8zA" border="0" /></a> <a href="http://feeds.feedburner.com/~ff/nettuts?a=FLbwQsC3hxA:JH80VESN4GU:F7zBnMyn0Lo"><img src="http://feeds.feedburner.com/~ff/nettuts?i=FLbwQsC3hxA:JH80VESN4GU:F7zBnMyn0Lo" border="0" /></a> <a href="http://feeds.feedburner.com/~ff/nettuts?a=FLbwQsC3hxA:JH80VESN4GU:V_sGLiPBpWU"><img src="http://feeds.feedburner.com/~ff/nettuts?i=FLbwQsC3hxA:JH80VESN4GU:V_sGLiPBpWU" border="0" /></a> <a href="http://feeds.feedburner.com/~ff/nettuts?a=FLbwQsC3hxA:JH80VESN4GU:gIN9vFwOqvQ"><img src="http://feeds.feedburner.com/~ff/nettuts?i=FLbwQsC3hxA:JH80VESN4GU:gIN9vFwOqvQ" border="0" /></a> <a href="http://feeds.feedburner.com/~ff/nettuts?a=FLbwQsC3hxA:JH80VESN4GU:TzevzKxY174"><img src="http://feeds.feedburner.com/~ff/nettuts?d=TzevzKxY174" border="0" /></a>
+</div><img src="http://feeds.feedburner.com/~r/nettuts/~4/FLbwQsC3hxA" height="1" width="1" /></blockquote>
