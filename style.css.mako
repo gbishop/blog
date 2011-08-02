@@ -180,7 +180,7 @@ blockquote p { margin: 0; }
     position:relative;
     padding:15px;
     color:#333;
-    background:#eee;
+    background:#DDD;
     /* css3 */
     -webkit-border-radius:10px;
     -moz-border-radius:10px;
@@ -196,7 +196,7 @@ blockquote p { margin: 0; }
     top:-30px;
     left:50px;
     border:15px solid transparent;
-    border-bottom-color:#eee;
+    border-bottom-color:#DDD;
     /* reduce the damage in FF3.0 */
     display:block; 
     width:0;
