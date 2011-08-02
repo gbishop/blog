@@ -6,50 +6,6 @@ date: 2011/07/25 08:26:00
 ---
 <p class="reader-comment">Very useful looking package manager for Dojo. </p>
 <p class="reader-source"><a href="http://www.sitepen.com/blog/2011/07/25/dojo-foundation-packages/">SitePen Blog</a></p>
-<blockquote class="reader-clip"><p>The <a href="http://dojofoundation.org/">Dojo Foundation</a> was founded for the purpose of facilitating an active and <a href="http://dojofoundation.org/about/hundredpoint/">open</a> community of web technology, making high-quality code accessible to developers without constraint. The Dojo community has a history of commitment to the open web, with active involvement in many standards bodies and interoperability efforts, dedication to standards based approaches with the move to the CommonJS AMD format and promises implementation, HTML5-based store API, data attributes, to-the-letter HTTP REST implementation, and more. The Dojo Foundation is working to further advance the open web with the introduction of a JavaScript package repository. </p>
-<p><span></span></p>
-<p>The new <a href="http://packages.dojofoundation.org/list.html">Dojo Foundation package repository</a> provides a place for JavaScript packages to easily be <a href="http://packages.dojofoundation.org/submit.html">registered</a> (with github integration for automatic version syncing) and downloaded for use in web applications. You can also install packages using our new package installer, which you can use by <a href="http://github.com/kriszyp/cpm">downloading and install CPM</a> (CommonJS Package Manager). Installation involves simply setting up the script to run from one of your bin path directories and point to the CPM directory. Then you can start installing packages:</p>
-<pre lang="html4">cpm install dojo
-</pre>
-<p>This will automatically download and install the latest version and all necessary dependencies as packages into the current directory.</p>
-<p>We can now use a compliant AMD module loader including Dojo and RequireJS to load modules from these packages. We could alternately install RequireJS with:</p>
-<pre lang="html4">cpm install requirejs
-</pre>
-<p>Now the loader will download and be ready for use. In our page, we can load the script module loader to bootstrap the loading of the rest of our modules:</p>
-<pre lang="html4">  
-  
-</pre>
-<p>Or we could do the same thing with RequireJS:</p>
-<pre lang="html4">  
-  
-</pre>
-<p>And that’s all we need to do get up and running with packages for your web application!</p>
-<h2>Installing Package Versions</h2>
-<p>The CPM also includes options for specifying specific package versions or downloading from URLs. For example, to download Dijit 1.6.1, we could do:</p>
-<pre lang="html4">cpm install dijit 1.6.1
-</pre>
-<p>And again, this will download the version of the package specified and appropriate package dependencies (with the correct versions). As another example, to download the “master” version (the typical head in git), we could do:</p>
-<pre lang="html4">cpm install dijit master
-</pre>
-<p>Packages may use nested directories for the JavaScript modules (in “lib” rather than being at the root). If the package is structured as such, the CPM automatically copies the lib directory contents to the package root to ensure that package modules can easily be referenced in <code>&lt;package&gt;/&lt;module&gt;</code> form.</p>
-<h3>Use the Packages with NPM/Node</h3>
-<p>This entire toolset is also open source and interoperable. The package repository is based on the CommonJS package specification and registry specification that was developed and is used by Isaac Schlueter for NPM (Node Package Manager). NPM and the package registry specification was designed for multiple registries, and the package repository fits into the distributed package registry model used by NPM. In fact, you can actually install packages from the package repository using the NPM. For example, if you have NPM installed, you can run:</p>
-<pre lang="html4">npm install compose
-</pre>
-<p>This package is linked between the repositories, so NPM is automatically directed to the Dojo foundation repository when you run this command.</p>
-<h2>Replacing DojoX</h2>
-<p>The Dojo Toolkit has long used DojoX to house Dojo extensions. However, as DojoX has grown, it has become increasingly onerous to keep every sub-project within DojoX on the same release cycle as Dojo and Dijit. We also want the set of available extensions to be driven by a wider community of authors than just Dojo committers. Part of the motivation for the Dojo Foundation package repository is replacing DojoX for Dojo 2.0. While we will most likely continue to include DojoX in 1.x releases, all new projects and the latest releases of actively developed existing projects from DojoX will be available from the package repository.</p>
-<p>If you have code that relies on a DojoX package and you want to use a release from the package repository, you can install the package into a specific location to match the DojoX namespace:</p>
-<pre lang="javascript">cpm install window-name 0.4 dojox/io
-</pre>
-<p>And this would install the window-name package into the dojox/io namespace (where it exists in DojoX).</p>
-<h2>Adding Packages</h2>
-<p>Adding packages to the package repository is extremely easy. Simply click on the <a href="http://packages.dojofoundation.org/submit.html">submit link</a> and provide the URL for your project. If it is a github project, the repository will automatically query for all the tags and branches in your project and make these available as versions through the repository. You never need to update or publish to the repository again, every time your package is requested, github will be re-queried for the latest tags and branches. You can even have your package auto-linked to the NPM registry if the package will run on Node by checking the NPM checkbox.</p>
-<p>Packages follow the <a href="http://wiki.commonjs.org/wiki/Packages/1.1">CommonJS package specification</a>. We have a <a href="http://packages.dojofoundation.org/list.html#commonjs-package-template">package template</a> that makes a great starting point for developing a new package. Every package should include a package.json that describes it. The package repository will use your package.json information in the package listing.</p>
-<p>This is an introduction to the Dojo Foundation package repository. This will hopefully give you a good start to leveraging this repository and easily adding packages to your web application. In the future, we will look at some of the exciting packages available in the package repository.</p>
-
-
-<p>Related posts:</p><ol><li><a href="http://www.sitepen.com/blog/2007/03/10/writing-rpm-packages-is-easier-than-you-might-think/" rel="bookmark" title="Permanent Link: Writing RPM packages is easier than you might think">Writing RPM packages is easier than you might think</a></li>
-<li><a href="http://www.sitepen.com/blog/2011/02/14/asynchronous-modules-come-to-dojo-1-6/" rel="bookmark" title="Permanent Link: Asynchronous Modules Come to Dojo 1.6">Asynchronous Modules Come to Dojo 1.6</a></li>
-<li><a href="http://www.sitepen.com/blog/2010/09/15/nodules-better-modulepackage-handling-for-node-js/" rel="bookmark" title="Permanent Link: Nodules: Better Module/Package Handling for Node.js">Nodules: Better Module/Package Handling for Node.js</a></li>
-</ol><p></p><p>SitePen offers beginner, intermediate, and advanced Dojo Toolkit workshops to make your development team as skilled and efficient as possible when creating dynamic, responsive web applications.  <a href="http://sitepen.com/services/workshops/index.php">Sign up today!</a></p></blockquote>
+<blockquote class="reader-clip">
+<p>The new <a href="http://packages.dojofoundation.org/list.html">Dojo Foundation package repository</a> provides a place for JavaScript packages to easily be <a href="http://packages.dojofoundation.org/submit.html">registered</a> (with github integration for automatic version syncing) and downloaded for use in web applications.</p>
+</blockquote>
