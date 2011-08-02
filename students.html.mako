@@ -6,8 +6,10 @@
 <p>I have been blessed to work with some amazing students over the years; they are truly the best part of my job.</p>
 <h4>Current Students</h4>
 <ul>
-	<li>Duncan Lewis</li>
-	<li>Wai Yau</li>
+        <li>Rob Dalara</li>
+	<li>Robert Overman</li>
+        <li>Bradley Thwaites</li>
+        <li>Patrick Waivers</li>
 </ul>
 <h4>Former Students</h4>
 <p>
@@ -42,6 +44,7 @@
         <li>Greg Kronmiller</li>
 	<li>Aleksandra Krstic</li>
         <li>KU Shih</li>
+	<li>Duncan Lewis</li>
 	<li>Thomas Logan</li>
         <li>Rebecca Lovewell</li>
  	<li>Bill Mark</li>
@@ -53,7 +56,6 @@
 	<li>Jennifer O'Bryan</li>
 	<li>Claire O'Shea</li>
 	<li>Manuel Oliveira</li>
-	<li>Robert Overman</li>
 	<li>Peter Parente</li>
         <li>Daniel Parker</li>
         <li>Roger Que</li>
@@ -74,6 +76,7 @@
 	<li>Logan Wilkerson</li>
 	<li>Kirstin Williams</li>
         <li>Philip Winston</li>
+	<li>Wai Yau</li>
 	<li>Ellen Scher Zagier</li>
         <li>Stephanie Zolayvar</li>
 </ul>
